@@ -10,8 +10,8 @@ const notoSansKr = Noto_Sans_KR({
 });
 
 export const metadata: Metadata = {
-  title: '오브한의원 | ORB Korean Medicine Clinic',
-  description: '마곡나루역 5번 출구 인근 오브한의원 마곡점.',
+  title: '무엇을 치료하나요 | 오브한의원',
+  description: '통증, 자율신경실조증, 스트레스, 신경증, 다이어트, 열대사장애, 교통사고 후유증을 다루는 오브한의원 치료 안내.',
 };
 
 export default function RootLayout({
