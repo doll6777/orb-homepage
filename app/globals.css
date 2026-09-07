@@ -16,6 +16,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-snap-type: y mandatory;
   background: var(--bg-dark);
 }
 
@@ -45,10 +46,7 @@ img {
 }
 
 .site-shell {
-  height: 100svh;
   overflow-x: hidden;
-  overflow-y: auto;
-  scroll-snap-type: y mandatory;
   background: var(--bg-dark);
 }
 
@@ -629,9 +627,6 @@ img {
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
-  }
-
-  .site-shell {
     scroll-snap-type: y proximity;
   }
 
