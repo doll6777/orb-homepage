@@ -57,8 +57,8 @@ export default function Home() {
   return (
     <main className="site-shell">
       <header className="global-header" aria-label="오브한의원">
-        <a className="wordmark" href="#top" aria-label="오브한의원 홈">
-          ORB
+        <a className="wordmark logo-link" href="#top" aria-label="오브한의원 홈">
+          <img src="/orb-logo-cream.png" alt="오브한의원" />
         </a>
         <div className="header-actions">
           <a href="#contact">예약하기</a>
@@ -80,8 +80,9 @@ export default function Home() {
 
       <section className="snap-section treat-hero" id="top">
         <div className="hero-copy">
+          <img className="hero-logo" src="/orb-logo-cream.png" alt="오브한의원" />
           <p className="brand-kicker">ORB KOREAN MEDICINE CLINIC</p>
-          <h1>오브(ORB) 한의원</h1>
+          <h1>무엇을 치료하나요</h1>
           <p>
             다년간의 병, 의원 경력을 통해 1차의료기관 한의원에서 할 수 있는
             최선의 치료를 제안합니다.
