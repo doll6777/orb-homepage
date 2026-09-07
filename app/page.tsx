@@ -62,11 +62,6 @@ export default function Home() {
         </a>
         <div className="header-actions">
           <a href="#contact">예약하기</a>
-          <button className="menu-button" aria-label="메뉴 열기">
-            <span />
-            <span />
-            <span />
-          </button>
         </div>
       </header>
 
@@ -82,7 +77,7 @@ export default function Home() {
         <div className="hero-copy">
           <img className="hero-logo" src="/orb-logo-cream.png" alt="오브한의원" />
           <p className="brand-kicker">ORIGIN · RESET · BALANCE</p>
-          <h1>무엇을 치료하나요</h1>
+          <h1>오브 치료의 기준</h1>
           <p>
             1차의료기관 한의원에서 할 수 있는 최선의 치료를 제안합니다.
           </p>
@@ -99,7 +94,7 @@ export default function Home() {
       <section className="snap-section area-section" id="areas">
         <div className="area-intro">
           <p className="eyebrow">TREATMENT</p>
-          <h2>진료 영역</h2>
+          <h2>무엇을 치료하나요</h2>
         </div>
         <div className="area-grid">
           {treatmentAreas.map((area, index) => (
