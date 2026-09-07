@@ -39,11 +39,6 @@ export default function Home() {
       <section className="snap-section opening" id="top" aria-label="오브한의원 소개">
         <div className="hero-panel">
           <img src="/hero-room.jpg" alt="" className="hero-image" />
-          <div className="hero-mark" aria-label="오브한의원 ORB KOREAN MEDICINE CLINIC">
-            <div className="orb-symbol">OB</div>
-            <h1>오브한의원</h1>
-            <p>ORB KOREAN MEDICINE CLINIC</p>
-          </div>
           <div className="scroll-cue" aria-hidden="true">
             <span>SCROLL</span>
             <i />
