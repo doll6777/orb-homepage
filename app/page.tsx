@@ -68,10 +68,6 @@ export default function Home() {
             <br />
             지금, 가장 필요한 치료에 집중합니다.
           </h2>
-          <p>
-            몸의 긴장과 회복 흐름을 세심하게 읽고, 오늘의 상태에 맞는 치료를
-            차분히 제안합니다.
-          </p>
           <a href="#diagnostics" className="text-link">자세히 보기 <span>→</span></a>
         </div>
       </section>
@@ -83,9 +79,6 @@ export default function Home() {
             자율신경 검사
             <em>Autonomic Nervous System</em>
           </h2>
-          <p>
-            몸이 보내는 미세한 신호를 확인해 회복에 필요한 방향을 정돈합니다.
-          </p>
           <a href="#space" className="text-link">자세히 보기 <span>→</span></a>
         </div>
         <div className="photo-pane">
@@ -117,9 +110,6 @@ export default function Home() {
         <div className="copy-pane">
           <p className="eyebrow">MEDICAL TEAM</p>
           <h2>의료진</h2>
-          <p>
-            증상의 이름보다 사람의 리듬을 먼저 살피는 진료를 지향합니다.
-          </p>
           <a href="#location" className="text-link">자세히 보기 <span>→</span></a>
         </div>
       </section>
