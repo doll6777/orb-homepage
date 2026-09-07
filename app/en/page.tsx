@@ -1,77 +1,79 @@
+import type { Metadata } from 'next';
+
 const treatmentAreas = [
-  '통증',
-  '자율신경실조증',
-  '스트레스',
-  '신경증',
-  '다이어트',
-  '열대사장애',
-  '교통사고 후유증',
+  'Pain care',
+  'Autonomic imbalance',
+  'Stress',
+  'Neurotic symptoms',
+  'Weight management',
+  'Heat metabolism',
+  'Traffic accident aftercare',
 ];
 
 const programs = [
   {
     number: '01',
-    title: '통증 · 추나',
+    title: 'Pain · Chuna',
     image: '/orb-chuna-room.png',
-    alt: '오브한의원 추나 치료 장면',
+    alt: 'Chuna treatment at ORB Korean Medicine Clinic',
     body:
-      '급성 통증부터 오래된 퇴행성 척추질환까지, 병기에 맞는 처치와 재활 방향을 안내합니다.',
+      'From acute musculoskeletal pain to long-standing degenerative spine conditions, care is guided by the stage of the condition.',
   },
   {
     number: '02',
-    title: '자율신경 · 뇌파검사',
+    title: 'Autonomic · QEEG',
     image: '/orb-qeeg-test.jpeg',
-    alt: '정량뇌파검사 장면',
+    alt: 'QEEG examination at ORB Korean Medicine Clinic',
     body:
-      '자율신경검사와 QEEG-32FX로 뇌의 피로도와 회복 신호를 확인합니다.',
+      'Autonomic testing and QEEG-32FX help assess nervous-system fatigue and recovery signals more objectively.',
   },
   {
     number: '03',
-    title: '스트레스 · 신경증',
+    title: 'Stress · Neurotic Symptoms',
     image: '/orb-treatment-bed.jpeg',
-    alt: '오브한의원 치료실 장면',
+    alt: 'Treatment room at ORB Korean Medicine Clinic',
     body:
-      '과민감, 브레인포그, 우울감으로 이어지는 불편함을 회복 흐름 안에서 살핍니다.',
+      'ORB looks at sensitivity, brain fog, low mood, and stress-related discomfort as part of one recovery pattern.',
   },
   {
     number: '04',
-    title: '다이어트 · 열대사',
+    title: 'Weight · Metabolism',
     image: '/orb-acurex-blue.png',
-    alt: '약침 제품 이미지',
+    alt: 'Korean medicine treatment product',
     body:
-      '뇌의 에너지 센서, 항상성 회로, 장내 환경의 균형에서 접근합니다.',
+      'Weight care is approached through energy regulation, homeostasis, and the balance of the gut environment.',
   },
 ];
 
 const memberships = [
-  '대한한의사협회 회원',
-  '척추신경추나의학회 회원',
-  '대한한의학회 회원',
-  '대한한방비만학회 회원',
-  '대한통합암학회 회원',
-  '대한뇌파한의학회 회원',
-  '한의정보협동조합 회원',
+  'The Association of Korean Medicine',
+  'Korean Society of Chuna Manual Medicine for Spine & Nerves',
+  'The Society of Korean Medicine',
+  'Korean Medicine Obesity Society',
+  'Korean Society of Integrative Oncology',
+  'Korean Medicine EEG Society',
+  'Korean Medicine Information Cooperative',
 ];
 
 const naverPlaceUrl =
   'https://pcmap.place.naver.com/hospital/2005324011/home';
 const phoneDisplay = '0507-1383-5982';
 const phoneHref = 'tel:050713835982';
-const siteUrl = 'https://orb-korean-medicine-clinic.hyeranlee.chatgpt.site';
+const siteUrl = 'https://orb-korean-medicine-clinic.hyeranlee.chatgpt.site/en';
 
 const clinicJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'MedicalClinic',
-  name: '오브한의원 마곡점',
-  alternateName: 'ORB Korean Medicine Clinic Magok',
+  name: 'ORB Korean Medicine Clinic Magok',
+  alternateName: '오브한의원 마곡점',
   url: siteUrl,
   telephone: phoneDisplay,
   address: {
     '@type': 'PostalAddress',
     addressCountry: 'KR',
-    addressRegion: '서울',
-    addressLocality: '강서구',
-    streetAddress: '마곡중앙로 111 104동 2층 238호, 239호',
+    addressRegion: 'Seoul',
+    addressLocality: 'Gangseo-gu',
+    streetAddress: '111 Magokjungang-ro, Building 104, 2F, Units 238-239',
   },
   medicalSpecialty: [
     'Korean Medicine',
@@ -82,26 +84,48 @@ const clinicJsonLd = {
   availableService: treatmentAreas,
 };
 
-export default function Home() {
+export const metadata: Metadata = {
+  title: 'English Guide',
+  description:
+    'English guide for ORB Korean Medicine Clinic Magok in Seoul. Care for pain, autonomic imbalance, stress, neurotic symptoms, weight management, heat metabolism, and traffic accident aftercare.',
+  alternates: {
+    canonical: '/en',
+    languages: {
+      ko: '/',
+      en: '/en',
+    },
+  },
+  openGraph: {
+    title: 'ORB Korean Medicine Clinic Magok',
+    description:
+      'English guide for ORB Korean Medicine Clinic near Magongnaru Station Exit 5 in Seoul.',
+    url: '/en',
+    siteName: 'ORB Korean Medicine Clinic',
+    locale: 'en_US',
+    type: 'website',
+  },
+};
+
+export default function EnglishPage() {
   return (
-    <main className="site-shell">
+    <main className="site-shell" lang="en">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(clinicJsonLd) }}
       />
-      <header className="global-header" aria-label="오브한의원">
-        <a className="wordmark" href="#top" aria-label="오브한의원 홈">
+      <header className="global-header" aria-label="ORB Korean Medicine Clinic">
+        <a className="wordmark" href="/en#top" aria-label="ORB home">
           ORB
         </a>
         <div className="header-actions">
-          <a href="/en" hrefLang="en" aria-label="View in English">
-            EN
+          <a href="/" hrefLang="ko" aria-label="View in Korean">
+            KR
           </a>
-          <a href="#contact">예약하기</a>
+          <a href="#contact">Reservation</a>
         </div>
       </header>
 
-      <nav className="side-index" aria-label="섹션 이동">
+      <nav className="side-index" aria-label="Section navigation">
         <span aria-hidden="true" />
         <a href="#top">01</a>
         <a href="#areas">02</a>
@@ -111,16 +135,16 @@ export default function Home() {
 
       <section className="snap-section treat-hero" id="top">
         <div className="hero-copy">
-          <img className="hero-logo" src="/orb-logo-cream.png" alt="오브한의원" />
+          <img className="hero-logo" src="/orb-logo-cream.png" alt="ORB Korean Medicine Clinic" />
           <p className="brand-kicker">ORIGIN · RESET · BALANCE</p>
-          <h1>오브 치료의 기준</h1>
+          <h1>ORB Care Standard</h1>
           <p>
-            마곡 오브한의원은 1차의료기관 한의원에서 할 수 있는 최선의 치료를
-            제안합니다.
+            ORB Korean Medicine Clinic Magok offers thoughtful primary Korean
+            medicine care in Seoul.
           </p>
         </div>
         <figure className="hero-photo">
-          <img src="/orb-space-lobby.png" alt="오브한의원 대기실 공간" />
+          <img src="/orb-space-lobby.png" alt="ORB Korean Medicine Clinic lobby" />
         </figure>
         <div className="scroll-cue" aria-hidden="true">
           <span>SCROLL</span>
@@ -131,7 +155,7 @@ export default function Home() {
       <section className="snap-section area-section" id="areas">
         <div className="area-intro">
           <p className="eyebrow">TREATMENT</p>
-          <h2>무엇을 치료하나요</h2>
+          <h2>What We Treat</h2>
         </div>
         <div className="area-grid">
           {treatmentAreas.map((area, index) => (
@@ -143,7 +167,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="programs" id="programs" aria-label="주요 치료 설명">
+      <section className="programs" id="programs" aria-label="Treatment programs">
         {programs.map((program, index) => (
           <section
             className={`snap-section program-section ${index % 2 === 1 ? 'reverse' : ''}`}
@@ -165,40 +189,40 @@ export default function Home() {
         <div className="principle-copy">
           <p className="eyebrow">ORIGIN · RESET · BALANCE</p>
           <h2>
-            원인을 진단하고,
+            We diagnose the origin,
             <br />
-            회복의 방향을 다시 맞춥니다.
+            then reset the direction of recovery.
           </h2>
         </div>
         <figure className="principle-photo">
-          <img src="/orb-glass-space.png" alt="오브한의원 유리 파사드 공간" />
+          <img src="/orb-glass-space.png" alt="ORB Korean Medicine Clinic glass entrance" />
         </figure>
       </section>
 
       <section className="snap-section contact-section" id="contact">
         <div className="letter">
           <p className="eyebrow">RESERVATION</p>
-          <h2>예약 및 문의</h2>
+          <h2>Visit ORB Magok</h2>
           <p>
-            오브한의원 마곡점은 전화 문의와 네이버 플레이스에서 확인하실 수
-            있습니다.
+            Contact ORB Korean Medicine Clinic Magok by phone or check the
+            official Naver Place page.
           </p>
           <address className="clinic-address">
-            서울 강서구 마곡중앙로 111
+            111 Magokjungang-ro, Building 104, 2F, Units 238-239
             <br />
-            104동 2층 238호, 239호
+            Gangseo-gu, Seoul
             <br />
-            마곡나루역 5번 출구에서 136m
+            136m from Magongnaru Station Exit 5
           </address>
           <div className="reservation-info">
-            <span>전화번호</span>
+            <span>Phone</span>
             <a href={phoneHref}>{phoneDisplay}</a>
           </div>
-          <div className="outline-actions" aria-label="예약 및 문의">
+          <div className="outline-actions" aria-label="Reservation links">
             <a href={naverPlaceUrl} target="_blank" rel="noreferrer">
-              네이버 페이지
+              Naver Place
             </a>
-            <a href={phoneHref}>전화하기</a>
+            <a href={phoneHref}>Call</a>
           </div>
         </div>
         <div className="membership">
