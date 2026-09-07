@@ -15,7 +15,7 @@ const programs = [
     image: '/orb-chuna-room.png',
     alt: '오브한의원 추나 치료 장면',
     body:
-      '기초적인 근골격계 통증부터 오래된 퇴행성 척추질환까지 병기에 맞는 처치와 재활 정보를 안내합니다.',
+      '급성 통증부터 오래된 퇴행성 척추질환까지, 병기에 맞는 처치와 재활 방향을 안내합니다.',
   },
   {
     number: '02',
@@ -23,7 +23,7 @@ const programs = [
     image: '/orb-qeeg-test.jpeg',
     alt: '정량뇌파검사 장면',
     body:
-      '자율신경검사와 습식 정량뇌파진단기(QEEG-32FX)를 통해 뇌의 피로도를 객관적으로 확인합니다.',
+      '자율신경검사와 QEEG-32FX로 뇌의 피로도와 회복 신호를 확인합니다.',
   },
   {
     number: '03',
@@ -31,7 +31,7 @@ const programs = [
     image: '/orb-treatment-bed.jpeg',
     alt: '오브한의원 치료실 장면',
     body:
-      '과민감, 브레인포그, 우울감, ADHD 양상까지 이어지는 불편함을 하나의 회복 흐름 안에서 살핍니다.',
+      '과민감, 브레인포그, 우울감으로 이어지는 불편함을 회복 흐름 안에서 살핍니다.',
   },
   {
     number: '04',
@@ -39,7 +39,7 @@ const programs = [
     image: '/orb-acurex-blue.png',
     alt: '약침 제품 이미지',
     body:
-      '의지의 문제가 아니라 뇌의 에너지 센서와 항상성 회로, 장내 환경의 균형에서 접근합니다.',
+      '뇌의 에너지 센서, 항상성 회로, 장내 환경의 균형에서 접근합니다.',
   },
 ];
 
@@ -57,8 +57,8 @@ export default function Home() {
   return (
     <main className="site-shell">
       <header className="global-header" aria-label="오브한의원">
-        <a className="wordmark logo-link" href="#top" aria-label="오브한의원 홈">
-          <img src="/orb-logo-cream.png" alt="오브한의원" />
+        <a className="wordmark" href="#top" aria-label="오브한의원 홈">
+          ORB
         </a>
         <div className="header-actions">
           <a href="#contact">예약하기</a>
@@ -81,11 +81,10 @@ export default function Home() {
       <section className="snap-section treat-hero" id="top">
         <div className="hero-copy">
           <img className="hero-logo" src="/orb-logo-cream.png" alt="오브한의원" />
-          <p className="brand-kicker">ORB KOREAN MEDICINE CLINIC</p>
+          <p className="brand-kicker">ORIGIN · RESET · BALANCE</p>
           <h1>무엇을 치료하나요</h1>
           <p>
-            다년간의 병, 의원 경력을 통해 1차의료기관 한의원에서 할 수 있는
-            최선의 치료를 제안합니다.
+            1차의료기관 한의원에서 할 수 있는 최선의 치료를 제안합니다.
           </p>
         </div>
         <figure className="hero-photo">
@@ -100,7 +99,7 @@ export default function Home() {
       <section className="snap-section area-section" id="areas">
         <div className="area-intro">
           <p className="eyebrow">TREATMENT</p>
-          <h2>무엇을 치료하나요</h2>
+          <h2>진료 영역</h2>
         </div>
         <div className="area-grid">
           {treatmentAreas.map((area, index) => (
@@ -138,10 +137,6 @@ export default function Home() {
             <br />
             회복의 방향을 다시 맞춥니다.
           </h2>
-          <p>
-            체계적인 통증 치료와 신경질환의 뇌과학적 접근으로 균형 잡힌 몸을
-            만들어 갑니다.
-          </p>
         </div>
         <figure className="principle-photo">
           <img src="/orb-glass-space.png" alt="오브한의원 유리 파사드 공간" />
@@ -153,8 +148,8 @@ export default function Home() {
           <p className="eyebrow">FROM ORB</p>
           <h2>오브한의원장 드림</h2>
           <p>
-            병의 원인(Origin)을 제대로 진단하고 치료(Reset)하며, 최종적으로
-            균형(Balance) 잡힌 몸을 목표로 합니다.
+            병의 원인을 진단하고 치료하며, 최종적으로 균형 잡힌 몸을 목표로
+            합니다.
           </p>
         </div>
         <div className="membership">
