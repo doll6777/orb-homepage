@@ -352,6 +352,26 @@ img {
   border-right: 1px solid var(--line);
 }
 
+.reservation-info {
+  border-bottom: 1px solid var(--line);
+  border-top: 1px solid var(--line);
+  display: grid;
+  gap: 14px;
+  margin-top: 48px;
+  padding: 24px 0;
+}
+
+.reservation-info span {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.reservation-info a {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(32px, 4vw, 58px);
+  line-height: 1;
+}
+
 .membership ul {
   border-top: 1px solid var(--line);
   list-style: none;

@@ -53,6 +53,11 @@ const memberships = [
   '한의정보협동조합 회원',
 ];
 
+const naverPlaceUrl =
+  'https://pcmap.place.naver.com/hospital/2005324011/home';
+const phoneDisplay = '0507-1383-5982';
+const phoneHref = 'tel:050713835982';
+
 export default function Home() {
   return (
     <main className="site-shell">
@@ -140,12 +145,22 @@ export default function Home() {
 
       <section className="snap-section contact-section" id="contact">
         <div className="letter">
-          <p className="eyebrow">FROM ORB</p>
-          <h2>오브한의원장 드림</h2>
+          <p className="eyebrow">RESERVATION</p>
+          <h2>예약 및 문의</h2>
           <p>
-            병의 원인을 진단하고 치료하며, 최종적으로 균형 잡힌 몸을 목표로
-            합니다.
+            오브한의원 마곡점은 전화 문의와 네이버 플레이스에서 확인하실 수
+            있습니다.
           </p>
+          <div className="reservation-info">
+            <span>전화번호</span>
+            <a href={phoneHref}>{phoneDisplay}</a>
+          </div>
+          <div className="outline-actions" aria-label="예약 및 문의">
+            <a href={naverPlaceUrl} target="_blank" rel="noreferrer">
+              네이버 페이지
+            </a>
+            <a href={phoneHref}>전화하기</a>
+          </div>
         </div>
         <div className="membership">
           <p className="eyebrow">MEMBERSHIP</p>
@@ -154,12 +169,6 @@ export default function Home() {
               <li key={item}>{item}</li>
             ))}
           </ul>
-          <div className="outline-actions" aria-label="예약 및 문의">
-            <a href="https://map.naver.com/" target="_blank" rel="noreferrer">
-              네이버 지도
-            </a>
-            <a href="tel:02-0000-0000">전화하기</a>
-          </div>
         </div>
       </section>
     </main>
