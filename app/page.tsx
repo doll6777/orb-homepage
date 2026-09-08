@@ -226,7 +226,6 @@ export default function Home() {
         <div className="gallery-heading">
           <p className="eyebrow">SPACE</p>
           <h2>공간 둘러보기</h2>
-          <p>내부 사진이 천천히 넘어가며 공간의 분위기를 보여줍니다.</p>
         </div>
         <AutoGallery
           images={galleryImages}

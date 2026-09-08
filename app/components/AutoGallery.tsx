@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 
 type GalleryImage = {
   number: string;
@@ -18,7 +18,15 @@ export default function AutoGallery({
 }) {
   const sliderRef = useRef<HTMLDivElement>(null);
   const pausedRef = useRef(false);
-  const indexRef = useRef(0);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const activeImage = images[activeIndex] ?? images[0];
+  const progress = useMemo(() => {
+    if (images.length < 2) {
+      return 100;
+    }
+
+    return ((activeIndex + 1) / images.length) * 100;
+  }, [activeIndex, images.length]);
 
   useEffect(() => {
     const slider = sliderRef.current;
@@ -35,58 +43,107 @@ export default function AutoGallery({
       return;
     }
 
+    let frame = 0;
+
+    const setNearestSlide = () => {
+      const slides = Array.from(slider.children) as HTMLElement[];
+      const nextIndex = slides.reduce((nearestIndex, slide, index) => {
+        const currentDistance = Math.abs(slide.offsetLeft - slider.scrollLeft);
+        const nearestSlide = slides[nearestIndex];
+        const nearestDistance = Math.abs(nearestSlide.offsetLeft - slider.scrollLeft);
+
+        return currentDistance < nearestDistance ? index : nearestIndex;
+      }, 0);
+
+      setActiveIndex(nextIndex);
+    };
+
     const interval = window.setInterval(() => {
       if (pausedRef.current) {
         return;
       }
 
-      indexRef.current = (indexRef.current + 1) % images.length;
-      const nextSlide = slider.children[indexRef.current] as HTMLElement | undefined;
+      const slides = Array.from(slider.children) as HTMLElement[];
+      const nextIndex = (activeIndexRef(slider, slides) + 1) % images.length;
+      const nextSlide = slides[nextIndex];
 
       if (nextSlide) {
+        setActiveIndex(nextIndex);
         slider.scrollTo({
-          left: nextSlide.offsetLeft,
+          left: Math.max(0, nextSlide.offsetLeft - slider.clientWidth * 0.08),
           behavior: 'smooth',
         });
       }
-    }, 3600);
+    }, 4100);
 
-    return () => window.clearInterval(interval);
+    const handleScroll = () => {
+      window.cancelAnimationFrame(frame);
+      frame = window.requestAnimationFrame(setNearestSlide);
+    };
+
+    slider.addEventListener('scroll', handleScroll, { passive: true });
+    setNearestSlide();
+
+    return () => {
+      window.clearInterval(interval);
+      window.cancelAnimationFrame(frame);
+      slider.removeEventListener('scroll', handleScroll);
+    };
   }, [images.length]);
 
   return (
-    <div
-      className="space-slider"
-      aria-label={ariaLabel}
-      ref={sliderRef}
-      onMouseEnter={() => {
-        pausedRef.current = true;
-      }}
-      onMouseLeave={() => {
-        pausedRef.current = false;
-      }}
-      onPointerDown={() => {
-        pausedRef.current = true;
-      }}
-      onPointerUp={() => {
-        pausedRef.current = false;
-      }}
-      onFocus={() => {
-        pausedRef.current = true;
-      }}
-      onBlur={() => {
-        pausedRef.current = false;
-      }}
-    >
-      {images.map((image) => (
-        <figure className="gallery-slide" key={image.src}>
-          <img src={image.src} alt={image.alt} />
-          <figcaption>
-            <span>{image.number}</span>
-            <strong>{image.label}</strong>
-          </figcaption>
-        </figure>
-      ))}
+    <div className="space-observer">
+      <div
+        className="space-slider"
+        aria-label={ariaLabel}
+        ref={sliderRef}
+        onMouseEnter={() => {
+          pausedRef.current = true;
+        }}
+        onMouseLeave={() => {
+          pausedRef.current = false;
+        }}
+        onPointerDown={() => {
+          pausedRef.current = true;
+        }}
+        onPointerUp={() => {
+          pausedRef.current = false;
+        }}
+        onFocus={() => {
+          pausedRef.current = true;
+        }}
+        onBlur={() => {
+          pausedRef.current = false;
+        }}
+      >
+        {images.map((image, index) => (
+          <figure className="gallery-slide" key={image.src}>
+            <img src={image.src} alt={image.alt} />
+            <figcaption>
+              <span>{image.number}</span>
+              <strong>{image.label}</strong>
+            </figcaption>
+            <i aria-hidden="true">{String(index + 1).padStart(2, '0')}</i>
+          </figure>
+        ))}
+      </div>
+      <div className="space-progress" aria-hidden="true">
+        <span>{activeImage?.number}</span>
+        <b>{activeImage?.label}</b>
+        <i>
+          <em style={{ width: `${progress}%` }} />
+        </i>
+      </div>
     </div>
   );
+}
+
+function activeIndexRef(slider: HTMLElement, slides: HTMLElement[]) {
+  return slides.reduce((nearestIndex, slide, index) => {
+    const currentDistance = Math.abs(slide.offsetLeft - slider.scrollLeft);
+    const nearestSlide = slides[nearestIndex];
+    const nearestDistance = Math.abs(nearestSlide.offsetLeft - slider.scrollLeft);
+
+    return currentDistance < nearestDistance ? index : nearestIndex;
+  }, 0);
 }

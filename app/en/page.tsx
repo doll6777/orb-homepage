@@ -249,7 +249,6 @@ export default function EnglishPage() {
         <div className="gallery-heading">
           <p className="eyebrow">SPACE</p>
           <h2>Inside ORB</h2>
-          <p>The interior photographs move gently like a quiet carousel.</p>
         </div>
         <AutoGallery
           images={galleryImages}
