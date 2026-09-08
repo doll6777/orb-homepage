@@ -55,6 +55,39 @@ const memberships = [
   'Korean Medicine Information Cooperative',
 ];
 
+const galleryImages = [
+  {
+    number: '01',
+    src: '/hero-room.jpg',
+    alt: 'Warm interior light and ORB logo wall',
+    label: 'Entrance',
+  },
+  {
+    number: '02',
+    src: '/space-main.jpg',
+    alt: 'Natural material details inside ORB Korean Medicine Clinic',
+    label: 'Quiet Room',
+  },
+  {
+    number: '03',
+    src: '/space-side-a.jpg',
+    alt: 'Waiting space at ORB Korean Medicine Clinic',
+    label: 'Waiting',
+  },
+  {
+    number: '04',
+    src: '/space-side-b.jpg',
+    alt: 'Table and object detail at ORB Korean Medicine Clinic',
+    label: 'Detail',
+  },
+  {
+    number: '05',
+    src: '/treatment-room.jpg',
+    alt: 'Treatment space at ORB Korean Medicine Clinic',
+    label: 'Treatment',
+  },
+];
+
 const naverPlaceUrl =
   'https://pcmap.place.naver.com/hospital/2005324011/home';
 const phoneDisplay = '0507-1383-5982';
@@ -197,6 +230,25 @@ export default function EnglishPage() {
         <figure className="principle-photo">
           <img src="/orb-glass-space.png" alt="ORB Korean Medicine Clinic glass entrance" />
         </figure>
+      </section>
+
+      <section className="snap-section gallery-section" id="space-gallery">
+        <div className="gallery-heading">
+          <p className="eyebrow">SPACE</p>
+          <h2>Inside ORB</h2>
+          <p>Scroll horizontally to view the clinic interior.</p>
+        </div>
+        <div className="space-slider" aria-label="ORB interior photo slider">
+          {galleryImages.map((image) => (
+            <figure className="gallery-slide" key={image.src}>
+              <img src={image.src} alt={image.alt} />
+              <figcaption>
+                <span>{image.number}</span>
+                <strong>{image.label}</strong>
+              </figcaption>
+            </figure>
+          ))}
+        </div>
       </section>
 
       <section className="snap-section contact-section" id="contact">

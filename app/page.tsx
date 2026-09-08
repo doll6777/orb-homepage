@@ -53,6 +53,39 @@ const memberships = [
   '한의정보협동조합 회원',
 ];
 
+const galleryImages = [
+  {
+    number: '01',
+    src: '/hero-room.jpg',
+    alt: '오브한의원 내부의 따뜻한 빛과 로고 월',
+    label: 'Entrance',
+  },
+  {
+    number: '02',
+    src: '/space-main.jpg',
+    alt: '오브한의원 자연 소재 공간 디테일',
+    label: 'Quiet Room',
+  },
+  {
+    number: '03',
+    src: '/space-side-a.jpg',
+    alt: '오브한의원 대기 공간 일부',
+    label: 'Waiting',
+  },
+  {
+    number: '04',
+    src: '/space-side-b.jpg',
+    alt: '오브한의원 테이블과 오브제',
+    label: 'Detail',
+  },
+  {
+    number: '05',
+    src: '/treatment-room.jpg',
+    alt: '오브한의원 치료 공간',
+    label: 'Treatment',
+  },
+];
+
 const naverPlaceUrl =
   'https://pcmap.place.naver.com/hospital/2005324011/home';
 const phoneDisplay = '0507-1383-5982';
@@ -173,6 +206,25 @@ export default function Home() {
         <figure className="principle-photo">
           <img src="/orb-glass-space.png" alt="오브한의원 유리 파사드 공간" />
         </figure>
+      </section>
+
+      <section className="snap-section gallery-section" id="space-gallery">
+        <div className="gallery-heading">
+          <p className="eyebrow">SPACE</p>
+          <h2>공간 둘러보기</h2>
+          <p>좌우로 천천히 넘겨 내부 분위기를 확인해보세요.</p>
+        </div>
+        <div className="space-slider" aria-label="오브한의원 내부 사진 슬라이더">
+          {galleryImages.map((image) => (
+            <figure className="gallery-slide" key={image.src}>
+              <img src={image.src} alt={image.alt} />
+              <figcaption>
+                <span>{image.number}</span>
+                <strong>{image.label}</strong>
+              </figcaption>
+            </figure>
+          ))}
+        </div>
       </section>
 
       <section className="snap-section contact-section" id="contact">
