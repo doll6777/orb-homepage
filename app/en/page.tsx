@@ -59,33 +59,45 @@ const memberships = [
 const galleryImages = [
   {
     number: '01',
-    src: '/hero-room.jpg',
-    alt: 'Warm interior light and ORB logo wall',
-    label: 'Entrance',
+    src: '/orb-pdf-logo-wall.jpg',
+    alt: 'ORB Korean Medicine Clinic logo wall and entrance space',
+    label: 'Logo Wall',
   },
   {
     number: '02',
-    src: '/space-main.jpg',
-    alt: 'Natural material details inside ORB Korean Medicine Clinic',
-    label: 'Quiet Room',
+    src: '/orb-pdf-lobby-wide.jpg',
+    alt: 'Lobby and waiting space at ORB Korean Medicine Clinic',
+    label: 'Lobby',
   },
   {
     number: '03',
-    src: '/space-side-a.jpg',
-    alt: 'Waiting space at ORB Korean Medicine Clinic',
-    label: 'Waiting',
+    src: '/orb-pdf-wayfinding.jpg',
+    alt: 'Wayfinding wall and corridor at ORB Korean Medicine Clinic',
+    label: 'Wayfinding',
   },
   {
     number: '04',
-    src: '/space-side-b.jpg',
-    alt: 'Table and object detail at ORB Korean Medicine Clinic',
-    label: 'Detail',
+    src: '/orb-pdf-glass-room.jpg',
+    alt: 'Glass consultation room at ORB Korean Medicine Clinic',
+    label: 'Consult',
   },
   {
     number: '05',
-    src: '/treatment-room.jpg',
+    src: '/orb-pdf-treatment-room.jpg',
     alt: 'Treatment space at ORB Korean Medicine Clinic',
     label: 'Treatment',
+  },
+  {
+    number: '06',
+    src: '/orb-pdf-treatment-wide.jpg',
+    alt: 'Wide view of a treatment room at ORB Korean Medicine Clinic',
+    label: 'Care Room',
+  },
+  {
+    number: '07',
+    src: '/orb-pdf-therapy-room.jpg',
+    alt: 'Therapy space at ORB Korean Medicine Clinic',
+    label: 'Therapy',
   },
 ];
 
@@ -178,7 +190,7 @@ export default function EnglishPage() {
           </p>
         </div>
         <figure className="hero-photo">
-          <img src="/orb-space-lobby.png" alt="ORB Korean Medicine Clinic lobby" />
+          <img src="/orb-pdf-lobby-front.jpg" alt="ORB Korean Medicine Clinic lobby" />
         </figure>
         <div className="scroll-cue" aria-hidden="true">
           <span>SCROLL</span>
@@ -229,7 +241,7 @@ export default function EnglishPage() {
           </h2>
         </div>
         <figure className="principle-photo">
-          <img src="/orb-glass-space.png" alt="ORB Korean Medicine Clinic glass entrance" />
+          <img src="/orb-pdf-corridor.jpg" alt="ORB Korean Medicine Clinic corridor and glass space" />
         </figure>
       </section>
 

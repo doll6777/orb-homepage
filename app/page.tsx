@@ -58,33 +58,45 @@ const memberships = [
 const galleryImages = [
   {
     number: '01',
-    src: '/hero-room.jpg',
-    alt: '오브한의원 내부의 따뜻한 빛과 로고 월',
-    label: 'Entrance',
+    src: '/orb-pdf-logo-wall.jpg',
+    alt: '오브한의원 로고 월과 입구 공간',
+    label: 'Logo Wall',
   },
   {
     number: '02',
-    src: '/space-main.jpg',
-    alt: '오브한의원 자연 소재 공간 디테일',
-    label: 'Quiet Room',
+    src: '/orb-pdf-lobby-wide.jpg',
+    alt: '오브한의원 로비와 대기 공간',
+    label: 'Lobby',
   },
   {
     number: '03',
-    src: '/space-side-a.jpg',
-    alt: '오브한의원 대기 공간 일부',
-    label: 'Waiting',
+    src: '/orb-pdf-wayfinding.jpg',
+    alt: '오브한의원 안내 사인과 복도',
+    label: 'Wayfinding',
   },
   {
     number: '04',
-    src: '/space-side-b.jpg',
-    alt: '오브한의원 테이블과 오브제',
-    label: 'Detail',
+    src: '/orb-pdf-glass-room.jpg',
+    alt: '오브한의원 상담실 유리 공간',
+    label: 'Consult',
   },
   {
     number: '05',
-    src: '/treatment-room.jpg',
+    src: '/orb-pdf-treatment-room.jpg',
     alt: '오브한의원 치료 공간',
     label: 'Treatment',
+  },
+  {
+    number: '06',
+    src: '/orb-pdf-treatment-wide.jpg',
+    alt: '오브한의원 치료실 전경',
+    label: 'Care Room',
+  },
+  {
+    number: '07',
+    src: '/orb-pdf-therapy-room.jpg',
+    alt: '오브한의원 관리 공간',
+    label: 'Therapy',
   },
 ];
 
@@ -155,7 +167,7 @@ export default function Home() {
           </p>
         </div>
         <figure className="hero-photo">
-          <img src="/orb-space-lobby.png" alt="오브한의원 대기실 공간" />
+          <img src="/orb-pdf-lobby-front.jpg" alt="오브한의원 대기실 공간" />
         </figure>
         <div className="scroll-cue" aria-hidden="true">
           <span>SCROLL</span>
@@ -206,7 +218,7 @@ export default function Home() {
           </h2>
         </div>
         <figure className="principle-photo">
-          <img src="/orb-glass-space.png" alt="오브한의원 유리 파사드 공간" />
+          <img src="/orb-pdf-corridor.jpg" alt="오브한의원 복도와 유리 공간" />
         </figure>
       </section>
 
