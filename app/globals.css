@@ -374,6 +374,7 @@ img {
   scroll-snap-type: x mandatory;
   scrollbar-color: rgba(255, 255, 255, 0.34) transparent;
   scrollbar-width: thin;
+  touch-action: pan-x pan-y;
 }
 
 .space-slider::-webkit-scrollbar {
@@ -393,6 +394,7 @@ img {
   margin: 0;
   position: relative;
   scroll-snap-align: start;
+  scroll-snap-stop: always;
 }
 
 .gallery-slide img {

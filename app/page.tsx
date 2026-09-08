@@ -1,3 +1,5 @@
+import AutoGallery from './components/AutoGallery';
+
 const treatmentAreas = [
   '통증',
   '자율신경실조증',
@@ -212,19 +214,12 @@ export default function Home() {
         <div className="gallery-heading">
           <p className="eyebrow">SPACE</p>
           <h2>공간 둘러보기</h2>
-          <p>좌우로 천천히 넘겨 내부 분위기를 확인해보세요.</p>
+          <p>내부 사진이 천천히 넘어가며 공간의 분위기를 보여줍니다.</p>
         </div>
-        <div className="space-slider" aria-label="오브한의원 내부 사진 슬라이더">
-          {galleryImages.map((image) => (
-            <figure className="gallery-slide" key={image.src}>
-              <img src={image.src} alt={image.alt} />
-              <figcaption>
-                <span>{image.number}</span>
-                <strong>{image.label}</strong>
-              </figcaption>
-            </figure>
-          ))}
-        </div>
+        <AutoGallery
+          images={galleryImages}
+          ariaLabel="오브한의원 내부 사진 자동 슬라이더"
+        />
       </section>
 
       <section className="snap-section contact-section" id="contact">

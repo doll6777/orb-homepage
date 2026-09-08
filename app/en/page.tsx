@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import AutoGallery from '../components/AutoGallery';
 
 const treatmentAreas = [
   'Pain care',
@@ -236,19 +237,12 @@ export default function EnglishPage() {
         <div className="gallery-heading">
           <p className="eyebrow">SPACE</p>
           <h2>Inside ORB</h2>
-          <p>Scroll horizontally to view the clinic interior.</p>
+          <p>The interior photographs move gently like a quiet carousel.</p>
         </div>
-        <div className="space-slider" aria-label="ORB interior photo slider">
-          {galleryImages.map((image) => (
-            <figure className="gallery-slide" key={image.src}>
-              <img src={image.src} alt={image.alt} />
-              <figcaption>
-                <span>{image.number}</span>
-                <strong>{image.label}</strong>
-              </figcaption>
-            </figure>
-          ))}
-        </div>
+        <AutoGallery
+          images={galleryImages}
+          ariaLabel="Automatic ORB interior photo carousel"
+        />
       </section>
 
       <section className="snap-section contact-section" id="contact">
