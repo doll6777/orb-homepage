@@ -1,4 +1,5 @@
 import AutoGallery from './components/AutoGallery';
+import SiteMotion from './components/SiteMotion';
 
 const treatmentAreas = [
   '통증',
@@ -132,6 +133,7 @@ const clinicJsonLd = {
 export default function Home() {
   return (
     <main className="site-shell">
+      <SiteMotion />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(clinicJsonLd) }}

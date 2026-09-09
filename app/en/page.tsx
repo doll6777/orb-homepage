@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import AutoGallery from '../components/AutoGallery';
+import SiteMotion from '../components/SiteMotion';
 
 const treatmentAreas = [
   'Pain care',
@@ -155,6 +156,7 @@ export const metadata: Metadata = {
 export default function EnglishPage() {
   return (
     <main className="site-shell" lang="en">
+      <SiteMotion />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(clinicJsonLd) }}
