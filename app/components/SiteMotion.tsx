@@ -13,6 +13,7 @@ export default function SiteMotion() {
     }
 
     const root = document.documentElement;
+    root.setAttribute('data-motion-ready', 'true');
     const sections = Array.from(document.querySelectorAll<HTMLElement>('.snap-section'));
 
     const observer = new IntersectionObserver(
@@ -26,7 +27,15 @@ export default function SiteMotion() {
       },
     );
 
-    sections.forEach((section) => observer.observe(section));
+    sections.forEach((section) => {
+      const rect = section.getBoundingClientRect();
+
+      if (rect.top < window.innerHeight && rect.bottom > 0) {
+        section.setAttribute('data-inview', '');
+      }
+
+      observer.observe(section);
+    });
 
     const handlePointerMove = (event: PointerEvent) => {
       const x = (event.clientX / window.innerWidth - 0.5).toFixed(3);
@@ -41,6 +50,7 @@ export default function SiteMotion() {
     return () => {
       observer.disconnect();
       window.removeEventListener('pointermove', handlePointerMove);
+      root.removeAttribute('data-motion-ready');
       root.style.removeProperty('--pointer-x');
       root.style.removeProperty('--pointer-y');
     };

@@ -11,6 +11,29 @@ const treatmentAreas = [
   '교통사고 후유증',
 ];
 
+const treatmentPillars = [
+  {
+    number: '01',
+    title: '통증 · 추나',
+    caption: '근골격계 통증과 척추관절 회복',
+  },
+  {
+    number: '02',
+    title: '자율신경',
+    caption: '뇌파검사와 신경계 피로도 진단',
+  },
+  {
+    number: '03',
+    title: '스트레스 · 신경증',
+    caption: '과민감, 브레인포그, 정서 피로',
+  },
+  {
+    number: '04',
+    title: '다이어트 · 열대사',
+    caption: '대사 균형과 체중 관리',
+  },
+];
+
 const programs = [
   {
     number: '01',
@@ -155,22 +178,20 @@ export default function Home() {
         <a href="#top">01</a>
         <a href="#areas">02</a>
         <a href="#programs">03</a>
-        <a href="#contact">04</a>
+        <a href="#space-gallery">04</a>
+        <a href="#contact">05</a>
       </nav>
 
       <section className="snap-section treat-hero" id="top">
-        <div className="hero-copy">
-          <img className="hero-logo" src="/orb-logo-cream.png" alt="오브한의원" />
-          <p className="brand-kicker">ORIGIN · RESET · BALANCE</p>
-          <h1>오브 치료의 기준</h1>
-          <p>
-            마곡 오브한의원은 1차의료기관 한의원에서 할 수 있는 최선의 치료를
-            제안합니다.
-          </p>
-        </div>
         <figure className="hero-photo">
           <img src="/orb-pdf-lobby-front.jpg" alt="오브한의원 대기실 공간" />
         </figure>
+        <div className="hero-copy">
+          <h1>무엇을 치료하나요</h1>
+          <p>
+            1차의료기관 한의원에서 할 수 있는 최선의 치료를 제안합니다.
+          </p>
+        </div>
         <div className="scroll-cue" aria-hidden="true">
           <span>SCROLL</span>
           <i />
@@ -183,10 +204,11 @@ export default function Home() {
           <h2>무엇을 치료하나요</h2>
         </div>
         <div className="area-grid">
-          {treatmentAreas.map((area, index) => (
-            <a href="#programs" className="area-item" key={area}>
-              <span>{String(index + 1).padStart(2, '0')}</span>
-              <strong>{area}</strong>
+          {treatmentPillars.map((area) => (
+            <a href="#programs" className="area-item" key={area.title}>
+              <span>{area.number}</span>
+              <strong>{area.title}</strong>
+              <small>{area.caption}</small>
             </a>
           ))}
         </div>

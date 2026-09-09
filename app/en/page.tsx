@@ -12,6 +12,29 @@ const treatmentAreas = [
   'Traffic accident aftercare',
 ];
 
+const treatmentPillars = [
+  {
+    number: '01',
+    title: 'Pain · Chuna',
+    caption: 'Musculoskeletal pain and spinal-joint recovery',
+  },
+  {
+    number: '02',
+    title: 'Autonomic System',
+    caption: 'QEEG and nervous-system fatigue assessment',
+  },
+  {
+    number: '03',
+    title: 'Stress · Neurotic Symptoms',
+    caption: 'Sensitivity, brain fog, and emotional fatigue',
+  },
+  {
+    number: '04',
+    title: 'Weight · Metabolism',
+    caption: 'Metabolic balance and weight care',
+  },
+];
+
 const programs = [
   {
     number: '01',
@@ -178,22 +201,21 @@ export default function EnglishPage() {
         <a href="#top">01</a>
         <a href="#areas">02</a>
         <a href="#programs">03</a>
-        <a href="#contact">04</a>
+        <a href="#space-gallery">04</a>
+        <a href="#contact">05</a>
       </nav>
 
       <section className="snap-section treat-hero" id="top">
-        <div className="hero-copy">
-          <img className="hero-logo" src="/orb-logo-cream.png" alt="ORB Korean Medicine Clinic" />
-          <p className="brand-kicker">ORIGIN · RESET · BALANCE</p>
-          <h1>ORB Care Standard</h1>
-          <p>
-            ORB Korean Medicine Clinic Magok offers thoughtful primary Korean
-            medicine care in Seoul.
-          </p>
-        </div>
         <figure className="hero-photo">
           <img src="/orb-pdf-lobby-front.jpg" alt="ORB Korean Medicine Clinic lobby" />
         </figure>
+        <div className="hero-copy">
+          <h1>What We Treat</h1>
+          <p>
+            Thoughtful primary Korean medicine care for pain, nervous-system
+            fatigue, stress, and metabolic balance.
+          </p>
+        </div>
         <div className="scroll-cue" aria-hidden="true">
           <span>SCROLL</span>
           <i />
@@ -206,10 +228,11 @@ export default function EnglishPage() {
           <h2>What We Treat</h2>
         </div>
         <div className="area-grid">
-          {treatmentAreas.map((area, index) => (
-            <a href="#programs" className="area-item" key={area}>
-              <span>{String(index + 1).padStart(2, '0')}</span>
-              <strong>{area}</strong>
+          {treatmentPillars.map((area) => (
+            <a href="#programs" className="area-item" key={area.title}>
+              <span>{area.number}</span>
+              <strong>{area.title}</strong>
+              <small>{area.caption}</small>
             </a>
           ))}
         </div>
