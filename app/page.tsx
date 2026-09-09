@@ -183,15 +183,10 @@ export default function Home() {
       </nav>
 
       <section className="snap-section treat-hero" id="top">
+        <h1 className="sr-only">오브한의원 마곡점</h1>
         <figure className="hero-photo">
           <img src="/orb-pdf-lobby-front.jpg" alt="오브한의원 대기실 공간" />
         </figure>
-        <div className="hero-copy">
-          <h1>무엇을 치료하나요</h1>
-          <p>
-            1차의료기관 한의원에서 할 수 있는 최선의 치료를 제안합니다.
-          </p>
-        </div>
         <div className="scroll-cue" aria-hidden="true">
           <span>SCROLL</span>
           <i />

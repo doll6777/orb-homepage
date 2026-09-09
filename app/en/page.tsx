@@ -206,16 +206,10 @@ export default function EnglishPage() {
       </nav>
 
       <section className="snap-section treat-hero" id="top">
+        <h1 className="sr-only">ORB Korean Medicine Clinic Magok</h1>
         <figure className="hero-photo">
           <img src="/orb-pdf-lobby-front.jpg" alt="ORB Korean Medicine Clinic lobby" />
         </figure>
-        <div className="hero-copy">
-          <h1>What We Treat</h1>
-          <p>
-            Thoughtful primary Korean medicine care for pain, nervous-system
-            fatigue, stress, and metabolic balance.
-          </p>
-        </div>
         <div className="scroll-cue" aria-hidden="true">
           <span>SCROLL</span>
           <i />
