@@ -9,6 +9,12 @@ const notoSansKr = Noto_Sans_KR({
   display: 'swap',
 });
 
+const googleAnalyticsId =
+  process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID?.trim() || 'G-J9Z8BXQGKQ';
+const hasGoogleAnalyticsId = Boolean(
+  googleAnalyticsId && /^G-[A-Z0-9]+$/.test(googleAnalyticsId),
+);
+
 export const metadata: Metadata = {
   metadataBase: new URL('https://orb-korean-medicine-clinic.hyeranlee.chatgpt.site'),
   title: {
@@ -42,6 +48,27 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
+      <head>
+        {hasGoogleAnalyticsId && googleAnalyticsId ? (
+          <>
+            <script
+              async
+              src={`https://www.googletagmanager.com/gtag/js?id=${googleAnalyticsId}`}
+            />
+            <script
+              id="google-analytics"
+              dangerouslySetInnerHTML={{
+                __html: `
+                  window.dataLayer = window.dataLayer || [];
+                  function gtag(){dataLayer.push(arguments);}
+                  gtag('js', new Date());
+                  gtag('config', '${googleAnalyticsId}');
+                `,
+              }}
+            />
+          </>
+        ) : null}
+      </head>
       <body className={`${notoSansKr.variable} antialiased`}>{children}</body>
     </html>
   );

@@ -83,52 +83,69 @@ const memberships = [
 const galleryImages = [
   {
     number: '01',
-    src: '/orb-pdf-logo-wall.jpg',
-    alt: 'ORB Korean Medicine Clinic logo wall and entrance space',
-    label: 'Logo Wall',
-  },
-  {
-    number: '02',
-    src: '/orb-pdf-lobby-wide.jpg',
-    alt: 'Lobby and waiting space at ORB Korean Medicine Clinic',
+    src: '/orb-space-lobby-wide.jpg',
+    alt: 'Wide view of the ORB lobby and waiting space',
     label: 'Lobby',
   },
   {
+    number: '02',
+    src: '/orb-space-reception.jpg',
+    alt: 'Front desk at ORB Korean Medicine Clinic',
+    label: 'Reception',
+  },
+  {
     number: '03',
-    src: '/orb-pdf-wayfinding.jpg',
-    alt: 'Wayfinding wall and corridor at ORB Korean Medicine Clinic',
-    label: 'Wayfinding',
+    src: '/orb-space-lobby-detail.jpg',
+    alt: 'Reception and waiting space at ORB Korean Medicine Clinic',
+    label: 'Welcome',
   },
   {
     number: '04',
-    src: '/orb-pdf-glass-room.jpg',
-    alt: 'Glass consultation room at ORB Korean Medicine Clinic',
-    label: 'Consult',
+    src: '/orb-space-waiting.jpg',
+    alt: 'Waiting area and amenities at ORB Korean Medicine Clinic',
+    label: 'Waiting',
   },
   {
     number: '05',
-    src: '/orb-pdf-treatment-room.jpg',
-    alt: 'Treatment space at ORB Korean Medicine Clinic',
-    label: 'Treatment',
+    src: '/orb-space-corridor.jpg',
+    alt: 'Corridor leading to the care rooms at ORB Korean Medicine Clinic',
+    label: 'Corridor',
   },
   {
     number: '06',
-    src: '/orb-pdf-treatment-wide.jpg',
-    alt: 'Wide view of a treatment room at ORB Korean Medicine Clinic',
-    label: 'Care Room',
+    src: '/orb-space-consult.jpg',
+    alt: 'Consultation and examination room at ORB Korean Medicine Clinic',
+    label: 'Consult',
   },
   {
     number: '07',
-    src: '/orb-pdf-therapy-room.jpg',
-    alt: 'Therapy space at ORB Korean Medicine Clinic',
-    label: 'Therapy',
+    src: '/orb-space-treatment.jpg',
+    alt: 'Treatment room at ORB Korean Medicine Clinic',
+    label: 'Treatment',
+  },
+  {
+    number: '08',
+    src: '/orb-space-care-room.jpg',
+    alt: 'Private care room at ORB Korean Medicine Clinic',
+    label: 'Care Room',
   },
 ];
 
 const naverPlaceUrl =
   'https://pcmap.place.naver.com/hospital/2005324011/home';
-const phoneDisplay = '0507-1383-5982';
-const phoneHref = 'tel:050713835982';
+const kakaoMapUrl =
+  'https://map.kakao.com/link/search/%EC%98%A4%EB%B8%8C%ED%95%9C%EC%9D%98%EC%9B%90%20%EB%A7%88%EA%B3%A1%EC%A0%90';
+const googleMapUrl =
+  'https://www.google.com/maps/search/?api=1&query=%EC%98%A4%EB%B8%8C%ED%95%9C%EC%9D%98%EC%9B%90+%EB%A7%88%EA%B3%A1%EC%A0%90+%EC%84%9C%EC%9A%B8+%EA%B0%95%EC%84%9C%EA%B5%AC+%EB%A7%88%EA%B3%A1%EC%A4%91%EC%95%99%EB%A1%9C+111';
+const googleMapEmbedUrl =
+  'https://www.google.com/maps?q=%EC%84%9C%EC%9A%B8+%EA%B0%95%EC%84%9C%EA%B5%AC+%EB%A7%88%EA%B3%A1%EC%A4%91%EC%95%99%EB%A1%9C+111&output=embed';
+const mapLinks = [
+  { label: 'NAVER', name: 'Naver Map', href: naverPlaceUrl },
+  { label: 'KAKAO', name: 'Kakao Map', href: kakaoMapUrl },
+  { label: 'GOOGLE', name: 'Google Maps', href: googleMapUrl },
+];
+const phoneDisplay = '02-6959-5982';
+const phoneHref = 'tel:0269595982';
 const siteUrl = 'https://orb-korean-medicine-clinic.hyeranlee.chatgpt.site/en';
 
 const clinicJsonLd = {
@@ -192,6 +209,7 @@ export default function EnglishPage() {
           <a href="/" hrefLang="ko" aria-label="View in Korean">
             KR
           </a>
+          <a href="#directions">Directions</a>
           <a href="#contact">Reservation</a>
         </div>
       </header>
@@ -202,13 +220,28 @@ export default function EnglishPage() {
         <a href="#areas">02</a>
         <a href="#programs">03</a>
         <a href="#space-gallery">04</a>
-        <a href="#contact">05</a>
+        <a href="#directions">05</a>
+        <a href="#contact">06</a>
       </nav>
+
+      <aside className="map-quick-links" aria-label="Map shortcuts">
+        {mapLinks.map((link) => (
+          <a
+            href={link.href}
+            key={link.label}
+            target="_blank"
+            rel="noreferrer"
+            aria-label={`View ORB on ${link.name}`}
+          >
+            {link.label}
+          </a>
+        ))}
+      </aside>
 
       <section className="snap-section treat-hero" id="top">
         <h1 className="sr-only">ORB Korean Medicine Clinic Magok</h1>
         <figure className="hero-photo">
-          <img src="/orb-pdf-lobby-front.jpg" alt="ORB Korean Medicine Clinic lobby" />
+          <img src="/orb-space-lobby-wide.jpg" alt="ORB Korean Medicine Clinic lobby" />
         </figure>
         <div className="scroll-cue" aria-hidden="true">
           <span>SCROLL</span>
@@ -260,7 +293,7 @@ export default function EnglishPage() {
           </h2>
         </div>
         <figure className="principle-photo">
-          <img src="/orb-pdf-corridor.jpg" alt="ORB Korean Medicine Clinic corridor and glass space" />
+          <img src="/orb-space-corridor.jpg" alt="ORB Korean Medicine Clinic corridor" />
         </figure>
       </section>
 
@@ -273,6 +306,45 @@ export default function EnglishPage() {
           images={galleryImages}
           ariaLabel="Automatic ORB interior photo carousel"
         />
+      </section>
+
+      <section className="snap-section visit-section" id="directions">
+        <div className="visit-copy">
+          <p className="eyebrow">LOCATION</p>
+          <h2>Getting Here</h2>
+          <address className="visit-address">
+            111 Magokjungang-ro
+            <br />
+            Lotte Castle Le West, Building 104, 2F, Units 238–239
+          </address>
+          <dl className="route-details">
+            <div>
+              <dt>Subway</dt>
+              <dd>136m on foot from Magongnaru Station Exit 5.</dd>
+            </div>
+            <div>
+              <dt>Building</dt>
+              <dd>Take the elevator to the second floor of Building 104.</dd>
+            </div>
+          </dl>
+          <div className="map-actions" aria-label="Open location in maps">
+            {mapLinks.map((link) => (
+              <a href={link.href} key={link.label} target="_blank" rel="noreferrer">
+                <span>{link.name}</span>
+                <b aria-hidden="true">↗</b>
+              </a>
+            ))}
+          </div>
+        </div>
+        <div className="map-panel">
+          <iframe
+            src={googleMapEmbedUrl}
+            title="Map showing ORB Korean Medicine Clinic Magok"
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            allowFullScreen
+          />
+        </div>
       </section>
 
       <section className="snap-section contact-section" id="contact">

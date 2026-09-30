@@ -82,52 +82,69 @@ const memberships = [
 const galleryImages = [
   {
     number: '01',
-    src: '/orb-pdf-logo-wall.jpg',
-    alt: '오브한의원 로고 월과 입구 공간',
-    label: 'Logo Wall',
-  },
-  {
-    number: '02',
-    src: '/orb-pdf-lobby-wide.jpg',
-    alt: '오브한의원 로비와 대기 공간',
+    src: '/orb-space-lobby-wide.jpg',
+    alt: '오브한의원 로비와 대기 공간 전경',
     label: 'Lobby',
   },
   {
+    number: '02',
+    src: '/orb-space-reception.jpg',
+    alt: '오브한의원 안내 데스크 정면',
+    label: 'Reception',
+  },
+  {
     number: '03',
-    src: '/orb-pdf-wayfinding.jpg',
-    alt: '오브한의원 안내 사인과 복도',
-    label: 'Wayfinding',
+    src: '/orb-space-lobby-detail.jpg',
+    alt: '오브한의원 안내 데스크와 대기 공간',
+    label: 'Welcome',
   },
   {
     number: '04',
-    src: '/orb-pdf-glass-room.jpg',
-    alt: '오브한의원 상담실 유리 공간',
-    label: 'Consult',
+    src: '/orb-space-waiting.jpg',
+    alt: '오브한의원 대기 공간과 편의 시설',
+    label: 'Waiting',
   },
   {
     number: '05',
-    src: '/orb-pdf-treatment-room.jpg',
-    alt: '오브한의원 치료 공간',
-    label: 'Treatment',
+    src: '/orb-space-corridor.jpg',
+    alt: '오브한의원 진료실로 이어지는 복도',
+    label: 'Corridor',
   },
   {
     number: '06',
-    src: '/orb-pdf-treatment-wide.jpg',
-    alt: '오브한의원 치료실 전경',
-    label: 'Care Room',
+    src: '/orb-space-consult.jpg',
+    alt: '오브한의원 상담 및 검사 공간',
+    label: 'Consult',
   },
   {
     number: '07',
-    src: '/orb-pdf-therapy-room.jpg',
-    alt: '오브한의원 관리 공간',
-    label: 'Therapy',
+    src: '/orb-space-treatment.jpg',
+    alt: '오브한의원 치료실 전경',
+    label: 'Treatment',
+  },
+  {
+    number: '08',
+    src: '/orb-space-care-room.jpg',
+    alt: '오브한의원 독립 치료 공간',
+    label: 'Care Room',
   },
 ];
 
 const naverPlaceUrl =
   'https://pcmap.place.naver.com/hospital/2005324011/home';
-const phoneDisplay = '0507-1383-5982';
-const phoneHref = 'tel:050713835982';
+const kakaoMapUrl =
+  'https://map.kakao.com/link/search/%EC%98%A4%EB%B8%8C%ED%95%9C%EC%9D%98%EC%9B%90%20%EB%A7%88%EA%B3%A1%EC%A0%90';
+const googleMapUrl =
+  'https://www.google.com/maps/search/?api=1&query=%EC%98%A4%EB%B8%8C%ED%95%9C%EC%9D%98%EC%9B%90+%EB%A7%88%EA%B3%A1%EC%A0%90+%EC%84%9C%EC%9A%B8+%EA%B0%95%EC%84%9C%EA%B5%AC+%EB%A7%88%EA%B3%A1%EC%A4%91%EC%95%99%EB%A1%9C+111';
+const googleMapEmbedUrl =
+  'https://www.google.com/maps?q=%EC%84%9C%EC%9A%B8+%EA%B0%95%EC%84%9C%EA%B5%AC+%EB%A7%88%EA%B3%A1%EC%A4%91%EC%95%99%EB%A1%9C+111&output=embed';
+const mapLinks = [
+  { label: 'NAVER', name: '네이버 지도', href: naverPlaceUrl },
+  { label: 'KAKAO', name: '카카오맵', href: kakaoMapUrl },
+  { label: 'GOOGLE', name: '구글 지도', href: googleMapUrl },
+];
+const phoneDisplay = '02-6959-5982';
+const phoneHref = 'tel:0269595982';
 const siteUrl = 'https://orb-korean-medicine-clinic.hyeranlee.chatgpt.site';
 
 const clinicJsonLd = {
@@ -169,6 +186,7 @@ export default function Home() {
           <a href="/en" hrefLang="en" aria-label="View in English">
             EN
           </a>
+          <a href="#directions">오는 길</a>
           <a href="#contact">예약하기</a>
         </div>
       </header>
@@ -179,13 +197,28 @@ export default function Home() {
         <a href="#areas">02</a>
         <a href="#programs">03</a>
         <a href="#space-gallery">04</a>
-        <a href="#contact">05</a>
+        <a href="#directions">05</a>
+        <a href="#contact">06</a>
       </nav>
+
+      <aside className="map-quick-links" aria-label="지도 바로가기">
+        {mapLinks.map((link) => (
+          <a
+            href={link.href}
+            key={link.label}
+            target="_blank"
+            rel="noreferrer"
+            aria-label={`${link.name}에서 오브한의원 보기`}
+          >
+            {link.label}
+          </a>
+        ))}
+      </aside>
 
       <section className="snap-section treat-hero" id="top">
         <h1 className="sr-only">오브한의원 마곡점</h1>
         <figure className="hero-photo">
-          <img src="/orb-pdf-lobby-front.jpg" alt="오브한의원 대기실 공간" />
+          <img src="/orb-space-lobby-wide.jpg" alt="오브한의원 로비와 대기 공간" />
         </figure>
         <div className="scroll-cue" aria-hidden="true">
           <span>SCROLL</span>
@@ -237,7 +270,7 @@ export default function Home() {
           </h2>
         </div>
         <figure className="principle-photo">
-          <img src="/orb-pdf-corridor.jpg" alt="오브한의원 복도와 유리 공간" />
+          <img src="/orb-space-corridor.jpg" alt="오브한의원 진료실 복도" />
         </figure>
       </section>
 
@@ -250,6 +283,45 @@ export default function Home() {
           images={galleryImages}
           ariaLabel="오브한의원 내부 사진 자동 슬라이더"
         />
+      </section>
+
+      <section className="snap-section visit-section" id="directions">
+        <div className="visit-copy">
+          <p className="eyebrow">LOCATION</p>
+          <h2>오는 길</h2>
+          <address className="visit-address">
+            서울 강서구 마곡중앙로 111
+            <br />
+            롯데캐슬 르웨스트 104동 2층 238호, 239호
+          </address>
+          <dl className="route-details">
+            <div>
+              <dt>지하철</dt>
+              <dd>9호선·공항철도 마곡나루역 5번 출구에서 도보 136m</dd>
+            </div>
+            <div>
+              <dt>건물 안내</dt>
+              <dd>롯데캐슬 르웨스트 104동 2층으로 올라오세요.</dd>
+            </div>
+          </dl>
+          <div className="map-actions" aria-label="지도에서 위치 확인">
+            {mapLinks.map((link) => (
+              <a href={link.href} key={link.label} target="_blank" rel="noreferrer">
+                <span>{link.name}</span>
+                <b aria-hidden="true">↗</b>
+              </a>
+            ))}
+          </div>
+        </div>
+        <div className="map-panel">
+          <iframe
+            src={googleMapEmbedUrl}
+            title="오브한의원 마곡점 위치 지도"
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            allowFullScreen
+          />
+        </div>
       </section>
 
       <section className="snap-section contact-section" id="contact">
