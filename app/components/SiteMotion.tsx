@@ -14,7 +14,7 @@ export default function SiteMotion() {
 
     const root = document.documentElement;
     root.setAttribute('data-motion-ready', 'true');
-    const sections = Array.from(document.querySelectorAll<HTMLElement>('.snap-section'));
+    const sections = Array.from(document.querySelectorAll<HTMLElement>('.reveal'));
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -23,7 +23,7 @@ export default function SiteMotion() {
         });
       },
       {
-        threshold: 0.38,
+        threshold: 0.12,
       },
     );
 
@@ -37,22 +37,9 @@ export default function SiteMotion() {
       observer.observe(section);
     });
 
-    const handlePointerMove = (event: PointerEvent) => {
-      const x = (event.clientX / window.innerWidth - 0.5).toFixed(3);
-      const y = (event.clientY / window.innerHeight - 0.5).toFixed(3);
-
-      root.style.setProperty('--pointer-x', x);
-      root.style.setProperty('--pointer-y', y);
-    };
-
-    window.addEventListener('pointermove', handlePointerMove, { passive: true });
-
     return () => {
       observer.disconnect();
-      window.removeEventListener('pointermove', handlePointerMove);
       root.removeAttribute('data-motion-ready');
-      root.style.removeProperty('--pointer-x');
-      root.style.removeProperty('--pointer-y');
     };
   }, []);
 
