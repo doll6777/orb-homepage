@@ -132,6 +132,8 @@ const galleryImages = [
 
 const naverPlaceUrl =
   'https://pcmap.place.naver.com/hospital/2005324011/home';
+const naverBookingUrl =
+  'https://m.booking.naver.com/booking/16/bizes/1731406?theme=place&lang=ko&area=ple';
 const kakaoMapUrl =
   'https://map.kakao.com/link/search/%EC%98%A4%EB%B8%8C%ED%95%9C%EC%9D%98%EC%9B%90%20%EB%A7%88%EA%B3%A1%EC%A0%90';
 const googleMapUrl =
@@ -145,7 +147,7 @@ const mapLinks = [
 ];
 const phoneDisplay = '02-6959-5982';
 const phoneHref = 'tel:0269595982';
-const siteUrl = 'https://orb-korean-medicine-clinic.hyeranlee.chatgpt.site';
+const siteUrl = 'https://orbclinic.pages.dev';
 
 const clinicJsonLd = {
   '@context': 'https://schema.org',
@@ -344,8 +346,8 @@ export default function Home() {
             <a href={phoneHref}>{phoneDisplay}</a>
           </div>
           <div className="outline-actions" aria-label="예약 및 문의">
-            <a href={naverPlaceUrl} target="_blank" rel="noreferrer">
-              네이버 페이지
+            <a href={naverBookingUrl} target="_blank" rel="noreferrer">
+              네이버 예약
             </a>
             <a href={phoneHref}>전화하기</a>
           </div>

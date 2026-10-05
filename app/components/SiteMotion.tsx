@@ -2,6 +2,12 @@
 
 import { useEffect } from 'react';
 
+declare global {
+  interface Window {
+    gtag?: (...args: unknown[]) => void;
+  }
+}
+
 export default function SiteMotion() {
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia(
@@ -45,11 +51,34 @@ export default function SiteMotion() {
       root.style.setProperty('--pointer-y', y);
     };
 
+    const handleTrackedClick = (event: MouseEvent) => {
+      const link = (event.target as Element | null)?.closest<HTMLAnchorElement>('a[href]');
+      if (!link || !window.gtag) return;
+
+      const href = link.getAttribute('href') ?? '';
+      const eventName = href.startsWith('tel:')
+        ? 'phone_click'
+        : href.includes('booking.naver.com')
+          ? 'booking_click'
+          : href.includes('map') || href.includes('place.naver.com')
+            ? 'map_click'
+            : null;
+
+      if (eventName) {
+        window.gtag('event', eventName, {
+          link_url: link.href,
+          link_text: link.textContent?.trim(),
+        });
+      }
+    };
+
     window.addEventListener('pointermove', handlePointerMove, { passive: true });
+    document.addEventListener('click', handleTrackedClick);
 
     return () => {
       observer.disconnect();
       window.removeEventListener('pointermove', handlePointerMove);
+      document.removeEventListener('click', handleTrackedClick);
       root.removeAttribute('data-motion-ready');
       root.style.removeProperty('--pointer-x');
       root.style.removeProperty('--pointer-y');

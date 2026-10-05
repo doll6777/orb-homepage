@@ -1,6 +1,6 @@
 import type { MetadataRoute } from 'next';
 
-const baseUrl = 'https://orb-korean-medicine-clinic.hyeranlee.chatgpt.site';
+const baseUrl = 'https://orbclinic.pages.dev';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [

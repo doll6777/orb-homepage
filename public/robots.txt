@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://orbclinic.pages.dev/sitemap.xml

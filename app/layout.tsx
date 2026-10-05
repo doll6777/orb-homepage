@@ -16,7 +16,7 @@ const hasGoogleAnalyticsId = Boolean(
 );
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://orb-korean-medicine-clinic.hyeranlee.chatgpt.site'),
+  metadataBase: new URL('https://orbclinic.pages.dev'),
   title: {
     default: '오브한의원 마곡점 | 마곡 오브한의원',
     template: '%s | 오브한의원 마곡점',
@@ -38,6 +38,11 @@ export const metadata: Metadata = {
     siteName: '오브한의원 마곡점',
     locale: 'ko_KR',
     type: 'website',
+  },
+  verification: {
+    other: {
+      'naver-site-verification': '26b999aab138fd17209f1024cf45bdf683c32961',
+    },
   },
 };
 
