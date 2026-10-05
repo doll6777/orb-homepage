@@ -1,4 +1,6 @@
 import Link from 'next/link';
+import ClinicFooter from '../components/ClinicFooter';
+import ClinicHeader from '../components/ClinicHeader';
 import SiteMotion from '../components/SiteMotion';
 import {
   makeTreatmentJsonLd,
@@ -19,19 +21,7 @@ export default function TreatmentPage({ treatment }: { treatment: Treatment }) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-
-      <header className="detail-header">
-        <Link className="wordmark" href="/" aria-label="오브한의원 홈">
-          ORB
-        </Link>
-        <nav aria-label="상세 페이지 이동">
-          <Link href="/#areas">진료 분야</Link>
-          <Link href="/#directions">오는 길</Link>
-          <a href={bookingUrl} target="_blank" rel="noreferrer">
-            예약하기
-          </a>
-        </nav>
-      </header>
+      <ClinicHeader />
 
       <section className="detail-hero">
         <figure>
@@ -97,14 +87,7 @@ export default function TreatmentPage({ treatment }: { treatment: Treatment }) {
         </div>
       </section>
 
-      <footer className="detail-footer">
-        <strong>오브한의원 마곡점</strong>
-        <address>
-          서울특별시 강서구 마곡중앙로 111 롯데캐슬 르웨스트 104동 2층
-          238호, 239호 · 02-6959-5982
-        </address>
-        <Link href="/">홈으로 돌아가기</Link>
-      </footer>
+      <ClinicFooter />
 
       <aside className="detail-mobile-cta" aria-label="모바일 예약 및 문의">
         <a href={bookingUrl} target="_blank" rel="noreferrer">

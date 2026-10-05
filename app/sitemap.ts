@@ -7,6 +7,14 @@ const treatmentPaths = [
   '/treatments/stress-neurosis',
   '/treatments/weight-metabolism',
 ];
+const informationPaths = [
+  '/about',
+  '/first-visit',
+  '/column',
+  '/column/wet-qeeg-guide',
+  '/column/qeeg-process',
+  '/column/autonomic-top-down-bottom-up',
+];
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const corePages: MetadataRoute.Sitemap = [
@@ -43,5 +51,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
-  return [...corePages, ...treatmentPages];
+  const informationPages: MetadataRoute.Sitemap = informationPaths.map((path) => ({
+    url: `${baseUrl}${path}`,
+    lastModified: new Date(),
+    changeFrequency: path.startsWith('/column') ? 'monthly' : 'yearly',
+    priority: path === '/column' ? 0.8 : 0.7,
+  }));
+
+  return [...corePages, ...treatmentPages, ...informationPages];
 }

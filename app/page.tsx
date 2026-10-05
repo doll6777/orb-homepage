@@ -1,5 +1,9 @@
+import Link from 'next/link';
 import AutoGallery from './components/AutoGallery';
+import ClinicFooter from './components/ClinicFooter';
+import ClinicHeader from './components/ClinicHeader';
 import SiteMotion from './components/SiteMotion';
+import { columnPosts } from './column/column-data';
 
 const treatmentAreas = [
   '통증',
@@ -218,18 +222,7 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(clinicJsonLd) }}
       />
-      <header className="global-header" aria-label="오브한의원">
-        <a className="wordmark" href="#top" aria-label="오브한의원 홈">
-          ORB
-        </a>
-        <div className="header-actions">
-          <a href="/en" hrefLang="en" aria-label="View in English">
-            EN
-          </a>
-          <a href="#directions">오는 길</a>
-          <a href="#contact">예약하기</a>
-        </div>
-      </header>
+      <ClinicHeader />
 
       <nav className="side-index" aria-label="섹션 이동">
         <span aria-hidden="true" />
@@ -324,6 +317,27 @@ export default function Home() {
         <figure className="principle-photo">
           <img src="/orb-space-corridor.jpg" alt="오브한의원 진료실 복도" />
         </figure>
+      </section>
+
+      <section className="home-column-section" aria-labelledby="home-column-title">
+        <div className="home-column-heading">
+          <div>
+            <p className="eyebrow">ORB MEDICAL COLUMN</p>
+            <h2 id="home-column-title">몸의 신호를 이해하는 글</h2>
+          </div>
+          <Link href="/column">의료 칼럼 전체보기 →</Link>
+        </div>
+        <div className="home-column-grid">
+          {columnPosts.map((post, index) => (
+            <Link href={`/column/${post.slug}`} key={post.slug}>
+              <span>{String(index + 1).padStart(2, '0')}</span>
+              <small>{post.category}</small>
+              <h3>{post.title}</h3>
+              <p>{post.summary}</p>
+              <time dateTime={post.publishedAt}>{post.displayDate}</time>
+            </Link>
+          ))}
+        </div>
       </section>
 
       <section className="snap-section gallery-section" id="space-gallery">
@@ -427,6 +441,7 @@ export default function Home() {
         <a href={kakaoChatUrl} target="_blank" rel="noreferrer">카카오톡 상담</a>
         <a href={phoneHref}>전화하기</a>
       </aside>
+      <ClinicFooter />
     </main>
   );
 }
