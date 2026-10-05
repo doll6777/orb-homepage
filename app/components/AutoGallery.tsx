@@ -1,10 +1,10 @@
 'use client';
 
-import { useCallback, useEffect, useRef, useState } from 'react';
-import ResponsivePicture from './ResponsivePicture';
+import { useEffect, useMemo, useRef, useState } from 'react';
 
 type GalleryImage = {
-  image: string;
+  number: string;
+  src: string;
   alt: string;
   label: string;
 };
@@ -12,100 +12,138 @@ type GalleryImage = {
 export default function AutoGallery({
   images,
   ariaLabel,
-  previousLabel,
-  nextLabel,
 }: {
   images: GalleryImage[];
   ariaLabel: string;
-  previousLabel: string;
-  nextLabel: string;
 }) {
   const sliderRef = useRef<HTMLDivElement>(null);
   const pausedRef = useRef(false);
-  const activeIndexRef = useRef(0);
   const [activeIndex, setActiveIndex] = useState(0);
+  const activeImage = images[activeIndex] ?? images[0];
+  const progress = useMemo(() => {
+    if (images.length < 2) {
+      return 100;
+    }
 
-  const moveTo = useCallback((index: number) => {
-    const slider = sliderRef.current;
-    if (!slider) return;
-
-    const safeIndex = (index + images.length) % images.length;
-    const slide = slider.children[safeIndex] as HTMLElement | undefined;
-    if (!slide) return;
-
-    activeIndexRef.current = safeIndex;
-    setActiveIndex(safeIndex);
-    slider.scrollTo({ left: slide.offsetLeft, behavior: 'smooth' });
-  }, [images.length]);
+    return ((activeIndex + 1) / images.length) * 100;
+  }, [activeIndex, images.length]);
 
   useEffect(() => {
     const slider = sliderRef.current;
-    if (!slider) return;
 
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!slider) {
+      return;
+    }
+
+    const prefersReducedMotion = window.matchMedia(
+      '(prefers-reduced-motion: reduce)',
+    ).matches;
+
+    if (prefersReducedMotion || images.length < 2) {
+      return;
+    }
+
     let frame = 0;
 
-    const updateActiveSlide = () => {
+    const setNearestSlide = () => {
       const slides = Array.from(slider.children) as HTMLElement[];
-      const nearest = slides.reduce((best, slide, index) => {
-        return Math.abs(slide.offsetLeft - slider.scrollLeft) <
-          Math.abs(slides[best].offsetLeft - slider.scrollLeft)
-          ? index
-          : best;
+      const nextIndex = slides.reduce((nearestIndex, slide, index) => {
+        const currentDistance = Math.abs(slide.offsetLeft - slider.scrollLeft);
+        const nearestSlide = slides[nearestIndex];
+        const nearestDistance = Math.abs(nearestSlide.offsetLeft - slider.scrollLeft);
+
+        return currentDistance < nearestDistance ? index : nearestIndex;
       }, 0);
-      activeIndexRef.current = nearest;
-      setActiveIndex(nearest);
+
+      setActiveIndex(nextIndex);
     };
+
+    const interval = window.setInterval(() => {
+      if (pausedRef.current) {
+        return;
+      }
+
+      const slides = Array.from(slider.children) as HTMLElement[];
+      const nextIndex = (activeIndexRef(slider, slides) + 1) % images.length;
+      const nextSlide = slides[nextIndex];
+
+      if (nextSlide) {
+        setActiveIndex(nextIndex);
+        slider.scrollTo({
+          left: Math.max(0, nextSlide.offsetLeft - slider.clientWidth * 0.08),
+          behavior: 'smooth',
+        });
+      }
+    }, 4100);
 
     const handleScroll = () => {
       window.cancelAnimationFrame(frame);
-      frame = window.requestAnimationFrame(updateActiveSlide);
+      frame = window.requestAnimationFrame(setNearestSlide);
     };
 
     slider.addEventListener('scroll', handleScroll, { passive: true });
-    const interval = reduceMotion
-      ? undefined
-      : window.setInterval(() => {
-          if (!pausedRef.current) moveTo(activeIndexRef.current + 1);
-        }, 6200);
+    setNearestSlide();
 
     return () => {
-      slider.removeEventListener('scroll', handleScroll);
+      window.clearInterval(interval);
       window.cancelAnimationFrame(frame);
-      if (interval) window.clearInterval(interval);
+      slider.removeEventListener('scroll', handleScroll);
     };
-  }, [images.length, moveTo]);
+  }, [images.length]);
 
   return (
-    <div
-      className="gallery-shell"
-      onMouseEnter={() => { pausedRef.current = true; }}
-      onMouseLeave={() => { pausedRef.current = false; }}
-      onFocus={() => { pausedRef.current = true; }}
-      onBlur={() => { pausedRef.current = false; }}
-    >
-      <div className="gallery-toolbar">
-        <p aria-live="polite">
-          <span>{String(activeIndex + 1).padStart(2, '0')}</span>
-          <i>/</i>
-          <b>{String(images.length).padStart(2, '0')}</b>
-        </p>
-        <div>
-          <button type="button" onClick={() => moveTo(activeIndex - 1)} aria-label={previousLabel}>←</button>
-          <button type="button" onClick={() => moveTo(activeIndex + 1)} aria-label={nextLabel}>→</button>
-        </div>
-      </div>
-      <div className="space-slider" ref={sliderRef} aria-label={ariaLabel}>
-        {images.map((item, index) => (
-          <figure className="gallery-slide" key={item.image}>
-            <ResponsivePicture image={item.image} alt={item.alt} />
+    <div className="space-observer">
+      <div
+        className="space-slider"
+        aria-label={ariaLabel}
+        ref={sliderRef}
+        onMouseEnter={() => {
+          pausedRef.current = true;
+        }}
+        onMouseLeave={() => {
+          pausedRef.current = false;
+        }}
+        onPointerDown={() => {
+          pausedRef.current = true;
+        }}
+        onPointerUp={() => {
+          pausedRef.current = false;
+        }}
+        onFocus={() => {
+          pausedRef.current = true;
+        }}
+        onBlur={() => {
+          pausedRef.current = false;
+        }}
+      >
+        {images.map((image, index) => (
+          <figure className="gallery-slide" key={image.src}>
+            <img src={image.src} alt={image.alt} />
             <figcaption>
-              <span>{String(index + 1).padStart(2, '0')}</span>
-              <strong>{item.label}</strong>
+              <span>{image.number}</span>
+              <strong>{image.label}</strong>
             </figcaption>
+            <i aria-hidden="true">{String(index + 1).padStart(2, '0')}</i>
           </figure>
         ))}
       </div>
+      <div className="space-progress" aria-hidden="true">
+        <span>{activeImage?.number}</span>
+        <b>{activeImage?.label}</b>
+        <i>
+          <em style={{ width: `${progress}%` }} />
+        </i>
+      </div>
     </div>
   );
+}
+
+function activeIndexRef(slider: HTMLElement, slides: HTMLElement[]) {
+  return slides.reduce((nearestIndex, slide, index) => {
+    const currentDistance = Math.abs(slide.offsetLeft - slider.scrollLeft);
+    const nearestSlide = slides[nearestIndex];
+    const nearestDistance = Math.abs(nearestSlide.offsetLeft - slider.scrollLeft);
+
+    return currentDistance < nearestDistance ? index : nearestIndex;
+  }, 0);
 }

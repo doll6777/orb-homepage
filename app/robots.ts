@@ -1,6 +1,6 @@
 import type { MetadataRoute } from 'next';
 
-const baseUrl = 'https://orbclinic.pages.dev';
+const baseUrl = 'https://orb-korean-medicine-clinic.hyeranlee.chatgpt.site';
 
 export default function robots(): MetadataRoute.Robots {
   return {
