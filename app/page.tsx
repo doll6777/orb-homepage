@@ -16,21 +16,25 @@ const treatmentPillars = [
     number: '01',
     title: '통증 · 추나',
     caption: '근골격계 통증과 척추관절 회복',
+    href: '/treatments/pain-chuna',
   },
   {
     number: '02',
     title: '자율신경',
     caption: '뇌파검사와 신경계 피로도 진단',
+    href: '/treatments/autonomic-qeeg',
   },
   {
     number: '03',
     title: '스트레스 · 신경증',
     caption: '과민감, 브레인포그, 정서 피로',
+    href: '/treatments/stress-neurosis',
   },
   {
     number: '04',
     title: '다이어트 · 열대사',
     caption: '대사 균형과 체중 관리',
+    href: '/treatments/weight-metabolism',
   },
 ];
 
@@ -42,6 +46,7 @@ const programs = [
     alt: '오브한의원 추나 치료 장면',
     body:
       '급성 통증부터 오래된 퇴행성 척추질환까지, 병기에 맞는 처치와 재활 방향을 안내합니다.',
+    href: '/treatments/pain-chuna',
   },
   {
     number: '02',
@@ -50,6 +55,7 @@ const programs = [
     alt: '정량뇌파검사 장면',
     body:
       '자율신경검사와 QEEG-32FX로 뇌의 피로도와 회복 신호를 확인합니다.',
+    href: '/treatments/autonomic-qeeg',
   },
   {
     number: '03',
@@ -58,6 +64,7 @@ const programs = [
     alt: '오브한의원 치료실 장면',
     body:
       '과민감, 브레인포그, 우울감으로 이어지는 불편함을 회복 흐름 안에서 살핍니다.',
+    href: '/treatments/stress-neurosis',
   },
   {
     number: '04',
@@ -66,6 +73,7 @@ const programs = [
     alt: '오브한의원 상담 및 검사 공간',
     body:
       '뇌의 에너지 센서, 항상성 회로, 장내 환경의 균형에서 접근합니다.',
+    href: '/treatments/weight-metabolism',
   },
 ];
 
@@ -152,25 +160,54 @@ const siteUrl = 'https://orbclinic.pages.dev';
 
 const clinicJsonLd = {
   '@context': 'https://schema.org',
-  '@type': 'MedicalClinic',
-  name: '오브한의원 마곡점',
-  alternateName: 'ORB Korean Medicine Clinic Magok',
-  url: siteUrl,
-  telephone: phoneDisplay,
-  address: {
-    '@type': 'PostalAddress',
-    addressCountry: 'KR',
-    addressRegion: '서울',
-    addressLocality: '강서구',
-    streetAddress: '마곡중앙로 111 104동 2층 238호, 239호',
-  },
-  medicalSpecialty: [
-    'Korean Medicine',
-    'Pain Management',
-    'Neuropsychiatry',
-    'Rehabilitation',
+  '@graph': [
+    {
+      '@type': 'WebSite',
+      '@id': `${siteUrl}/#website`,
+      url: siteUrl,
+      name: '오브한의원 마곡점',
+      alternateName: 'ORB Korean Medicine Clinic Magok',
+      inLanguage: 'ko-KR',
+    },
+    {
+      '@type': 'MedicalClinic',
+      '@id': `${siteUrl}/#clinic`,
+      name: '오브한의원 마곡점',
+      alternateName: 'ORB Korean Medicine Clinic Magok',
+      description:
+        '마곡나루역 5번 출구 인근에서 통증·추나, 자율신경·뇌파검사, 스트레스·신경증, 다이어트·열대사 진료를 안내하는 한의원입니다.',
+      url: siteUrl,
+      logo: `${siteUrl}/favicon-512.png`,
+      image: `${siteUrl}/orb-space-lobby-wide.jpg`,
+      telephone: '+82-2-6959-5982',
+      hasMap: googleMapUrl,
+      sameAs: [naverPlaceUrl, kakaoMapUrl, kakaoChatUrl],
+      address: {
+        '@type': 'PostalAddress',
+        addressCountry: 'KR',
+        addressRegion: '서울특별시',
+        addressLocality: '강서구',
+        streetAddress: '마곡중앙로 111 롯데캐슬 르웨스트 104동 2층 238호, 239호',
+      },
+      contactPoint: {
+        '@type': 'ContactPoint',
+        telephone: '+82-2-6959-5982',
+        contactType: '예약 및 진료 문의',
+        availableLanguage: ['Korean', 'English'],
+      },
+      areaServed: ['마곡동', '마곡나루역', '서울 강서구'],
+      medicalSpecialty: [
+        'Korean Medicine',
+        'Pain Management',
+        'Neuropsychiatry',
+        'Rehabilitation',
+      ],
+      availableService: treatmentAreas.map((name) => ({
+        '@type': 'Service',
+        name,
+      })),
+    },
   ],
-  availableService: treatmentAreas,
 };
 
 export default function Home() {
@@ -236,11 +273,16 @@ export default function Home() {
       <section className="snap-section area-section" id="areas">
         <div className="area-intro">
           <p className="eyebrow">TREATMENT</p>
-          <h2>무엇을 치료하나요</h2>
+          <h2>마곡나루역 오브한의원의 주요 진료</h2>
+          <p className="area-description">
+            오브한의원 마곡점은 마곡나루역 5번 출구에서 136m 거리에
+            있습니다. 통증·추나, 자율신경·뇌파검사, 스트레스·신경증,
+            다이어트·열대사 진료를 안내합니다.
+          </p>
         </div>
         <div className="area-grid">
           {treatmentPillars.map((area) => (
-            <a href="#programs" className="area-item" key={area.title}>
+            <a href={area.href} className="area-item" key={area.title}>
               <span>{area.number}</span>
               <strong>{area.title}</strong>
               <small>{area.caption}</small>
@@ -262,6 +304,9 @@ export default function Home() {
               <span>{program.number}</span>
               <h2>{program.title}</h2>
               <p>{program.body}</p>
+              <a className="program-detail-link" href={program.href}>
+                진료 안내 보기 <span aria-hidden="true">→</span>
+              </a>
             </div>
           </section>
         ))}

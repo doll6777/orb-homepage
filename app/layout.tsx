@@ -18,11 +18,21 @@ const hasGoogleAnalyticsId = Boolean(
 export const metadata: Metadata = {
   metadataBase: new URL('https://orbclinic.pages.dev'),
   title: {
-    default: '오브한의원 마곡점 | 마곡 오브한의원',
+    default: '마곡나루역 한의원 | 오브한의원 마곡점',
     template: '%s | 오브한의원 마곡점',
   },
   description:
-    '마곡나루역 5번 출구 인근 오브한의원 마곡점. 통증, 자율신경실조증, 스트레스, 신경증, 다이어트, 열대사장애, 교통사고 후유증 진료 안내.',
+    '마곡나루역 5번 출구 136m 오브한의원 마곡점. 통증·추나, 자율신경·뇌파검사, 스트레스·신경증, 다이어트·열대사 진료와 예약·주차 정보를 안내합니다.',
+  icons: {
+    icon: [
+      { url: '/favicon.ico', sizes: '48x48' },
+      { url: '/favicon-32x32.png', type: 'image/png', sizes: '32x32' },
+      { url: '/favicon-512.png', type: 'image/png', sizes: '512x512' },
+    ],
+    apple: [
+      { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
+    ],
+  },
   alternates: {
     canonical: '/',
     languages: {
@@ -31,13 +41,23 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: '오브한의원 마곡점 | ORB Korean Medicine Clinic',
+    title: '마곡나루역 한의원 | 오브한의원 마곡점',
     description:
-      '마곡나루역 5번 출구 인근 오브한의원 마곡점 치료 안내.',
+      '마곡나루역 5번 출구 136m. 통증·추나, 자율신경·뇌파검사, 스트레스·신경증, 다이어트·열대사 진료 안내.',
     url: '/',
     siteName: '오브한의원 마곡점',
     locale: 'ko_KR',
     type: 'website',
+    images: [
+      {
+        url: '/orb-space-lobby-wide.jpg',
+        alt: '오브한의원 마곡점 로비와 대기 공간',
+      },
+    ],
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
   verification: {
     other: {

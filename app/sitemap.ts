@@ -1,9 +1,15 @@
 import type { MetadataRoute } from 'next';
 
 const baseUrl = 'https://orbclinic.pages.dev';
+const treatmentPaths = [
+  '/treatments/pain-chuna',
+  '/treatments/autonomic-qeeg',
+  '/treatments/stress-neurosis',
+  '/treatments/weight-metabolism',
+];
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  return [
+  const corePages: MetadataRoute.Sitemap = [
     {
       url: baseUrl,
       lastModified: new Date(),
@@ -29,4 +35,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       },
     },
   ];
+
+  const treatmentPages: MetadataRoute.Sitemap = treatmentPaths.map((path) => ({
+    url: `${baseUrl}${path}`,
+    lastModified: new Date(),
+    changeFrequency: 'monthly',
+    priority: 0.8,
+  }));
+
+  return [...corePages, ...treatmentPages];
 }
