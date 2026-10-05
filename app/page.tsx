@@ -62,8 +62,8 @@ const programs = [
   {
     number: '04',
     title: '다이어트 · 열대사',
-    image: '/orb-acurex-blue.png',
-    alt: '약침 제품 이미지',
+    image: '/orb-space-consult.jpg',
+    alt: '오브한의원 상담 및 검사 공간',
     body:
       '뇌의 에너지 센서, 항상성 회로, 장내 환경의 균형에서 접근합니다.',
   },
@@ -218,10 +218,14 @@ export default function Home() {
       </aside>
 
       <section className="snap-section treat-hero" id="top">
-        <h1 className="sr-only">오브한의원 마곡점</h1>
         <figure className="hero-photo">
           <img src="/orb-space-lobby-wide.jpg" alt="오브한의원 로비와 대기 공간" />
         </figure>
+        <div className="hero-identity">
+          <p>MAGOKNARU · ORB CLINIC</p>
+          <h1>오브한의원 마곡점</h1>
+          <span>마곡나루역 5번 출구에서 136m</span>
+        </div>
         <div className="scroll-cue" aria-hidden="true">
           <span>SCROLL</span>
           <i />
@@ -303,7 +307,15 @@ export default function Home() {
             </div>
             <div>
               <dt>건물 안내</dt>
-              <dd>롯데캐슬 르웨스트 104동 2층으로 올라오세요.</dd>
+              <dd>지하 2층 상가용 엘리베이터를 이용해 104동 2층으로 올라오세요.</dd>
+            </div>
+            <div>
+              <dt>진료시간</dt>
+              <dd>평일 10:30–20:20 · 휴게시간 14:10–15:00 · 토요일은 네이버 예약에서 확인</dd>
+            </div>
+            <div>
+              <dt>주차</dt>
+              <dd>건물 지하주차장 이용 시 2시간 무료입니다.</dd>
             </div>
           </dl>
           <div className="map-actions" aria-label="지도에서 위치 확인">
@@ -349,6 +361,9 @@ export default function Home() {
             <a href={naverBookingUrl} target="_blank" rel="noreferrer">
               네이버 예약
             </a>
+            <a href={kakaoMapUrl} target="_blank" rel="noreferrer">
+              카카오맵
+            </a>
             <a href={phoneHref}>전화하기</a>
           </div>
         </div>
@@ -361,6 +376,11 @@ export default function Home() {
           </ul>
         </div>
       </section>
+      <aside className="mobile-cta" aria-label="모바일 예약 및 길찾기">
+        <a href={naverBookingUrl} target="_blank" rel="noreferrer">네이버 예약</a>
+        <a href={kakaoMapUrl} target="_blank" rel="noreferrer">카카오맵</a>
+        <a href={phoneHref}>전화하기</a>
+      </aside>
     </main>
   );
 }

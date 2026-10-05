@@ -64,8 +64,8 @@ const programs = [
   {
     number: '04',
     title: 'Weight · Metabolism',
-    image: '/orb-acurex-blue.png',
-    alt: 'Korean medicine treatment product',
+    image: '/orb-space-consult.jpg',
+    alt: 'Consultation and examination room at ORB Korean Medicine Clinic',
     body:
       'Weight care is approached through energy regulation, homeostasis, and the balance of the gut environment.',
   },
@@ -242,10 +242,14 @@ export default function EnglishPage() {
       </aside>
 
       <section className="snap-section treat-hero" id="top">
-        <h1 className="sr-only">ORB Korean Medicine Clinic Magok</h1>
         <figure className="hero-photo">
           <img src="/orb-space-lobby-wide.jpg" alt="ORB Korean Medicine Clinic lobby" />
         </figure>
+        <div className="hero-identity">
+          <p>MAGOKNARU · ORB CLINIC</p>
+          <h1>ORB Korean Medicine Clinic</h1>
+          <span>136m from Magongnaru Station Exit 5</span>
+        </div>
         <div className="scroll-cue" aria-hidden="true">
           <span>SCROLL</span>
           <i />
@@ -327,7 +331,15 @@ export default function EnglishPage() {
             </div>
             <div>
               <dt>Building</dt>
-              <dd>Take the elevator to the second floor of Building 104.</dd>
+              <dd>Use the commercial elevator from B2 to the second floor of Building 104.</dd>
+            </div>
+            <div>
+              <dt>Hours</dt>
+              <dd>Weekdays 10:30–20:20 · Break 14:10–15:00 · Check Naver Booking for Saturday hours</dd>
+            </div>
+            <div>
+              <dt>Parking</dt>
+              <dd>Two hours of complimentary parking are available in the building garage.</dd>
             </div>
           </dl>
           <div className="map-actions" aria-label="Open location in maps">
@@ -373,6 +385,9 @@ export default function EnglishPage() {
             <a href={naverBookingUrl} target="_blank" rel="noreferrer">
               Naver Booking
             </a>
+            <a href={kakaoMapUrl} target="_blank" rel="noreferrer">
+              Kakao Map
+            </a>
             <a href={phoneHref}>Call</a>
           </div>
         </div>
@@ -385,6 +400,11 @@ export default function EnglishPage() {
           </ul>
         </div>
       </section>
+      <aside className="mobile-cta" aria-label="Mobile reservation and directions">
+        <a href={naverBookingUrl} target="_blank" rel="noreferrer">Naver Booking</a>
+        <a href={kakaoMapUrl} target="_blank" rel="noreferrer">Kakao Map</a>
+        <a href={phoneHref}>Call</a>
+      </aside>
     </main>
   );
 }
