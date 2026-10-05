@@ -60,6 +60,8 @@ export default function SiteMotion() {
         ? 'phone_click'
         : href.includes('booking.naver.com')
           ? 'booking_click'
+          : href.includes('pf.kakao.com')
+            ? 'kakao_chat_click'
           : href.includes('map') || href.includes('place.naver.com')
             ? 'map_click'
             : null;

@@ -136,6 +136,7 @@ const naverBookingUrl =
   'https://m.booking.naver.com/booking/16/bizes/1731406?theme=place&lang=ko&area=ple';
 const kakaoMapUrl =
   'https://map.kakao.com/link/search/%EC%98%A4%EB%B8%8C%ED%95%9C%EC%9D%98%EC%9B%90%20%EB%A7%88%EA%B3%A1%EC%A0%90';
+const kakaoChatUrl = 'https://pf.kakao.com/_nXGxaX/chat';
 const googleMapUrl =
   'https://www.google.com/maps/search/?api=1&query=%EC%98%A4%EB%B8%8C%ED%95%9C%EC%9D%98%EC%9B%90+%EB%A7%88%EA%B3%A1%EC%A0%90+%EC%84%9C%EC%9A%B8+%EA%B0%95%EC%84%9C%EA%B5%AC+%EB%A7%88%EA%B3%A1%EC%A4%91%EC%95%99%EB%A1%9C+111';
 const googleMapEmbedUrl =
@@ -343,8 +344,8 @@ export default function Home() {
           <p className="eyebrow">RESERVATION</p>
           <h2>예약 및 문의</h2>
           <p>
-            오브한의원 마곡점은 전화 문의와 네이버 플레이스에서 확인하실 수
-            있습니다.
+            오브한의원 마곡점은 네이버 예약, 카카오톡 상담 또는 전화로
+            문의하실 수 있습니다.
           </p>
           <address className="clinic-address">
             서울 강서구 마곡중앙로 111
@@ -361,8 +362,8 @@ export default function Home() {
             <a href={naverBookingUrl} target="_blank" rel="noreferrer">
               네이버 예약
             </a>
-            <a href={kakaoMapUrl} target="_blank" rel="noreferrer">
-              카카오맵
+            <a href={kakaoChatUrl} target="_blank" rel="noreferrer">
+              카카오톡 상담
             </a>
             <a href={phoneHref}>전화하기</a>
           </div>
@@ -376,9 +377,9 @@ export default function Home() {
           </ul>
         </div>
       </section>
-      <aside className="mobile-cta" aria-label="모바일 예약 및 길찾기">
+      <aside className="mobile-cta" aria-label="모바일 예약 및 문의">
         <a href={naverBookingUrl} target="_blank" rel="noreferrer">네이버 예약</a>
-        <a href={kakaoMapUrl} target="_blank" rel="noreferrer">카카오맵</a>
+        <a href={kakaoChatUrl} target="_blank" rel="noreferrer">카카오톡 상담</a>
         <a href={phoneHref}>전화하기</a>
       </aside>
     </main>

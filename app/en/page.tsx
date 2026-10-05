@@ -138,6 +138,7 @@ const naverBookingUrl =
   'https://m.booking.naver.com/booking/16/bizes/1731406?theme=place&lang=ko&area=ple';
 const kakaoMapUrl =
   'https://map.kakao.com/link/search/%EC%98%A4%EB%B8%8C%ED%95%9C%EC%9D%98%EC%9B%90%20%EB%A7%88%EA%B3%A1%EC%A0%90';
+const kakaoChatUrl = 'https://pf.kakao.com/_nXGxaX/chat';
 const googleMapUrl =
   'https://www.google.com/maps/search/?api=1&query=%EC%98%A4%EB%B8%8C%ED%95%9C%EC%9D%98%EC%9B%90+%EB%A7%88%EA%B3%A1%EC%A0%90+%EC%84%9C%EC%9A%B8+%EA%B0%95%EC%84%9C%EA%B5%AC+%EB%A7%88%EA%B3%A1%EC%A4%91%EC%95%99%EB%A1%9C+111';
 const googleMapEmbedUrl =
@@ -367,8 +368,8 @@ export default function EnglishPage() {
           <p className="eyebrow">RESERVATION</p>
           <h2>Visit ORB Magok</h2>
           <p>
-            Contact ORB Korean Medicine Clinic Magok by phone or check the
-            official Naver Place page.
+            Book through Naver or contact ORB Magok through KakaoTalk or by
+            phone.
           </p>
           <address className="clinic-address">
             111 Magokjungang-ro, Building 104, 2F, Units 238-239
@@ -385,8 +386,8 @@ export default function EnglishPage() {
             <a href={naverBookingUrl} target="_blank" rel="noreferrer">
               Naver Booking
             </a>
-            <a href={kakaoMapUrl} target="_blank" rel="noreferrer">
-              Kakao Map
+            <a href={kakaoChatUrl} target="_blank" rel="noreferrer">
+              KakaoTalk Chat
             </a>
             <a href={phoneHref}>Call</a>
           </div>
@@ -400,9 +401,9 @@ export default function EnglishPage() {
           </ul>
         </div>
       </section>
-      <aside className="mobile-cta" aria-label="Mobile reservation and directions">
+      <aside className="mobile-cta" aria-label="Mobile reservation and contact">
         <a href={naverBookingUrl} target="_blank" rel="noreferrer">Naver Booking</a>
-        <a href={kakaoMapUrl} target="_blank" rel="noreferrer">Kakao Map</a>
+        <a href={kakaoChatUrl} target="_blank" rel="noreferrer">KakaoTalk Chat</a>
         <a href={phoneHref}>Call</a>
       </aside>
     </main>
