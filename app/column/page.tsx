@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
 import ClinicFooter from '../components/ClinicFooter';
 import ClinicHeader from '../components/ClinicHeader';
 import { columnPosts, externalColumns } from './column-data';
@@ -41,13 +40,13 @@ export default function ColumnPage() {
         </div>
         <div className="column-grid">
           {columnPosts.map((post, index) => (
-            <Link className="column-card" href={`/column/${post.slug}`} key={post.slug}>
+            <a className="column-card" href={`/column/${post.slug}`} key={post.slug}>
               <span>{String(index + 1).padStart(2, '0')}</span>
               <small>{post.category}</small>
               <h3>{post.title}</h3>
               <p>{post.summary}</p>
               <time dateTime={post.publishedAt}>{post.displayDate}</time>
-            </Link>
+            </a>
           ))}
         </div>
       </section>

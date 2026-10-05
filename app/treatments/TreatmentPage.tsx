@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import ClinicFooter from '../components/ClinicFooter';
 import ClinicHeader from '../components/ClinicHeader';
 import SiteMotion from '../components/SiteMotion';
@@ -29,7 +28,7 @@ export default function TreatmentPage({ treatment }: { treatment: Treatment }) {
         </figure>
         <div className="detail-hero-copy">
           <nav className="breadcrumbs" aria-label="현재 위치">
-            <Link href="/">홈</Link>
+            <a href="/">홈</a>
             <span aria-hidden="true">/</span>
             <span>{treatment.title}</span>
           </nav>

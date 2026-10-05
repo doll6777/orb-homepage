@@ -1,5 +1,3 @@
-import Link from 'next/link';
-
 const bookingUrl =
   'https://m.booking.naver.com/booking/16/bizes/1731406?theme=place&lang=ko&area=ple';
 
@@ -14,19 +12,19 @@ const navigation = [
 export default function ClinicHeader() {
   return (
     <header className="global-header clinic-header" aria-label="오브한의원">
-      <Link className="wordmark" href="/" aria-label="오브한의원 홈">
+      <a className="wordmark" href="/" aria-label="오브한의원 홈">
         ORB
-      </Link>
+      </a>
 
       <nav className="primary-nav" aria-label="주요 메뉴">
         {navigation.map((item) => (
-          <Link href={item.href} key={item.href}>
+          <a href={item.href} key={item.href}>
             {item.label}
-          </Link>
+          </a>
         ))}
-        <Link href="/en" hrefLang="en" aria-label="View in English">
+        <a href="/en" hrefLang="en" aria-label="View in English">
           EN
-        </Link>
+        </a>
         <a className="header-booking" href={bookingUrl} target="_blank" rel="noreferrer">
           예약하기
         </a>
@@ -36,13 +34,13 @@ export default function ClinicHeader() {
         <summary>MENU</summary>
         <nav aria-label="모바일 메뉴">
           {navigation.map((item) => (
-            <Link href={item.href} key={item.href}>
+            <a href={item.href} key={item.href}>
               {item.label}
-            </Link>
+            </a>
           ))}
-          <Link href="/en" hrefLang="en">
+          <a href="/en" hrefLang="en">
             English
-          </Link>
+          </a>
           <a href={bookingUrl} target="_blank" rel="noreferrer">
             네이버 예약
           </a>

@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import AutoGallery from './components/AutoGallery';
 import ClinicFooter from './components/ClinicFooter';
 import ClinicHeader from './components/ClinicHeader';
@@ -325,17 +324,17 @@ export default function Home() {
             <p className="eyebrow">ORB MEDICAL COLUMN</p>
             <h2 id="home-column-title">몸의 신호를 이해하는 글</h2>
           </div>
-          <Link href="/column">의료 칼럼 전체보기 →</Link>
+          <a href="/column">의료 칼럼 전체보기 →</a>
         </div>
         <div className="home-column-grid">
           {columnPosts.map((post, index) => (
-            <Link href={`/column/${post.slug}`} key={post.slug}>
+            <a href={`/column/${post.slug}`} key={post.slug}>
               <span>{String(index + 1).padStart(2, '0')}</span>
               <small>{post.category}</small>
               <h3>{post.title}</h3>
               <p>{post.summary}</p>
               <time dateTime={post.publishedAt}>{post.displayDate}</time>
-            </Link>
+            </a>
           ))}
         </div>
       </section>

@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
 import ClinicFooter from '../components/ClinicFooter';
 import ClinicHeader from '../components/ClinicHeader';
 
@@ -93,7 +92,7 @@ export default function AboutPage() {
             마련했습니다. 마곡나루역 5번 출구에서 도보 136m이며 건물
             지하주차장 이용 시 2시간 무료 주차가 가능합니다.
           </p>
-          <Link className="text-link" href="/#space-gallery">공간 둘러보기 →</Link>
+          <a className="text-link" href="/#space-gallery">공간 둘러보기 →</a>
         </div>
       </section>
 

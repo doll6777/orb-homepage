@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import ClinicFooter from '../components/ClinicFooter';
 import ClinicHeader from '../components/ClinicHeader';
 import type { ColumnPost } from './column-data';
@@ -42,9 +41,9 @@ export default function ColumnArticle({ post }: { post: ColumnPost }) {
       <article>
         <header className="article-header">
           <nav className="breadcrumbs" aria-label="현재 위치">
-            <Link href="/">홈</Link>
+            <a href="/">홈</a>
             <span aria-hidden="true">/</span>
-            <Link href="/column">의료 칼럼</Link>
+            <a href="/column">의료 칼럼</a>
           </nav>
           <p className="eyebrow">ORB MEDICAL COLUMN</p>
           <span className="article-category">{post.category}</span>

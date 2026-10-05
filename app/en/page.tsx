@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
 import AutoGallery from '../components/AutoGallery';
 import SiteMotion from '../components/SiteMotion';
 
@@ -210,9 +209,9 @@ export default function EnglishPage() {
           ORB
         </a>
         <div className="header-actions">
-          <Link href="/" hrefLang="ko" aria-label="View in Korean">
+          <a href="/" hrefLang="ko" aria-label="View in Korean">
             KR
-          </Link>
+          </a>
           <a href="#directions">Directions</a>
           <a href="#contact">Reservation</a>
         </div>
