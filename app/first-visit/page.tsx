@@ -39,7 +39,7 @@ export default function FirstVisitPage() {
       <ClinicHeader />
       <section className="interior-hero compact-hero">
         <div>
-          <p className="eyebrow">FIRST VISIT</p>
+          <p className="eyebrow">첫 방문 안내</p>
           <h1>처음 방문하시는 분께</h1>
           <p>
             편안하게 진료받으실 수 있도록 예약부터 진료 후 안내까지의 흐름을
@@ -51,7 +51,7 @@ export default function FirstVisitPage() {
       <section className="visit-steps content-section">
         <div className="section-heading-row">
           <div>
-            <p className="eyebrow">PROCESS</p>
+            <p className="eyebrow">진료 순서</p>
             <h2>첫 방문 진료 과정</h2>
           </div>
           <p>
@@ -72,7 +72,7 @@ export default function FirstVisitPage() {
 
       <section className="visit-preparation content-section">
         <div>
-          <p className="eyebrow">BEFORE YOUR VISIT</p>
+          <p className="eyebrow">방문 전 확인</p>
           <h2>방문 전에 확인해 주세요</h2>
         </div>
         <dl>
@@ -97,7 +97,7 @@ export default function FirstVisitPage() {
 
       <section className="first-visit-cta">
         <div>
-          <p className="eyebrow">RESERVATION</p>
+          <p className="eyebrow">예약 안내</p>
           <h2>방문 일정을 확인해 보세요</h2>
           <p>마곡나루역 5번 출구에서 136m · 02-6959-5982</p>
         </div>

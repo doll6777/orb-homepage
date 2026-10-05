@@ -14,36 +14,9 @@ const treatmentAreas = [
   '교통사고 후유증',
 ];
 
-const treatmentPillars = [
-  {
-    number: '01',
-    title: '통증 · 추나',
-    caption: '근골격계 통증과 척추관절 회복',
-    href: '/treatments/pain-chuna',
-  },
-  {
-    number: '02',
-    title: '자율신경',
-    caption: '뇌파검사와 신경계 피로도 진단',
-    href: '/treatments/autonomic-qeeg',
-  },
-  {
-    number: '03',
-    title: '스트레스 · 신경증',
-    caption: '과민감, 브레인포그, 정서 피로',
-    href: '/treatments/stress-neurosis',
-  },
-  {
-    number: '04',
-    title: '다이어트 · 열대사',
-    caption: '대사 균형과 체중 관리',
-    href: '/treatments/weight-metabolism',
-  },
-];
-
 const programs = [
   {
-    number: '01',
+    label: '통증·척추관절',
     title: '통증 · 추나',
     image: '/orb-chuna-room.png',
     alt: '오브한의원 추나 치료 장면',
@@ -52,7 +25,7 @@ const programs = [
     href: '/treatments/pain-chuna',
   },
   {
-    number: '02',
+    label: '검사·자율신경',
     title: '자율신경 · 뇌파검사',
     image: '/orb-qeeg-test.jpeg',
     alt: '정량뇌파검사 장면',
@@ -61,7 +34,7 @@ const programs = [
     href: '/treatments/autonomic-qeeg',
   },
   {
-    number: '03',
+    label: '정신건강·생활리듬',
     title: '스트레스 · 신경증',
     image: '/orb-treatment-bed.jpeg',
     alt: '오브한의원 치료실 장면',
@@ -70,13 +43,28 @@ const programs = [
     href: '/treatments/stress-neurosis',
   },
   {
-    number: '04',
+    label: '체중·대사',
     title: '다이어트 · 열대사',
     image: '/orb-space-consult.jpg',
     alt: '오브한의원 상담 및 검사 공간',
     body:
       '뇌의 에너지 센서, 항상성 회로, 장내 환경의 균형에서 접근합니다.',
     href: '/treatments/weight-metabolism',
+  },
+];
+
+const clinicFacts = [
+  {
+    title: '평일 진료',
+    body: '10:30–20:20 · 휴게시간 14:10–15:00',
+  },
+  {
+    title: '찾아오시는 길',
+    body: '마곡나루역 5번 출구에서 도보 136m',
+  },
+  {
+    title: '주차 안내',
+    body: '롯데캐슬 르웨스트 지하주차장 2시간 무료',
   },
 ];
 
@@ -223,16 +211,6 @@ export default function Home() {
       />
       <ClinicHeader />
 
-      <nav className="side-index" aria-label="섹션 이동">
-        <span aria-hidden="true" />
-        <a href="#top">01</a>
-        <a href="#areas">02</a>
-        <a href="#programs">03</a>
-        <a href="#space-gallery">04</a>
-        <a href="#directions">05</a>
-        <a href="#contact">06</a>
-      </nav>
-
       <aside className="map-quick-links" aria-label="지도 바로가기">
         {mapLinks.map((link) => (
           <a
@@ -252,66 +230,57 @@ export default function Home() {
           <img src="/orb-space-lobby-wide.jpg" alt="오브한의원 로비와 대기 공간" />
         </figure>
         <div className="hero-identity">
-          <p>MAGOKNARU · ORB CLINIC</p>
+          <p>마곡나루역 5번 출구에서 136m</p>
           <h1>오브한의원 마곡점</h1>
-          <span>마곡나루역 5번 출구에서 136m</span>
-        </div>
-        <div className="scroll-cue" aria-hidden="true">
-          <span>SCROLL</span>
-          <i />
+          <span>통증·추나 · 자율신경·뇌파 · 스트레스·신경증 · 체중 관리</span>
         </div>
       </section>
 
-      <section className="snap-section area-section" id="areas">
-        <div className="area-intro">
-          <p className="eyebrow">TREATMENT</p>
-          <h2>마곡나루역 오브한의원의 주요 진료</h2>
-          <p className="area-description">
-            오브한의원 마곡점은 마곡나루역 5번 출구에서 136m 거리에
-            있습니다. 통증·추나, 자율신경·뇌파검사, 스트레스·신경증,
-            다이어트·열대사 진료를 안내합니다.
+      <section className="clinic-facts" aria-label="진료 기본 정보">
+        {clinicFacts.map((fact) => (
+          <div key={fact.title}>
+            <strong>{fact.title}</strong>
+            <span>{fact.body}</span>
+          </div>
+        ))}
+      </section>
+
+      <section className="care-section" id="areas" aria-labelledby="care-title">
+        <div className="care-heading">
+          <p className="eyebrow">진료 안내</p>
+          <h2 id="care-title">주요 진료 분야</h2>
+          <p>
+            현재의 불편과 시작된 시점, 생활 습관을 먼저 확인한 뒤 필요한
+            진찰과 검사, 진료 과정을 설명합니다.
           </p>
         </div>
-        <div className="area-grid">
-          {treatmentPillars.map((area) => (
-            <a href={area.href} className="area-item" key={area.title}>
-              <span>{area.number}</span>
-              <strong>{area.title}</strong>
-              <small>{area.caption}</small>
-            </a>
+        <div className="care-grid">
+          {programs.map((program) => (
+            <article className="care-card" key={program.title}>
+              <a href={program.href} aria-label={`${program.title} 진료 안내 보기`}>
+                <figure>
+                  <img src={program.image} alt={program.alt} />
+                </figure>
+                <div>
+                  <small>{program.label}</small>
+                  <h3>{program.title}</h3>
+                  <p>{program.body}</p>
+                  <span>자세히 보기</span>
+                </div>
+              </a>
+            </article>
           ))}
         </div>
       </section>
 
-      <section className="programs" id="programs" aria-label="주요 치료 설명">
-        {programs.map((program, index) => (
-          <section
-            className={`snap-section program-section ${index % 2 === 1 ? 'reverse' : ''}`}
-            key={program.title}
-          >
-            <figure className="program-photo">
-              <img src={program.image} alt={program.alt} />
-            </figure>
-            <div className="program-copy">
-              <span>{program.number}</span>
-              <h2>{program.title}</h2>
-              <p>{program.body}</p>
-              <a className="program-detail-link" href={program.href}>
-                진료 안내 보기 <span aria-hidden="true">→</span>
-              </a>
-            </div>
-          </section>
-        ))}
-      </section>
-
-      <section className="snap-section principle-section">
+      <section className="principle-section">
         <div className="principle-copy">
-          <p className="eyebrow">ORIGIN · RESET · BALANCE</p>
-          <h2>
-            원인을 진단하고,
-            <br />
-            회복의 방향을 다시 맞춥니다.
-          </h2>
+          <p className="eyebrow">진료 원칙</p>
+          <h2>증상만 보지 않고 시작된 시점과 생활 리듬을 함께 확인합니다.</h2>
+          <p>
+            상담 내용을 바탕으로 필요한 진찰과 검사를 안내하고, 현재 상태에
+            맞는 진료 방향을 이해하기 쉽게 설명합니다.
+          </p>
         </div>
         <figure className="principle-photo">
           <img src="/orb-space-corridor.jpg" alt="오브한의원 진료실 복도" />
@@ -321,15 +290,14 @@ export default function Home() {
       <section className="home-column-section" aria-labelledby="home-column-title">
         <div className="home-column-heading">
           <div>
-            <p className="eyebrow">ORB MEDICAL COLUMN</p>
-            <h2 id="home-column-title">몸의 신호를 이해하는 글</h2>
+            <p className="eyebrow">의료 칼럼</p>
+            <h2 id="home-column-title">진료실에서 자주 설명하는 내용을 정리했습니다</h2>
           </div>
           <a href="/column">의료 칼럼 전체보기 →</a>
         </div>
         <div className="home-column-grid">
-          {columnPosts.map((post, index) => (
+          {columnPosts.map((post) => (
             <a href={`/column/${post.slug}`} key={post.slug}>
-              <span>{String(index + 1).padStart(2, '0')}</span>
               <small>{post.category}</small>
               <h3>{post.title}</h3>
               <p>{post.summary}</p>
@@ -341,7 +309,7 @@ export default function Home() {
 
       <section className="snap-section gallery-section" id="space-gallery">
         <div className="gallery-heading">
-          <p className="eyebrow">SPACE</p>
+          <p className="eyebrow">한의원 내부</p>
           <h2>공간 둘러보기</h2>
         </div>
         <AutoGallery
@@ -352,7 +320,7 @@ export default function Home() {
 
       <section className="snap-section visit-section" id="directions">
         <div className="visit-copy">
-          <p className="eyebrow">LOCATION</p>
+          <p className="eyebrow">위치 및 주차</p>
           <h2>오는 길</h2>
           <address className="visit-address">
             서울 강서구 마곡중앙로 111
@@ -399,7 +367,7 @@ export default function Home() {
 
       <section className="snap-section contact-section" id="contact">
         <div className="letter">
-          <p className="eyebrow">RESERVATION</p>
+          <p className="eyebrow">진료 예약</p>
           <h2>예약 및 문의</h2>
           <p>
             오브한의원 마곡점은 네이버 예약, 카카오톡 상담 또는 전화로
@@ -427,7 +395,7 @@ export default function Home() {
           </div>
         </div>
         <div className="membership">
-          <p className="eyebrow">MEMBERSHIP</p>
+          <p className="eyebrow">학회 및 협회 활동</p>
           <ul>
             {memberships.map((item) => (
               <li key={item}>{item}</li>

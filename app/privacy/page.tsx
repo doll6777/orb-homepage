@@ -19,7 +19,7 @@ export default function PrivacyPage() {
     <main className="interior-page policy-page">
       <ClinicHeader />
       <section className="policy-content">
-        <p className="eyebrow">PRIVACY</p>
+        <p className="eyebrow">개인정보 안내</p>
         <h1>개인정보 처리 안내</h1>
         <p className="policy-updated">시행일: 2026년 10월 5일</p>
 

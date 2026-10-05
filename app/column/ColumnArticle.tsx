@@ -45,7 +45,7 @@ export default function ColumnArticle({ post }: { post: ColumnPost }) {
             <span aria-hidden="true">/</span>
             <a href="/column">의료 칼럼</a>
           </nav>
-          <p className="eyebrow">ORB MEDICAL COLUMN</p>
+          <p className="eyebrow">오브한의원 의료 칼럼</p>
           <span className="article-category">{post.category}</span>
           <h1>{post.title}</h1>
           <p className="article-summary">{post.summary}</p>
@@ -92,7 +92,7 @@ export default function ColumnArticle({ post }: { post: ColumnPost }) {
 
         <aside className="article-cta">
           <div>
-            <p className="eyebrow">CONSULTATION</p>
+            <p className="eyebrow">진료 상담</p>
             <h2>현재의 불편을 상담해 보세요</h2>
             <p>마곡나루역 5번 출구에서 136m, 오브한의원 마곡점입니다.</p>
           </div>

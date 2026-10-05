@@ -32,7 +32,7 @@ export default function TreatmentPage({ treatment }: { treatment: Treatment }) {
             <span aria-hidden="true">/</span>
             <span>{treatment.title}</span>
           </nav>
-          <p className="eyebrow">{treatment.eyebrow}</p>
+          <p className="eyebrow">진료 안내</p>
           <h1>{treatment.pageTitle}</h1>
           <p>{treatment.lead}</p>
         </div>
@@ -40,7 +40,7 @@ export default function TreatmentPage({ treatment }: { treatment: Treatment }) {
 
       <section className="detail-section detail-concerns">
         <div>
-          <p className="eyebrow">WHEN TO VISIT</p>
+          <p className="eyebrow">상담 대상</p>
           <h2>이런 불편을 상담합니다</h2>
         </div>
         <ul>
@@ -52,7 +52,7 @@ export default function TreatmentPage({ treatment }: { treatment: Treatment }) {
 
       <section className="detail-section detail-approach">
         <div className="detail-section-heading">
-          <p className="eyebrow">CARE PROCESS</p>
+          <p className="eyebrow">진료 과정</p>
           <h2>진료는 이렇게 진행합니다</h2>
         </div>
         <ol>
@@ -68,7 +68,7 @@ export default function TreatmentPage({ treatment }: { treatment: Treatment }) {
 
       <section className="detail-reservation">
         <div>
-          <p className="eyebrow">RESERVATION</p>
+          <p className="eyebrow">예약 안내</p>
           <h2>마곡나루역 5번 출구에서 136m</h2>
           <p>
             진료 및 검사 여부는 상담 후 개인별 상태에 따라 달라질 수 있습니다.

@@ -18,11 +18,11 @@ export default function ColumnPage() {
       <ClinicHeader />
       <section className="interior-hero compact-hero">
         <div>
-          <p className="eyebrow">ORB MEDICAL COLUMN</p>
+          <p className="eyebrow">오브한의원 의료정보</p>
           <h1>의료 칼럼</h1>
           <p>
-            몸의 신호를 조금 더 이해할 수 있도록 검사와 진료 과정,
-            생활에서 살펴볼 내용을 차분히 정리합니다.
+            검사와 진료 과정, 생활에서 확인할 내용을 이해하기 쉽게
+            정리했습니다.
           </p>
         </div>
       </section>
@@ -30,7 +30,7 @@ export default function ColumnPage() {
       <section className="column-index">
         <div className="section-heading-row">
           <div>
-            <p className="eyebrow">FEATURED</p>
+            <p className="eyebrow">주요 글</p>
             <h2>홈페이지에서 읽는 칼럼</h2>
           </div>
           <p>
@@ -53,7 +53,7 @@ export default function ColumnPage() {
 
       <section className="external-column-section">
         <div>
-          <p className="eyebrow">FROM NAVER BLOG</p>
+          <p className="eyebrow">네이버 블로그</p>
           <h2>블로그에서 더 읽기</h2>
         </div>
         <div className="external-column-list">
