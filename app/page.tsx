@@ -56,15 +56,19 @@ const programs = [
 const clinicFacts = [
   {
     title: '평일 진료',
-    body: '10:30–20:20 · 휴게시간 14:10–15:00',
+    body: '월–금 10:30–20:20',
   },
   {
-    title: '찾아오시는 길',
-    body: '마곡나루역 5번 출구에서 도보 136m',
+    title: '휴게 · 접수',
+    body: '휴게 14:10–15:00 · 접수 19:40 마감',
   },
   {
-    title: '주차 안내',
-    body: '롯데캐슬 르웨스트 지하주차장 2시간 무료',
+    title: '토요일 진료',
+    body: '13:00–18:00 · 접수 17:20 마감',
+  },
+  {
+    title: '휴진 안내',
+    body: '일요일 정기휴무 · 공휴일 일정 별도 안내',
   },
 ];
 
@@ -200,6 +204,20 @@ const clinicJsonLd = {
         contactType: '예약 및 진료 문의',
         availableLanguage: ['Korean', 'English'],
       },
+      openingHoursSpecification: [
+        {
+          '@type': 'OpeningHoursSpecification',
+          dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+          opens: '10:30',
+          closes: '20:20',
+        },
+        {
+          '@type': 'OpeningHoursSpecification',
+          dayOfWeek: 'Saturday',
+          opens: '13:00',
+          closes: '18:00',
+        },
+      ],
       areaServed: ['마곡동', '마곡나루역', '서울 강서구'],
       medicalSpecialty: [
         'Korean Medicine',
@@ -351,8 +369,16 @@ export default function Home() {
               <dd>지하 2층 상가용 엘리베이터를 이용해 104동 2층으로 올라오세요.</dd>
             </div>
             <div>
-              <dt>진료시간</dt>
-              <dd>평일 10:30–20:20 · 휴게시간 14:10–15:00 · 토요일은 네이버 예약에서 확인</dd>
+              <dt>평일 진료</dt>
+              <dd>월–금 10:30–20:20 · 휴게시간 14:10–15:00 · 접수마감 19:40</dd>
+            </div>
+            <div>
+              <dt>토요일 진료</dt>
+              <dd>13:00–18:00 · 접수마감 17:20 · 휴게시간 없음</dd>
+            </div>
+            <div>
+              <dt>휴진 안내</dt>
+              <dd>일요일 정기휴무 · 공휴일 일정은 네이버 플레이스에서 별도 안내합니다.</dd>
             </div>
             <div>
               <dt>주차</dt>

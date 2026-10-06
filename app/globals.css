@@ -2722,7 +2722,7 @@ body {
   background: #eee7dc;
   color: var(--brown);
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   padding: 0 clamp(28px, 7vw, 100px);
 }
 
@@ -2997,11 +2997,16 @@ body {
   }
 
   .clinic-facts {
+    grid-template-columns: repeat(2, 1fr);
     padding: 0 22px;
   }
 
   .clinic-facts > div {
     padding: 24px 20px;
+  }
+
+  .clinic-facts > div:nth-child(n + 3) {
+    border-top: 1px solid var(--line-dark);
   }
 
   .care-heading {

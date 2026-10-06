@@ -165,6 +165,20 @@ const clinicJsonLd = {
     addressLocality: 'Gangseo-gu',
     streetAddress: '111 Magokjungang-ro, Building 104, 2F, Units 238-239',
   },
+  openingHoursSpecification: [
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+      opens: '10:30',
+      closes: '20:20',
+    },
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: 'Saturday',
+      opens: '13:00',
+      closes: '18:00',
+    },
+  ],
   medicalSpecialty: [
     'Korean Medicine',
     'Pain Management',
@@ -334,8 +348,16 @@ export default function EnglishPage() {
               <dd>Use the commercial elevator from B2 to the second floor of Building 104.</dd>
             </div>
             <div>
-              <dt>Hours</dt>
-              <dd>Weekdays 10:30–20:20 · Break 14:10–15:00 · Check Naver Booking for Saturday hours</dd>
+              <dt>Weekdays</dt>
+              <dd>Mon–Fri 10:30–20:20 · Break 14:10–15:00 · Last check-in 19:40</dd>
+            </div>
+            <div>
+              <dt>Saturday</dt>
+              <dd>13:00–18:00 · Last check-in 17:20 · No break</dd>
+            </div>
+            <div>
+              <dt>Closed</dt>
+              <dd>Closed Sundays. Please check Naver Place for holiday schedules.</dd>
             </div>
             <div>
               <dt>Parking</dt>
