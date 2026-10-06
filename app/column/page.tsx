@@ -30,22 +30,44 @@ export default function ColumnPage() {
       <section className="column-index">
         <div className="section-heading-row">
           <div>
-            <p className="eyebrow">주요 글</p>
-            <h2>홈페이지에서 읽는 칼럼</h2>
+            <p className="eyebrow">오브 건강 카드</p>
+            <h2>한눈에 읽는 의료 칼럼</h2>
           </div>
           <p>
-            기존 네이버 블로그 글을 환자 안내에 필요한 내용 중심으로 다시
-            정리했습니다.
+            궁금한 주제의 카드를 눌러 검사와 진료에 관한 내용을 자세히
+            확인해 보세요.
           </p>
         </div>
-        <div className="column-grid">
+        <div className="column-cover-grid">
           {columnPosts.map((post, index) => (
-            <a className="column-card" href={`/column/${post.slug}`} key={post.slug}>
-              <span>{String(index + 1).padStart(2, '0')}</span>
-              <small>{post.category}</small>
-              <h3>{post.title}</h3>
-              <p>{post.summary}</p>
-              <time dateTime={post.publishedAt}>{post.displayDate}</time>
+            <a
+              className="column-cover-card"
+              href={`/column/${post.slug}`}
+              key={post.slug}
+            >
+              <figure>
+                <img
+                  src={post.coverImage}
+                  alt={post.coverImageAlt}
+                  loading="lazy"
+                  decoding="async"
+                />
+                <figcaption>
+                  <div className="column-cover-topline">
+                    <small>{post.category}</small>
+                    <span>{String(index + 1).padStart(2, '0')}</span>
+                  </div>
+                  <h3>{post.title}</h3>
+                  <p>오브한의원 의료 칼럼</p>
+                </figcaption>
+              </figure>
+              <div className="column-cover-summary">
+                <p>{post.summary}</p>
+                <div>
+                  <time dateTime={post.publishedAt}>{post.displayDate}</time>
+                  <span>읽어보기 →</span>
+                </div>
+              </div>
             </a>
           ))}
         </div>

@@ -1,7 +1,6 @@
 import ClinicFooter from '../components/ClinicFooter';
 import ClinicHeader from '../components/ClinicHeader';
 import SiteMotion from '../components/SiteMotion';
-import CardNewsCarousel from './CardNewsCarousel';
 import type { ColumnPost } from './column-data';
 
 const bookingUrl =
@@ -59,13 +58,7 @@ export default function ColumnArticle({ post }: { post: ColumnPost }) {
           </div>
         </header>
 
-        <CardNewsCarousel post={post} />
-
         <div className="article-body">
-          <div className="article-body-intro">
-            <span>자세히 읽기</span>
-            <p>카드에서 다룬 내용을 차근차근 설명합니다.</p>
-          </div>
           {post.sections.map((section) => (
             <section key={section.heading}>
               <h2>{section.heading}</h2>
