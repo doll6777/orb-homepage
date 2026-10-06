@@ -155,10 +155,18 @@ const clinicJsonLd = {
     {
       '@type': 'WebSite',
       '@id': `${siteUrl}/#website`,
-      url: siteUrl,
+      url: `${siteUrl}/`,
       name: '오브한의원 마곡점',
-      alternateName: 'ORB Korean Medicine Clinic Magok',
+      alternateName: [
+        '오브한의원',
+        '마곡 오브한의원',
+        'ORB Korean Medicine Clinic Magok',
+        'orbclinic.pages.dev',
+      ],
       inLanguage: 'ko-KR',
+      publisher: {
+        '@id': `${siteUrl}/#clinic`,
+      },
     },
     {
       '@type': 'MedicalClinic',
@@ -167,8 +175,14 @@ const clinicJsonLd = {
       alternateName: 'ORB Korean Medicine Clinic Magok',
       description:
         '마곡나루역 5번 출구 인근에서 통증·추나, 자율신경·뇌파검사, 스트레스·신경증, 다이어트·열대사 진료를 안내하는 한의원입니다.',
-      url: siteUrl,
-      logo: `${siteUrl}/favicon-512.png`,
+      url: `${siteUrl}/`,
+      logo: {
+        '@type': 'ImageObject',
+        url: `${siteUrl}/favicon-512.png`,
+        contentUrl: `${siteUrl}/favicon-512.png`,
+        width: 512,
+        height: 512,
+      },
       image: `${siteUrl}/orb-space-lobby-wide.jpg`,
       telephone: '+82-2-6959-5982',
       hasMap: googleMapUrl,

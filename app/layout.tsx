@@ -10,6 +10,7 @@ const hasGoogleAnalyticsId = Boolean(
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://orbclinic.pages.dev'),
+  applicationName: '오브한의원 마곡점',
   title: {
     default: '마곡나루역 한의원 | 오브한의원 마곡점',
     template: '%s | 오브한의원 마곡점',
@@ -18,10 +19,11 @@ export const metadata: Metadata = {
     '마곡나루역 5번 출구 136m 오브한의원 마곡점. 통증·추나, 자율신경·뇌파검사, 스트레스·신경증, 다이어트·열대사 진료와 예약·주차 정보를 안내합니다.',
   icons: {
     icon: [
-      { url: '/favicon.ico', sizes: '48x48' },
+      { url: '/favicon.ico', type: 'image/x-icon', sizes: '48x48' },
       { url: '/favicon-32x32.png', type: 'image/png', sizes: '32x32' },
       { url: '/favicon-512.png', type: 'image/png', sizes: '512x512' },
     ],
+    shortcut: '/favicon.ico',
     apple: [
       { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
     ],
