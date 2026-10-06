@@ -7,6 +7,14 @@ export type ColumnPost = {
   displayDate: string;
   originalUrl: string;
   readTime: string;
+  coverImage: string;
+  coverImageAlt: string;
+  cards: Array<{
+    label: string;
+    title: string;
+    body?: string;
+    bullets?: string[];
+  }>;
   sections: Array<{
     heading: string;
     paragraphs: string[];
@@ -25,6 +33,34 @@ export const columnPosts: ColumnPost[] = [
     displayDate: '2026.10.02',
     originalUrl: 'https://blog.naver.com/orbmed/224429668944',
     readTime: '5분',
+    coverImage: '/orb-qeeg-test.jpeg',
+    coverImageAlt: '오브한의원 정량뇌파 검사 장면',
+    cards: [
+      {
+        label: '한 줄로 보면',
+        title: '뇌의 전기 신호를 위치와 주파수별로 정리합니다',
+        body: '두피에서 측정한 신호를 비교해 현재의 뇌 활동 패턴을 살펴보는 보조 검사입니다.',
+      },
+      {
+        label: '왜 습식인가요?',
+        title: '여러 위치의 신호를 안정적으로 기록하기 위해서입니다',
+        bullets: [
+          '전용 캡과 수용성 전도 젤 사용',
+          '정수리·측두부·후두부까지 측정',
+          '센서별 접촉 상태 확인',
+        ],
+      },
+      {
+        label: '검사 중 확인',
+        title: '뇌파가 아닌 움직임도 함께 살핍니다',
+        body: '눈 깜빡임이나 얼굴 근육의 움직임이 신호에 섞이지 않았는지 확인하며 기록의 상태를 점검합니다.',
+      },
+      {
+        label: '해석할 때',
+        title: '숫자 하나보다 현재의 맥락이 중요합니다',
+        body: '수면·피로·스트레스·복용 약과 실제 불편감을 함께 보며, 결과만으로 질환이나 원인을 단정하지 않습니다.',
+      },
+    ],
     sections: [
       {
         heading: '정량뇌파검사란 무엇인가요?',
@@ -63,6 +99,34 @@ export const columnPosts: ColumnPost[] = [
     displayDate: '2026.10.02',
     originalUrl: 'https://blog.naver.com/orbmed/224429314941',
     readTime: '4분',
+    coverImage: '/orb-qeeg-test.jpeg',
+    coverImageAlt: '전용 캡을 착용하고 정량뇌파 검사를 준비하는 모습',
+    cards: [
+      {
+        label: '검사 전',
+        title: '평소 상태를 그대로 알려주세요',
+        bullets: [
+          '최근 수면 상태와 카페인 섭취',
+          '복용 중인 약과 두피 상태',
+          '당일 헤어 왁스·스프레이는 피하기',
+        ],
+      },
+      {
+        label: '준비 과정',
+        title: '머리 크기에 맞는 전용 캡을 착용합니다',
+        body: '각 센서 위치에 수용성 전도 젤을 사용하고, 측정 전에 접촉 상태와 신호를 확인합니다.',
+      },
+      {
+        label: '측정 중',
+        title: '안내에 따라 눈을 감거나 뜹니다',
+        body: '편안하게 앉아 눈과 얼굴의 움직임을 가능한 한 줄이면 보다 안정적인 기록에 도움이 됩니다.',
+      },
+      {
+        label: '검사 후',
+        title: '결과는 상담 내용과 함께 설명합니다',
+        body: '현재 증상과 생활 패턴, 다른 검사 결과를 함께 고려해 진료 계획의 참고 자료로 활용합니다.',
+      },
+    ],
     sections: [
       {
         heading: '검사 전 확인합니다',
@@ -100,6 +164,34 @@ export const columnPosts: ColumnPost[] = [
     displayDate: '2026.10.02',
     originalUrl: 'https://blog.naver.com/orbmed/224428821373',
     readTime: '5분',
+    coverImage: '/orb-space-consult.jpg',
+    coverImageAlt: '오브한의원 상담 공간',
+    cards: [
+      {
+        label: '뇌에서 몸으로',
+        title: '스트레스와 수면은 몸의 반응에 영향을 줄 수 있습니다',
+        body: '수면 부족이나 지속되는 긴장은 심박·호흡·소화와 근육 긴장으로 이어질 수 있습니다.',
+      },
+      {
+        label: '몸에서 뇌로',
+        title: '통증과 얕은 호흡도 다시 뇌에 신호를 보냅니다',
+        body: '반복되는 신체 긴장은 뇌가 자극을 처리하는 방식에 영향을 줄 수 있어 양쪽 방향을 함께 봅니다.',
+      },
+      {
+        label: '상담에서 확인',
+        title: '증상 하나보다 생활의 흐름을 묻습니다',
+        bullets: [
+          '수면과 증상이 나타나는 시간대',
+          '호흡·소화·두근거림·통증',
+          '자세와 활동량, 업무 환경의 변화',
+        ],
+      },
+      {
+        label: '기억할 점',
+        title: '검사는 전체 맥락을 이해하는 한 가지 자료입니다',
+        body: '결과를 증상과 분리해 단정하지 않고 개인의 생활 환경과 신체 상태를 함께 살펴 진료 방향을 정합니다.',
+      },
+    ],
     sections: [
       {
         heading: '자율신경은 한 방향으로만 움직이지 않습니다',
