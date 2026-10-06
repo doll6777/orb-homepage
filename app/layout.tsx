@@ -15,6 +15,16 @@ export const metadata: Metadata = {
   },
   description:
     '마곡나루역 5번 출구 오브한의원 마곡점. 정량화 뇌파검사, 자율신경실조증, 브레인포그, 다이어트 등 근본 치료와 예약 안내.',
+  icons: {
+    icon: [
+      {
+        url: '/images/logo/orb-symbol-clean.png',
+        type: 'image/png',
+      },
+    ],
+    shortcut: '/images/logo/orb-symbol-clean.png',
+    apple: '/images/logo/orb-symbol-clean.png',
+  },
   alternates: {
     canonical: '/',
     languages: {

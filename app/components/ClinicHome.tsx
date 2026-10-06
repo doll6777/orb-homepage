@@ -569,7 +569,7 @@ export default function ClinicHome({
             <div className="doctor-profile-sidebar">
               <div className="doctor-avatar-wrap">
                 <img
-                  src="/images/clinic/consulting-room-wide.webp"
+                  src="/images/clinic/consult-room-wide.webp"
                   alt={text.doctorName}
                   className="doctor-avatar-img"
                 />
