@@ -13,7 +13,12 @@ export default function ClinicHeader() {
   return (
     <header className="global-header clinic-header" aria-label="오브한의원">
       <a className="wordmark" href="/" aria-label="오브한의원 홈">
-        ORB
+        <img
+          src="/orb-logo-cream.png"
+          alt="오브한의원"
+          width="365"
+          height="114"
+        />
       </a>
 
       <nav className="primary-nav" aria-label="주요 메뉴">
