@@ -64,7 +64,26 @@ In GA4, inspect Admin → Events → Key events. For historical reporting, use a
 exact hostname filter for `orbclinic.pages.dev` to separate the mixed data.
 Browser exclusion and new code do not rewrite historical data. Older deployed
 copies and development servers that have not received the guard can still send
-data; never claim this version changes those existing copies automatically.
+data; the GA4 filter below provides an additional processing-side exclusion for
+the specified hostnames, but does not update those copies' code.
+
+## GA4 hostname exclusion
+
+On 2026-10-10, after owner approval, `ORB Dev Preview Exclusion` was saved in
+property 556766508 and verified as **Active**. It is a web hostname traffic
+filter with the **Exclude** operation and these OR conditions:
+
+- Hostname exactly matches `localhost`.
+- Hostname exactly matches `127.0.0.1`.
+- Hostname ends with `.orbclinic.pages.dev` (the leading dot is required).
+
+This excludes future local/preview events, including events sent by older copies
+without the client-side guard. It does not exclude the production hostname
+`orbclinic.pages.dev`, the separate `orbclinic-renewal.pages.dev` project, or the
+old `orb-korean-medicine-clinic.hyeranlee.chatgpt.site` hostname. Other local IPs
+and preview projects are not covered. Filtered-out future data cannot be
+recovered; historical data is unchanged. Do not broaden this filter without
+checking the production and comparison-host requirements.
 
 The pre-existing GA internal-traffic filter was observed in **Testing** mode on
 2026-10-10. It was not activated because no employee IP ranges were verified.
