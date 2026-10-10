@@ -1,3 +1,5 @@
+import MobileMenu from './MobileMenu';
+
 const bookingUrl =
   'https://m.booking.naver.com/booking/16/bizes/1731406?theme=place&lang=ko&area=ple';
 
@@ -35,22 +37,19 @@ export default function ClinicHeader() {
         </a>
       </nav>
 
-      <details className="mobile-menu">
-        <summary>MENU</summary>
-        <nav aria-label="모바일 메뉴">
-          {navigation.map((item) => (
-            <a href={item.href} key={item.href}>
-              {item.label}
-            </a>
-          ))}
-          <a href="/en" hrefLang="en">
-            English
+      <MobileMenu>
+        {navigation.map((item) => (
+          <a href={item.href} key={item.href}>
+            {item.label}
           </a>
-          <a href={bookingUrl} target="_blank" rel="noreferrer">
-            네이버 예약
-          </a>
-        </nav>
-      </details>
+        ))}
+        <a href="/en" hrefLang="en">
+          English
+        </a>
+        <a href={bookingUrl} target="_blank" rel="noreferrer">
+          네이버 예약
+        </a>
+      </MobileMenu>
     </header>
   );
 }

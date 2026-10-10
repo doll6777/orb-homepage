@@ -6,7 +6,23 @@ import type { ColumnPost } from './column-data';
 const bookingUrl =
   'https://m.booking.naver.com/booking/16/bizes/1731406?theme=place&lang=ko&area=ple';
 
+const relatedReading: Record<string, { href: string; label: string }> = {
+  'wet-qeeg-guide': {
+    href: '/column/qeeg-process',
+    label: '정량뇌파검사 전 준비와 실제 진행 과정',
+  },
+  'qeeg-process': {
+    href: '/column/wet-qeeg-guide',
+    label: '정량뇌파검사의 목적과 결과를 해석할 때 살펴볼 점',
+  },
+  'autonomic-top-down-bottom-up': {
+    href: '/column/wet-qeeg-guide',
+    label: '정량뇌파검사로 확인하는 내용과 결과 해석',
+  },
+};
+
 export default function ColumnArticle({ post }: { post: ColumnPost }) {
+  const relatedPost = relatedReading[post.slug];
   const articleUrl = `https://orbclinic.pages.dev/column/${post.slug}`;
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -90,6 +106,21 @@ export default function ColumnArticle({ post }: { post: ColumnPost }) {
               블로그 원문 보기 ↗
             </a>
           </div>
+
+          <section aria-labelledby="related-reading-heading">
+            <h2 id="related-reading-heading">이어서 살펴보세요</h2>
+            <ul className="contextual-links">
+              {relatedPost ? (
+                <li><a href={relatedPost.href}>{relatedPost.label}</a></li>
+              ) : null}
+              <li>
+                <a href="/treatments/autonomic-qeeg">자율신경·뇌파검사 상담 대상과 진료 과정</a>
+              </li>
+              <li>
+                <a href="/first-visit">첫 방문 예약, 준비물과 주차 안내</a>
+              </li>
+            </ul>
+          </section>
         </div>
 
         <aside className="article-cta">

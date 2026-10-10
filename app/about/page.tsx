@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import ClinicFooter from '../components/ClinicFooter';
 import ClinicHeader from '../components/ClinicHeader';
+import ResponsiveImage from '../components/ResponsiveImage';
 
 export const metadata: Metadata = {
   title: '병원 소개',
@@ -45,7 +46,7 @@ export default function AboutPage() {
       <ClinicHeader />
       <section className="interior-hero photo-hero">
         <figure>
-          <img src="/orb-space-lobby-wide.jpg" alt="오브한의원 마곡점 로비와 대기 공간" />
+          <ResponsiveImage src="/orb-space-lobby-wide.jpg" alt="오브한의원 마곡점 로비와 대기 공간" sizes="(max-width: 980px) 100vw, 54vw" priority />
         </figure>
         <div>
           <p className="eyebrow">병원 소개</p>
@@ -81,7 +82,7 @@ export default function AboutPage() {
 
       <section className="about-environment content-section">
         <figure>
-          <img src="/orb-space-treatment.jpg" alt="오브한의원 독립 치료 공간" />
+          <ResponsiveImage src="/orb-space-treatment.jpg" alt="오브한의원 독립 치료 공간" sizes="(max-width: 980px) 100vw, 50vw" />
         </figure>
         <div>
           <p className="eyebrow">진료 환경</p>

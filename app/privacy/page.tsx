@@ -63,7 +63,7 @@ export default function PrivacyPage() {
           </p>
         </section>
       </section>
-      <ClinicFooter />
+      <ClinicFooter showContactBar={false} />
     </main>
   );
 }

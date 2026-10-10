@@ -70,26 +70,45 @@ export default function FirstVisitPage() {
         </ol>
       </section>
 
-      <section className="visit-preparation content-section">
+      <section className="visit-preparation content-section" aria-labelledby="visit-faq-heading">
         <div>
-          <p className="eyebrow">방문 전 확인</p>
-          <h2>방문 전에 확인해 주세요</h2>
+          <p className="eyebrow">자주 묻는 질문</p>
+          <h2 id="visit-faq-heading">방문 전에 확인해 주세요</h2>
         </div>
         <dl>
           <div>
-            <dt>준비하면 좋은 자료</dt>
-            <dd>최근 검사 결과, 영상 자료, 복용 중인 약 목록이 있다면 가져와 주세요.</dd>
+            <dt>첫 진료는 얼마나 걸리나요?</dt>
+            <dd>
+              상담 내용과 검사 여부에 따라 소요 시간이 달라집니다. 예약할 때
+              현재 불편과 검사 희망 여부를 말씀하시고 예상 소요 시간을 확인해 주세요.
+            </dd>
           </div>
           <div>
-            <dt>검사 예정인 경우</dt>
-            <dd>검사별 준비 사항은 예약 시 안내받은 내용을 우선해 주세요.</dd>
+            <dt>비용과 보험 적용은 어떻게 확인하나요?</dt>
+            <dd>
+              예약 전 전화나 카카오톡으로 궁금한 진료·검사 항목을 말씀해 주세요.
+              예상 비용과 건강보험 적용 여부를 문의하실 수 있으며, 실제 항목과
+              비용은 상담 후 확인해 주세요. 실손보험의 보장 여부는 가입하신
+              보험사에 확인해 주세요.
+            </dd>
           </div>
           <div>
-            <dt>예약 변경</dt>
+            <dt>방문 전에 무엇을 준비하나요?</dt>
+            <dd>
+              최근 검사 결과, 영상 자료, 복용 중인 약 목록이 있다면 가져와 주세요.
+              검사별 준비 사항은 예약 시 안내받은 내용을 우선해 주세요.
+              정량뇌파검사를 앞두셨다면{' '}
+              <a className="contextual-link" href="/column/qeeg-process">검사 전 준비와 진행 과정</a>을
+              미리 살펴보실 수 있습니다. 복용 중인 약은 임의로 중단하지 말고
+              의료진과 먼저 상의해 주세요.
+            </dd>
+          </div>
+          <div>
+            <dt>예약을 변경하려면 어떻게 하나요?</dt>
             <dd>일정 변경이 필요한 경우 예약 채널이나 전화로 미리 알려 주세요.</dd>
           </div>
           <div>
-            <dt>주차</dt>
+            <dt>주차할 수 있나요?</dt>
             <dd>롯데캐슬 르웨스트 지하주차장 이용 시 2시간 무료입니다.</dd>
           </div>
         </dl>

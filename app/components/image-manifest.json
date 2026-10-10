@@ -1,0 +1,350 @@
+{
+  "/orb-space-lobby-wide.jpg": {
+    "width": 2400,
+    "height": 1600,
+    "variants": [
+      {
+        "src": "/images/orb-space-lobby-wide-480.webp",
+        "width": 480,
+        "height": 320,
+        "bytes": 9660
+      },
+      {
+        "src": "/images/orb-space-lobby-wide-800.webp",
+        "width": 800,
+        "height": 533,
+        "bytes": 21402
+      },
+      {
+        "src": "/images/orb-space-lobby-wide-1200.webp",
+        "width": 1200,
+        "height": 800,
+        "bytes": 40436
+      },
+      {
+        "src": "/images/orb-space-lobby-wide-1600.webp",
+        "width": 1600,
+        "height": 1067,
+        "bytes": 66800
+      },
+      {
+        "src": "/images/orb-space-lobby-wide-1920.webp",
+        "width": 1920,
+        "height": 1280,
+        "bytes": 93140
+      }
+    ]
+  },
+  "/orb-chuna-room.png": {
+    "width": 1280,
+    "height": 809,
+    "variants": [
+      {
+        "src": "/images/orb-chuna-room-480.webp",
+        "width": 480,
+        "height": 303,
+        "bytes": 18906
+      },
+      {
+        "src": "/images/orb-chuna-room-800.webp",
+        "width": 800,
+        "height": 506,
+        "bytes": 41108
+      },
+      {
+        "src": "/images/orb-chuna-room-1200.webp",
+        "width": 1200,
+        "height": 758,
+        "bytes": 70598
+      },
+      {
+        "src": "/images/orb-chuna-room-1280.webp",
+        "width": 1280,
+        "height": 809,
+        "bytes": 78562
+      }
+    ]
+  },
+  "/orb-qeeg-test.jpeg": {
+    "width": 591,
+    "height": 1280,
+    "variants": [
+      {
+        "src": "/images/orb-qeeg-test-480.webp",
+        "width": 480,
+        "height": 1040,
+        "bytes": 22736
+      },
+      {
+        "src": "/images/orb-qeeg-test-591.webp",
+        "width": 591,
+        "height": 1280,
+        "bytes": 29958
+      }
+    ]
+  },
+  "/orb-treatment-bed.jpeg": {
+    "width": 1280,
+    "height": 721,
+    "variants": [
+      {
+        "src": "/images/orb-treatment-bed-480.webp",
+        "width": 480,
+        "height": 270,
+        "bytes": 11958
+      },
+      {
+        "src": "/images/orb-treatment-bed-800.webp",
+        "width": 800,
+        "height": 451,
+        "bytes": 25084
+      },
+      {
+        "src": "/images/orb-treatment-bed-1200.webp",
+        "width": 1200,
+        "height": 676,
+        "bytes": 48316
+      },
+      {
+        "src": "/images/orb-treatment-bed-1280.webp",
+        "width": 1280,
+        "height": 721,
+        "bytes": 57302
+      }
+    ]
+  },
+  "/orb-space-consult.jpg": {
+    "width": 2400,
+    "height": 1600,
+    "variants": [
+      {
+        "src": "/images/orb-space-consult-480.webp",
+        "width": 480,
+        "height": 320,
+        "bytes": 9838
+      },
+      {
+        "src": "/images/orb-space-consult-800.webp",
+        "width": 800,
+        "height": 533,
+        "bytes": 23568
+      },
+      {
+        "src": "/images/orb-space-consult-1200.webp",
+        "width": 1200,
+        "height": 800,
+        "bytes": 44716
+      },
+      {
+        "src": "/images/orb-space-consult-1600.webp",
+        "width": 1600,
+        "height": 1067,
+        "bytes": 72864
+      },
+      {
+        "src": "/images/orb-space-consult-1920.webp",
+        "width": 1920,
+        "height": 1280,
+        "bytes": 99710
+      }
+    ]
+  },
+  "/orb-space-reception.jpg": {
+    "width": 2400,
+    "height": 1600,
+    "variants": [
+      {
+        "src": "/images/orb-space-reception-480.webp",
+        "width": 480,
+        "height": 320,
+        "bytes": 6242
+      },
+      {
+        "src": "/images/orb-space-reception-800.webp",
+        "width": 800,
+        "height": 533,
+        "bytes": 14972
+      },
+      {
+        "src": "/images/orb-space-reception-1200.webp",
+        "width": 1200,
+        "height": 800,
+        "bytes": 32822
+      },
+      {
+        "src": "/images/orb-space-reception-1600.webp",
+        "width": 1600,
+        "height": 1067,
+        "bytes": 57060
+      },
+      {
+        "src": "/images/orb-space-reception-1920.webp",
+        "width": 1920,
+        "height": 1280,
+        "bytes": 81448
+      }
+    ]
+  },
+  "/orb-space-lobby-detail.jpg": {
+    "width": 1600,
+    "height": 2400,
+    "variants": [
+      {
+        "src": "/images/orb-space-lobby-detail-480.webp",
+        "width": 480,
+        "height": 720,
+        "bytes": 13712
+      },
+      {
+        "src": "/images/orb-space-lobby-detail-800.webp",
+        "width": 800,
+        "height": 1200,
+        "bytes": 36400
+      },
+      {
+        "src": "/images/orb-space-lobby-detail-1200.webp",
+        "width": 1200,
+        "height": 1800,
+        "bytes": 76994
+      },
+      {
+        "src": "/images/orb-space-lobby-detail-1600.webp",
+        "width": 1600,
+        "height": 2400,
+        "bytes": 155616
+      }
+    ]
+  },
+  "/orb-space-waiting.jpg": {
+    "width": 2400,
+    "height": 1600,
+    "variants": [
+      {
+        "src": "/images/orb-space-waiting-480.webp",
+        "width": 480,
+        "height": 320,
+        "bytes": 7336
+      },
+      {
+        "src": "/images/orb-space-waiting-800.webp",
+        "width": 800,
+        "height": 533,
+        "bytes": 16952
+      },
+      {
+        "src": "/images/orb-space-waiting-1200.webp",
+        "width": 1200,
+        "height": 800,
+        "bytes": 33760
+      },
+      {
+        "src": "/images/orb-space-waiting-1600.webp",
+        "width": 1600,
+        "height": 1067,
+        "bytes": 58842
+      },
+      {
+        "src": "/images/orb-space-waiting-1920.webp",
+        "width": 1920,
+        "height": 1280,
+        "bytes": 89248
+      }
+    ]
+  },
+  "/orb-space-corridor.jpg": {
+    "width": 1600,
+    "height": 2400,
+    "variants": [
+      {
+        "src": "/images/orb-space-corridor-480.webp",
+        "width": 480,
+        "height": 720,
+        "bytes": 9176
+      },
+      {
+        "src": "/images/orb-space-corridor-800.webp",
+        "width": 800,
+        "height": 1200,
+        "bytes": 19278
+      },
+      {
+        "src": "/images/orb-space-corridor-1200.webp",
+        "width": 1200,
+        "height": 1800,
+        "bytes": 37954
+      },
+      {
+        "src": "/images/orb-space-corridor-1600.webp",
+        "width": 1600,
+        "height": 2400,
+        "bytes": 70722
+      }
+    ]
+  },
+  "/orb-space-treatment.jpg": {
+    "width": 2400,
+    "height": 1600,
+    "variants": [
+      {
+        "src": "/images/orb-space-treatment-480.webp",
+        "width": 480,
+        "height": 320,
+        "bytes": 7414
+      },
+      {
+        "src": "/images/orb-space-treatment-800.webp",
+        "width": 800,
+        "height": 533,
+        "bytes": 18202
+      },
+      {
+        "src": "/images/orb-space-treatment-1200.webp",
+        "width": 1200,
+        "height": 800,
+        "bytes": 46110
+      },
+      {
+        "src": "/images/orb-space-treatment-1600.webp",
+        "width": 1600,
+        "height": 1067,
+        "bytes": 79092
+      },
+      {
+        "src": "/images/orb-space-treatment-1920.webp",
+        "width": 1920,
+        "height": 1280,
+        "bytes": 117722
+      }
+    ]
+  },
+  "/orb-space-care-room.jpg": {
+    "width": 1600,
+    "height": 2400,
+    "variants": [
+      {
+        "src": "/images/orb-space-care-room-480.webp",
+        "width": 480,
+        "height": 720,
+        "bytes": 12084
+      },
+      {
+        "src": "/images/orb-space-care-room-800.webp",
+        "width": 800,
+        "height": 1200,
+        "bytes": 37022
+      },
+      {
+        "src": "/images/orb-space-care-room-1200.webp",
+        "width": 1200,
+        "height": 1800,
+        "bytes": 124348
+      },
+      {
+        "src": "/images/orb-space-care-room-1600.webp",
+        "width": 1600,
+        "height": 2400,
+        "bytes": 436162
+      }
+    ]
+  }
+}

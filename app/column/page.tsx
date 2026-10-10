@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import ClinicFooter from '../components/ClinicFooter';
 import ClinicHeader from '../components/ClinicHeader';
+import ResponsiveImage from '../components/ResponsiveImage';
 import { columnPosts, externalColumns } from './column-data';
 
 export const metadata: Metadata = {
@@ -46,11 +47,10 @@ export default function ColumnPage() {
               key={post.slug}
             >
               <figure>
-                <img
+                <ResponsiveImage
                   src={post.coverImage}
                   alt={post.coverImageAlt}
-                  loading="lazy"
-                  decoding="async"
+                  sizes="(max-width: 600px) 330px, (max-width: 900px) 45vw, 360px"
                 />
                 <figcaption>
                   <div className="column-cover-topline">

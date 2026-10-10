@@ -2,6 +2,7 @@ import AutoGallery from './components/AutoGallery';
 import ClinicFooter from './components/ClinicFooter';
 import ClinicHeader from './components/ClinicHeader';
 import SiteMotion from './components/SiteMotion';
+import ResponsiveImage from './components/ResponsiveImage';
 import { columnPosts } from './column/column-data';
 
 const treatmentAreas = [
@@ -259,7 +260,7 @@ export default function Home() {
 
       <section className="snap-section treat-hero" id="top">
         <figure className="hero-photo">
-          <img src="/orb-space-lobby-wide.jpg" alt="오브한의원 로비와 대기 공간" />
+          <ResponsiveImage src="/orb-space-lobby-wide.jpg" alt="오브한의원 로비와 대기 공간" sizes="100vw" priority />
         </figure>
         <div className="hero-identity">
           <p>마곡나루역 5번 출구에서 136m</p>
@@ -291,7 +292,7 @@ export default function Home() {
             <article className="care-card" key={program.title}>
               <a href={program.href} aria-label={`${program.title} 진료 안내 보기`}>
                 <figure>
-                  <img src={program.image} alt={program.alt} />
+                  <ResponsiveImage src={program.image} alt={program.alt} sizes="(max-width: 700px) calc(100vw - 48px), 42vw" />
                 </figure>
                 <div>
                   <small>{program.label}</small>
@@ -315,7 +316,7 @@ export default function Home() {
           </p>
         </div>
         <figure className="principle-photo">
-          <img src="/orb-space-corridor.jpg" alt="오브한의원 진료실 복도" />
+          <ResponsiveImage src="/orb-space-corridor.jpg" alt="오브한의원 진료실 복도" sizes="(max-width: 980px) 100vw, 50vw" />
         </figure>
       </section>
 
@@ -443,11 +444,6 @@ export default function Home() {
           </ul>
         </div>
       </section>
-      <aside className="mobile-cta" aria-label="모바일 예약 및 문의">
-        <a href={naverBookingUrl} target="_blank" rel="noreferrer">네이버 예약</a>
-        <a href={kakaoChatUrl} target="_blank" rel="noreferrer">카카오톡 상담</a>
-        <a href={phoneHref}>전화하기</a>
-      </aside>
       <ClinicFooter />
     </main>
   );

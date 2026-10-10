@@ -1,9 +1,12 @@
+import MobileContactBar from './MobileContactBar';
+
 const naverPlaceUrl =
   'https://pcmap.place.naver.com/hospital/2005324011/home';
 const kakaoChatUrl = 'https://pf.kakao.com/_nXGxaX/chat';
 
-export default function ClinicFooter() {
+export default function ClinicFooter({ showContactBar = true }: { showContactBar?: boolean }) {
   return (
+    <>
     <footer className="clinic-footer">
       <div className="footer-brand">
         <a className="wordmark" href="/">
@@ -39,5 +42,7 @@ export default function ClinicFooter() {
         <small>© 2026 ORB Korean Medicine Clinic. All rights reserved.</small>
       </div>
     </footer>
+    {showContactBar ? <MobileContactBar /> : null}
+    </>
   );
 }

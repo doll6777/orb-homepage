@@ -29,7 +29,7 @@ export default function InternalTrafficPage() {
           <p>이미 수집된 통계는 삭제하지 않습니다. 설정 후 열려 있던 홈페이지 탭은 새로고침해 주세요. 제외를 해제해도 지나간 방문을 소급해서 기록하지 않습니다.</p>
         </section>
       </section>
-      <ClinicFooter />
+      <ClinicFooter showContactBar={false} />
     </main>
   );
 }

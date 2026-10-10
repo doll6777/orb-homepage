@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import AutoGallery from '../components/AutoGallery';
 import SiteMotion from '../components/SiteMotion';
+import ResponsiveImage from '../components/ResponsiveImage';
+import MobileContactBar from '../components/MobileContactBar';
 
 const treatmentAreas = [
   'Pain care',
@@ -257,7 +259,7 @@ export default function EnglishPage() {
 
       <section className="snap-section treat-hero" id="top">
         <figure className="hero-photo">
-          <img src="/orb-space-lobby-wide.jpg" alt="ORB Korean Medicine Clinic lobby" />
+          <ResponsiveImage src="/orb-space-lobby-wide.jpg" alt="ORB Korean Medicine Clinic lobby" sizes="100vw" priority />
         </figure>
         <div className="hero-identity">
           <p>MAGOKNARU · ORB CLINIC</p>
@@ -293,7 +295,7 @@ export default function EnglishPage() {
             key={program.title}
           >
             <figure className="program-photo">
-              <img src={program.image} alt={program.alt} />
+              <ResponsiveImage src={program.image} alt={program.alt} sizes="(max-width: 980px) 100vw, 55vw" />
             </figure>
             <div className="program-copy">
               <span>{program.number}</span>
@@ -314,7 +316,7 @@ export default function EnglishPage() {
           </h2>
         </div>
         <figure className="principle-photo">
-          <img src="/orb-space-corridor.jpg" alt="ORB Korean Medicine Clinic corridor" />
+          <ResponsiveImage src="/orb-space-corridor.jpg" alt="ORB Korean Medicine Clinic corridor" sizes="(max-width: 980px) 100vw, 50vw" />
         </figure>
       </section>
 
@@ -422,11 +424,7 @@ export default function EnglishPage() {
           </ul>
         </div>
       </section>
-      <aside className="mobile-cta" aria-label="Mobile reservation and contact">
-        <a href={naverBookingUrl} target="_blank" rel="noreferrer">Naver Booking</a>
-        <a href={kakaoChatUrl} target="_blank" rel="noreferrer">KakaoTalk Chat</a>
-        <a href={phoneHref}>Call</a>
-      </aside>
+      <MobileContactBar english />
     </main>
   );
 }

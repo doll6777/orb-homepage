@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useMemo, useRef, useState } from 'react';
+import ResponsiveImage from './ResponsiveImage';
 
 type GalleryImage = {
   number: string;
@@ -118,7 +119,7 @@ export default function AutoGallery({
       >
         {images.map((image, index) => (
           <figure className="gallery-slide" key={image.src}>
-            <img src={image.src} alt={image.alt} />
+            <ResponsiveImage src={image.src} alt={image.alt} sizes="(max-width: 980px) 84vw, (max-width: 1618px) 1100px, 68vw" />
             <figcaption>
               <span>{image.number}</span>
               <strong>{image.label}</strong>
