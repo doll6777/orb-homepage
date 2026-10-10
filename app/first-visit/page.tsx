@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import ClinicFooter from '../components/ClinicFooter';
 import ClinicHeader from '../components/ClinicHeader';
+import { firstVisitQuestions, firstVisitSteps } from './visit-data';
 
 export const metadata: Metadata = {
   title: '첫 방문 안내',
@@ -14,25 +15,6 @@ export const metadata: Metadata = {
 
 const bookingUrl =
   'https://m.booking.naver.com/booking/16/bizes/1731406?theme=place&lang=ko&area=ple';
-
-const steps = [
-  {
-    title: '예약',
-    body: '네이버 예약, 카카오톡 상담 또는 전화로 원하는 일정을 확인합니다.',
-  },
-  {
-    title: '접수와 문진',
-    body: '현재 불편과 시작 시점, 복용 중인 약과 이전 검사 내용을 확인합니다.',
-  },
-  {
-    title: '상담과 상태 확인',
-    body: '증상과 생활 리듬을 상담하고 필요한 진찰 및 검사 여부를 안내합니다.',
-  },
-  {
-    title: '진료와 안내',
-    body: '현재 상태에 맞는 진료를 진행하고 이후의 내원 및 생활 관리 방향을 설명합니다.',
-  },
-];
 
 export default function FirstVisitPage() {
   return (
@@ -63,7 +45,7 @@ export default function FirstVisitPage() {
           </p>
         </div>
         <ol>
-          {steps.map((step, index) => (
+          {firstVisitSteps.map((step, index) => (
             <li key={step.title}>
               <span>{String(index + 1).padStart(2, '0')}</span>
               <h3>{step.title}</h3>
@@ -79,22 +61,12 @@ export default function FirstVisitPage() {
           <h2 id="visit-faq-heading">방문 전에 확인해 주세요</h2>
         </div>
         <dl>
-          <div>
-            <dt>첫 진료는 얼마나 걸리나요?</dt>
-            <dd>
-              상담 내용과 검사 여부에 따라 소요 시간이 달라집니다. 예약할 때
-              현재 불편과 검사 희망 여부를 말씀하시고 예상 소요 시간을 확인해 주세요.
-            </dd>
-          </div>
-          <div>
-            <dt>비용과 보험 적용은 어떻게 확인하나요?</dt>
-            <dd>
-              예약 전 전화나 카카오톡으로 궁금한 진료·검사 항목을 말씀해 주세요.
-              예상 비용과 건강보험 적용 여부를 문의하실 수 있으며, 실제 항목과
-              비용은 상담 후 확인해 주세요. 실손보험의 보장 여부는 가입하신
-              보험사에 확인해 주세요.
-            </dd>
-          </div>
+          {firstVisitQuestions.map(({ id, question, answer }) => (
+            <div key={id}>
+              <dt>{question}</dt>
+              <dd>{answer}</dd>
+            </div>
+          ))}
           <div>
             <dt>방문 전에 무엇을 준비하나요?</dt>
             <dd>
@@ -109,10 +81,6 @@ export default function FirstVisitPage() {
           <div>
             <dt>예약을 변경하려면 어떻게 하나요?</dt>
             <dd>일정 변경이 필요한 경우 예약 채널이나 전화로 미리 알려 주세요.</dd>
-          </div>
-          <div>
-            <dt>주차할 수 있나요?</dt>
-            <dd>롯데캐슬 르웨스트 지하주차장 이용 시 2시간 무료입니다.</dd>
           </div>
         </dl>
       </section>

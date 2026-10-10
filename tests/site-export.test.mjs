@@ -11,6 +11,33 @@ const file = route => new URL(route === '/' ? 'index.html' : `${route.slice(1)}.
 const htmlFor = route => readFile(file(route), 'utf8');
 const tags = (html, tag) => html.match(new RegExp(`<${tag}\\b[^>]*>`, 'g')) ?? [];
 const attr = (tag, key) => tag.match(new RegExp(`(?:\\s|^)${key}="([^"]*)"`))?.[1];
+const blocks = (html, tag) => html.match(new RegExp(`<${tag}\\b[^>]*>[\\s\\S]*?<\\/${tag}>`, 'g')) ?? [];
+const hasClass = (tag, name) => (attr(tag, 'class') ?? '').split(/\s+/).includes(name);
+const textOf = html => html.replace(/<!--[\s\S]*?-->/g, '').replace(/<[^>]*>/g, '').replace(/\s+/g, ' ').trim();
+const bookingHref = 'https://m.booking.naver.com/booking/16/bizes/1731406?theme=place&lang=ko&area=ple';
+const kakaoHref = 'https://pf.kakao.com/_nXGxaX/chat';
+
+function blockWith(html, tag, predicate) {
+  const matching = [...html.matchAll(new RegExp(`<${tag}\\b[^>]*>`, 'g'))]
+    .filter(match => predicate(match[0]));
+  assert.equal(matching.length, 1, `Expected one matching ${tag}`);
+  const remainder = html.slice(matching[0].index);
+  let depth = 0;
+  for (const match of remainder.matchAll(new RegExp(`<\\/?${tag}\\b[^>]*>`, 'g'))) {
+    depth += match[0].startsWith('</') ? -1 : 1;
+    if (depth === 0) return remainder.slice(0, match.index + match[0].length);
+  }
+  assert.fail(`Missing closing ${tag}`);
+}
+
+function assertExternalDestinations(fragment, expected) {
+  const anchors = tags(fragment, 'a');
+  assert.deepEqual(anchors.map(tag => attr(tag, 'href')?.replace(/&amp;/g, '&')), expected);
+  for (const anchor of anchors) {
+    assert.equal(attr(anchor, 'target'), '_blank');
+    assert.ok((attr(anchor, 'rel') ?? '').split(/\s+/).includes('noreferrer'));
+  }
+}
 
 for (const route of pages) {
   test(`${route}: one contact bar with the correct language-specific destinations`, async () => {
@@ -143,6 +170,82 @@ test('FAQ and QEEG preparation are connected in both directions', async () => {
   assert.ok(first.includes('href="/column/qeeg-process"'));
   assert.ok((await htmlFor('/column/qeeg-process')).includes('href="/first-visit"'));
   assert.ok((await htmlFor('/treatments/autonomic-qeeg')).includes('href="/column/qeeg-process"'));
+});
+
+test('Korean home connects four concern-led care cards to their treatment pages', async () => {
+  const areas = blockWith(await htmlFor('/'), 'section', tag => attr(tag, 'id') === 'areas');
+  const cards = blocks(areas, 'article').filter(block => hasClass(tags(block, 'article')[0], 'care-card'));
+  const expected = [
+    ['/treatments/pain-chuna', /목.*어깨.*허리/],
+    ['/treatments/autonomic-qeeg', /자율신경.*뇌파검사.*궁금/],
+    ['/treatments/stress-neurosis', /잠.*스트레스.*고민/],
+    ['/treatments/weight-metabolism', /체중.*시작/],
+  ];
+  assert.equal(cards.length, expected.length);
+  cards.forEach((card, index) => {
+    const anchors = tags(card, 'a');
+    assert.equal(anchors.length, 1);
+    assert.equal(attr(anchors[0], 'href'), expected[index][0]);
+    const headings = blocks(card, 'h3');
+    assert.equal(headings.length, 1);
+    assert.match(textOf(headings[0]), expected[index][1]);
+  });
+});
+
+test('Korean home explains the visit process and FAQ before the space gallery', async () => {
+  const [home, firstVisit] = await Promise.all([htmlFor('/'), htmlFor('/first-visit')]);
+  const sections = tags(home, 'section');
+  const processIndex = sections.findIndex(tag => hasClass(tag, 'home-care-process'));
+  const faqIndex = sections.findIndex(tag => attr(tag, 'id') === 'first-visit');
+  const galleryIndex = sections.findIndex(tag => attr(tag, 'id') === 'space-gallery');
+  assert.ok(processIndex >= 0 && processIndex < faqIndex && faqIndex < galleryIndex);
+
+  const process = blockWith(home, 'section', tag => hasClass(tag, 'home-care-process'));
+  const homeSteps = blocks(blockWith(process, 'ol', tag => hasClass(tag, 'home-care-steps')), 'li');
+  const visitSteps = blocks(blockWith(firstVisit, 'section', tag => hasClass(tag, 'visit-steps')), 'li').slice(1);
+  assert.equal(homeSteps.length, 3);
+  assert.equal(visitSteps.length, 3);
+  homeSteps.forEach((step, index) => {
+    for (const tag of ['h3', 'p']) {
+      assert.deepEqual(blocks(step, tag).map(textOf), blocks(visitSteps[index], tag).map(textOf));
+    }
+  });
+});
+
+test('Korean home offers four native FAQs with shared answers and only the exams question open', async () => {
+  const [home, firstVisit] = await Promise.all([htmlFor('/'), htmlFor('/first-visit')]);
+  const faq = blockWith(home, 'section', tag => attr(tag, 'id') === 'first-visit');
+  const details = blocks(faq, 'details');
+  assert.equal(details.length, 4);
+  const visitAnswers = new Map([...firstVisit.matchAll(/<dt\b[^>]*>([\s\S]*?)<\/dt>\s*<dd\b[^>]*>([\s\S]*?)<\/dd>/g)]
+    .map(([, question, answer]) => [textOf(question), textOf(answer)]));
+  const expectedTopics = [/검사.*모두/, /얼마나/, /비용.*보험/, /주차/];
+  details.forEach((detail, index) => {
+    assert.equal(/\sopen(?:\s|=|>)/.test(tags(detail, 'details')[0]), index === 0);
+    const summaries = blocks(detail, 'summary');
+    assert.equal(summaries.length, 1);
+    const question = textOf(summaries[0]);
+    assert.match(question, expectedTopics[index]);
+    const answers = blocks(detail, 'p');
+    assert.equal(answers.length, 1);
+    assert.ok(visitAnswers.has(question), `Missing first-visit answer: ${question}`);
+    assert.equal(textOf(answers[0]), visitAnswers.get(question), question);
+  });
+});
+
+test('Korean home booking actions preserve the booking destinations without collecting health input', async () => {
+  const home = await htmlFor('/');
+  const heroActions = blockWith(home, 'div', tag => hasClass(tag, 'home-hero-actions'));
+  const heroAnchors = tags(heroActions, 'a');
+  assert.equal(heroAnchors.length, 2);
+  assertExternalDestinations(heroAnchors[0], [bookingHref]);
+  assert.equal(attr(heroAnchors[1], 'href'), '#first-visit');
+  assert.ok(!attr(heroAnchors[1], 'target') || attr(heroAnchors[1], 'target') === '_self');
+
+  const faq = blockWith(home, 'section', tag => attr(tag, 'id') === 'first-visit');
+  const bookingActions = blockWith(faq, 'div', tag => hasClass(tag, 'home-booking-actions'));
+  assertExternalDestinations(bookingActions, [bookingHref, kakaoHref]);
+  assert.doesNotMatch(home, /<(?:form|input|textarea|select)\b/i);
 });
 
 test('optimized image sizes preserve proportions without upscaling', async () => {

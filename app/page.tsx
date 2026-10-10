@@ -4,6 +4,7 @@ import ClinicHeader from './components/ClinicHeader';
 import SiteMotion from './components/SiteMotion';
 import ResponsiveImage from './components/ResponsiveImage';
 import { columnPosts } from './column/column-data';
+import { firstVisitQuestions, firstVisitSteps } from './first-visit/visit-data';
 
 const treatmentAreas = [
   '통증',
@@ -17,39 +18,39 @@ const treatmentAreas = [
 
 const programs = [
   {
-    label: '통증·척추관절',
-    title: '통증 · 추나',
-    image: '/orb-chuna-room.png',
-    alt: '오브한의원 추나 치료 장면',
+    label: '통증 · 추나',
+    title: '목·어깨·허리가 불편해요',
+    image: '/orb-space-care-room.jpg',
+    alt: '오브한의원 독립 치료 공간',
     body:
-      '급성 통증부터 오래된 퇴행성 척추질환까지, 병기에 맞는 처치와 재활 방향을 안내합니다.',
+      '불편한 부위와 움직임, 통증이 시작된 시점을 확인하고 진료와 재활 방향을 상담합니다.',
     href: '/treatments/pain-chuna',
   },
   {
-    label: '검사·자율신경',
-    title: '자율신경 · 뇌파검사',
+    label: '자율신경 · 뇌파검사',
+    title: '자율신경·뇌파검사가 궁금해요',
     image: '/orb-qeeg-test.jpeg',
     alt: '정량뇌파검사 장면',
     body:
-      '자율신경검사와 QEEG-32FX로 뇌의 피로도와 회복 신호를 확인합니다.',
+      '검사 과정과 준비 사항을 살펴보세요. 어떤 검사가 필요한지는 상담과 진찰 후 안내합니다.',
     href: '/treatments/autonomic-qeeg',
   },
   {
-    label: '정신건강·생활리듬',
-    title: '스트레스 · 신경증',
+    label: '스트레스 · 신경증',
+    title: '잠과 스트레스가 고민이에요',
     image: '/orb-treatment-bed.jpeg',
     alt: '오브한의원 치료실 장면',
     body:
-      '과민감, 브레인포그, 우울감으로 이어지는 불편함을 회복 흐름 안에서 살핍니다.',
+      '수면과 기분의 변화, 긴장과 피로 등 일상에서 겪는 불편을 함께 상담합니다.',
     href: '/treatments/stress-neurosis',
   },
   {
-    label: '체중·대사',
-    title: '다이어트 · 열대사',
+    label: '다이어트 · 열대사',
+    title: '체중 관리를 시작하고 싶어요',
     image: '/orb-space-consult.jpg',
     alt: '오브한의원 상담 및 검사 공간',
     body:
-      '뇌의 에너지 센서, 항상성 회로, 장내 환경의 균형에서 접근합니다.',
+      '체중 변화와 식사, 수면, 활동 습관을 확인하고 현재 상태에 맞는 관리 방향을 상담합니다.',
     href: '/treatments/weight-metabolism',
   },
 ];
@@ -236,7 +237,7 @@ const clinicJsonLd = {
 
 export default function Home() {
   return (
-    <main className="site-shell">
+    <main className="site-shell home-page">
       <SiteMotion />
       <script
         type="application/ld+json"
@@ -266,6 +267,10 @@ export default function Home() {
           <p>마곡나루역 5번 출구에서 136m</p>
           <h1>오브한의원 마곡점</h1>
           <span>통증·추나 · 자율신경·뇌파 · 스트레스·신경증 · 체중 관리</span>
+          <div className="home-hero-actions" aria-label="첫 방문 및 예약">
+            <a href={naverBookingUrl} target="_blank" rel="noreferrer">네이버 예약하기</a>
+            <a href="#first-visit">첫 방문 안내</a>
+          </div>
         </div>
       </section>
 
@@ -281,16 +286,16 @@ export default function Home() {
       <section className="care-section" id="areas" aria-labelledby="care-title">
         <div className="care-heading">
           <p className="eyebrow">진료 안내</p>
-          <h2 id="care-title">주요 진료 분야</h2>
+          <h2 id="care-title">어떤 불편으로 오셨나요?</h2>
           <p>
-            현재의 불편과 시작된 시점, 생활 습관을 먼저 확인한 뒤 필요한
-            진찰과 검사, 진료 과정을 설명합니다.
+            나에게 필요한 진료를 먼저 살펴보세요. 어떤 진료를 선택할지
+            고민된다면 예약 전에 문의하실 수 있습니다.
           </p>
         </div>
         <div className="care-grid">
           {programs.map((program) => (
             <article className="care-card" key={program.title}>
-              <a href={program.href} aria-label={`${program.title} 진료 안내 보기`}>
+              <a href={program.href} aria-label={`${program.title} — ${program.label} 진료 안내`}>
                 <figure>
                   <ResponsiveImage src={program.image} alt={program.alt} sizes="(max-width: 700px) calc(100vw - 48px), 42vw" />
                 </figure>
@@ -298,26 +303,67 @@ export default function Home() {
                   <small>{program.label}</small>
                   <h3>{program.title}</h3>
                   <p>{program.body}</p>
-                  <span>자세히 보기</span>
+                  <span>{program.label} 진료 알아보기 <b aria-hidden="true">→</b></span>
                 </div>
               </a>
             </article>
           ))}
         </div>
+        <p className="care-help">
+          어떤 진료가 필요한지 잘 모르겠다면{' '}
+          <a href={kakaoChatUrl} target="_blank" rel="noreferrer">카카오톡으로 먼저 문의해 주세요 <span aria-hidden="true">↗</span></a>
+        </p>
       </section>
 
-      <section className="principle-section">
+      <section className="principle-section home-care-process" aria-labelledby="home-process-title">
         <div className="principle-copy">
-          <p className="eyebrow">진료 원칙</p>
-          <h2>증상만 보지 않고 시작된 시점과 생활 리듬을 함께 확인합니다.</h2>
+          <p className="eyebrow">첫 진료는 이렇게</p>
+          <h2 id="home-process-title">먼저 듣고,<br />필요한 진료를 설명합니다.</h2>
           <p>
-            상담 내용을 바탕으로 필요한 진찰과 검사를 안내하고, 현재 상태에
-            맞는 진료 방향을 이해하기 쉽게 설명합니다.
+            현재의 불편과 시작된 시점, 생활 리듬을 함께 확인합니다.
+            모든 검사를 일률적으로 진행하지 않습니다.
           </p>
+          <ol className="home-care-steps">
+            {firstVisitSteps.slice(1).map((step, index) => (
+              <li key={step.title}>
+                <span aria-hidden="true">0{index + 1}</span>
+                <div><h3>{step.title}</h3><p>{step.body}</p></div>
+              </li>
+            ))}
+          </ol>
+          <a className="contextual-link" href="/about">오브한의원 진료 원칙 더 보기 →</a>
         </div>
         <figure className="principle-photo">
-          <ResponsiveImage src="/orb-space-corridor.jpg" alt="오브한의원 진료실 복도" sizes="(max-width: 980px) 100vw, 50vw" />
+          <ResponsiveImage src="/orb-chuna-room.png" alt="오브한의원에서 추나 진료를 진행하는 모습" sizes="(max-width: 980px) calc(100vw - 48px), 46vw" />
+          <figcaption>오브한의원 추나 진료 장면</figcaption>
         </figure>
+      </section>
+
+      <section className="home-first-visit" id="first-visit" aria-labelledby="home-visit-title">
+        <div className="home-visit-heading">
+          <p className="eyebrow">예약 전 확인하세요</p>
+          <h2 id="home-visit-title">처음이라<br />궁금한 것들</h2>
+          <p>검사와 비용, 방문 준비까지.<br />예약 전에 필요한 안내를 살펴보세요.</p>
+          <a className="contextual-link" href="/first-visit">첫 방문 안내 전체 보기 →</a>
+        </div>
+        <div className="home-visit-questions">
+          {firstVisitQuestions.map((item, index) => (
+            <details key={item.id} open={index === 0}>
+              <summary>{item.question}<span aria-hidden="true" /></summary>
+              <p>{item.answer}</p>
+            </details>
+          ))}
+        </div>
+        <div className="home-visit-next">
+          <div>
+            <h3>방문 일정을 정하셨나요?</h3>
+            <p>네이버에서 예약하거나, 궁금한 점을 카카오톡으로 문의해 주세요.</p>
+          </div>
+          <div className="home-booking-actions" aria-label="첫 방문 예약 및 문의">
+            <a href={naverBookingUrl} target="_blank" rel="noreferrer">네이버 예약하기 <span aria-hidden="true">↗</span></a>
+            <a href={kakaoChatUrl} target="_blank" rel="noreferrer">예약 전 카카오 문의 <span aria-hidden="true">↗</span></a>
+          </div>
+        </div>
       </section>
 
       <section className="home-column-section" aria-labelledby="home-column-title">
