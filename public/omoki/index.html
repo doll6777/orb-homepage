@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="index, follow" />
+    <meta name="description" content="회사 속 나와 닮은 오목이를 만나보세요. 24가지 질문과 30가지 창작 캐릭터로 돌아보는 직장생활 이야기. 오브한의원 마곡점이 함께합니다." />
+    <link rel="canonical" href="https://orbclinic.pages.dev/omoki/" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="ko_KR" />
+    <meta property="og:title" content="직장인 오목이 | 회사 속 나는 어떤 유형?" />
+    <meta property="og:description" content="24가지 질문, 30가지 오목이. 나와 닮은 직장생활 이야기를 만나보세요." />
+    <meta property="og:url" content="https://orbclinic.pages.dev/omoki/" />
+    <meta property="og:site_name" content="직장인 오목이 · 오브한의원" />
+    <meta property="og:image" content="https://orbclinic.pages.dev/omoki/omoki-atlas-v1.png" />
+    <meta property="og:image:width" content="1145" />
+    <meta property="og:image:height" content="1374" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="theme-color" content="#fbfaf7" />
+    <title>직장인 오목이 | 오브한의원</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <script src="./lucide.min.js" defer></script>
+    <script src="./data.js" defer></script>
+    <script src="./stories.js" defer></script>
+    <script src="./matching.js" defer></script>
+    <script src="./share-config.js" defer></script>
+    <script src="./sharing.js" defer></script>
+    <script src="./app.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">본문으로 이동</a>
+    <div class="preview-bar">
+      <span>ORB OFFICE MOMENTS</span>
+      <nav aria-label="오목이 메뉴">
+        <button type="button" data-view="quiz">문항 체험</button>
+        <button type="button" data-view="result">결과 예시</button>
+        <button type="button" data-view="gallery">30가지 오목이</button>
+      </nav>
+    </div>
+    <header class="site-header">
+      <a class="wordmark" href="#quiz" aria-label="직장인 오목이 문항 체험">직장인 <b>오목이</b><span class="wordmark-dot"></span></a>
+      <span class="header-note">회사 속 나를 만나는 시간</span>
+      <a class="clinic-logo" href="https://orbclinic.pages.dev/" target="_blank" rel="noopener noreferrer" aria-label="오브한의원 홈페이지 새 창"><img src="./assets/orb-logo-brown.png" alt="오브한의원" width="112" height="34" /></a>
+    </header>
+    <main id="main" tabindex="-1"></main>
+    <footer class="site-footer"><span>오브한의원이 만든 직장생활 이야기</span><span>재미로 돌아보는 나의 모습. 심리검사·의학적 진단이 아닙니다.</span><span>© ORB</span></footer>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <dialog id="restart-dialog" aria-labelledby="restart-title" aria-describedby="restart-description"><h2 id="restart-title">처음부터 다시 해볼까요?</h2><p id="restart-description">지금 고른 답변과 결과를 지우고, 첫 질문부터 새로 시작해요.</p><div class="dialog-actions"><button class="secondary-button" id="cancel-restart">취소</button><button class="primary-button" id="confirm-restart">처음부터</button></div></dialog>
+    <dialog id="share-dialog" aria-labelledby="share-title" aria-describedby="share-status">
+      <div class="share-heading"><h2 id="share-title">친구에게 오목이 보내기</h2><button type="button" class="icon-button" id="close-share" aria-label="공유 창 닫기" title="닫기"><i data-lucide="x" aria-hidden="true"></i></button></div>
+      <div id="share-preview" class="share-preview"></div>
+      <p id="share-status" role="status" aria-live="polite"></p>
+      <div class="dialog-actions"><button type="button" class="secondary-button" id="share-copy"><i data-lucide="copy" aria-hidden="true"></i>문구 복사</button><button type="button" class="primary-button kakao-button" id="share-send" hidden disabled><i data-lucide="message-circle" aria-hidden="true"></i>카카오톡으로 보내기</button></div>
+    </dialog>
+    <noscript>문항 선택 기능을 사용하려면 JavaScript를 켜 주세요.</noscript>
+  </body>
+</html>
