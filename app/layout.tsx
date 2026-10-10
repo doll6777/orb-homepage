@@ -70,23 +70,11 @@ export default function RootLayout({
     <html lang="ko">
       <head>
         {hasGoogleAnalyticsId && googleAnalyticsId ? (
-          <>
-            <script
-              async
-              src={`https://www.googletagmanager.com/gtag/js?id=${googleAnalyticsId}`}
-            />
-            <script
-              id="google-analytics"
-              dangerouslySetInnerHTML={{
-                __html: `
-                  window.dataLayer = window.dataLayer || [];
-                  function gtag(){dataLayer.push(arguments);}
-                  gtag('js', new Date());
-                  gtag('config', '${googleAnalyticsId}');
-                `,
-              }}
-            />
-          </>
+          <script
+            defer
+            src="/orb-analytics.js"
+            data-measurement-id={googleAnalyticsId}
+          />
         ) : null}
       </head>
       <body className="antialiased">{children}</body>

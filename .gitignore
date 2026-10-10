@@ -40,5 +40,6 @@ next-env.d.ts
 /deliverables/
 /tmp/
 /:memory:.ses
+*.tsbuildinfo
 /orb-homepage-source.zip
 /work/
