@@ -229,19 +229,6 @@
         ${!match&&completed()?`<button class="secondary-button" id="back-to-my-result">${icon('arrow-left')}내 오목이로 돌아가기</button>`:''}
         <button class="text-button" id="return-questions">${match?'응답 수정하기':'문항 체험하기'}</button>
       </div>
-      <section class="clinic-invite" aria-labelledby="clinic-invite-title">
-        <div class="clinic-invite-copy">
-          <div class="eyebrow">오브한의원 마곡점</div>
-          <h2 id="clinic-invite-title">퇴근했는데,<br>몸은 아직 야근 중인가요?</h2>
-          <p>반복되는 목·어깨 통증이나 잠 때문에 고민이라면,<br>어떤 진료를 받을 수 있는지 먼저 물어보세요.</p>
-        </div>
-        <div class="clinic-invite-actions">
-          <a class="primary-button" data-clinic-link="talk" href="https://talk.naver.com/w6v6hxc" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" aria-label="톡톡으로 방문 전 문의 (새 창)">${icon('messages-square')}<span>톡톡으로 방문 전 문의</span>${icon('arrow-up-right')}</a>
-          <a class="secondary-button" data-clinic-link="booking" href="https://m.booking.naver.com/booking/16/bizes/1731406?theme=place&amp;lang=ko&amp;area=ple" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" aria-label="오브한의원 네이버 예약 (새 창)">${icon('calendar-days')}<span>네이버 예약하기</span>${icon('arrow-up-right')}</a>
-          <a class="clinic-location-link" data-clinic-link="place" href="https://pcmap.place.naver.com/hospital/2005324011/home" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer" aria-label="오브한의원 진료시간과 위치 보기 (새 창)">${icon('map-pin')}<span>진료시간·위치 보기</span>${icon('arrow-up-right')}</a>
-        </div>
-        <p class="clinic-invite-note">캐릭터 결과는 건강 상태나 치료 필요성을 판단하지 않습니다. 문의는 진료 항목과 방문 절차 안내이며, 진단과 치료 결정은 의료진의 진료를 통해 이루어집니다.</p>
-      </section>
     </article>`;
     document.querySelector('#copy-result').addEventListener('click',()=>copyText(sharing.copyText(id)));
     document.querySelector('#share-kakao').addEventListener('click',()=>openShare(id));

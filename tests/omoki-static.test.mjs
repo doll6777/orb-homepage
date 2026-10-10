@@ -44,6 +44,15 @@ test('All 30 character profiles are reachable with the 24-question contract', ()
   assert.equal(config.kakaoJavaScriptKey, '');
 });
 
+test('Omoki retains clinic attribution without symptoms or booking invitations', () => {
+  const html = read('index.html');
+  const app = read('app.js');
+  assert.match(html, /class="clinic-logo" href="https:\/\/orbclinic.pages.dev\/"/);
+  assert.match(html, /오브한의원이 만든 직장생활 이야기/);
+  assert.match(html, /심리검사·의학적 진단이 아닙니다/);
+  assert.doesNotMatch(html + app, /clinic-invite|data-clinic-link|몸은 아직 야근|어떤 진료를 받을|톡톡으로 방문|네이버 예약|talk\.naver\.com|booking\.naver\.com|pcmap\.place\.naver\.com/);
+});
+
 test('Static export retains every quiz file unchanged', () => {
   const output = fileURLToPath(new URL('../dist/client/omoki/', import.meta.url));
   for (const file of fs.readdirSync(root, { recursive: true })) {

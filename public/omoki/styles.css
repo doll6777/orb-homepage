@@ -61,17 +61,6 @@ h1:focus{outline:none}
 @media(max-width:700px){.result-dialogue{grid-template-columns:1fr;gap:22px;margin-top:26px;padding:22px 0}.result-dialogue>div:last-child{border-left:0;padding-left:0}.result-dialogue dt{margin-bottom:7px}.result-dialogue dd{font-size:16px}}
 @media(max-width:700px){.companion .character-crop{position:relative;height:102px;aspect-ratio:auto}.companion .character-crop img{position:absolute;left:-40%;top:-93%;width:180%;height:auto;max-width:none;object-fit:initial;transform:none}.gallery-empty{grid-column:1/-1}}
 .kakao-button{background:#fee500;color:#191919;border-color:#fee500;gap:10px}
-.clinic-invite{display:grid;grid-template-columns:minmax(0,1fr) minmax(250px,300px);align-items:center;gap:26px 44px;margin-top:56px;padding-top:36px;border-top:1px solid var(--line)}
-.clinic-invite-copy{min-width:0}.clinic-invite h2{font-size:26px;line-height:1.5;margin:16px 0 14px;font-weight:700}
-.clinic-invite-copy>p{font-size:13px;color:var(--muted);line-height:1.85}
-.clinic-invite-actions{display:grid;gap:10px;min-width:0}
-.clinic-invite-actions>.primary-button,.clinic-invite-actions>.secondary-button{display:grid;grid-template-columns:20px minmax(0,1fr) 18px;gap:10px;min-height:52px;padding:13px 16px;font-size:13px;text-align:center}
-.clinic-invite-actions a>span{min-width:0;word-break:keep-all;overflow-wrap:anywhere;line-height:1.5}
-.clinic-invite-actions a>svg:last-child{width:16px;height:16px}
-.clinic-location-link{display:flex;align-items:center;justify-content:center;gap:8px;min-height:44px;font-size:12px;color:var(--muted)}
-.clinic-location-link:hover>span{text-decoration:underline;text-underline-offset:4px}.clinic-location-link>svg{width:16px;height:16px}
-.clinic-invite-note{grid-column:1/-1;font-size:11px;color:var(--muted);max-width:760px}
-@media(max-width:700px){.clinic-invite{grid-template-columns:minmax(0,1fr);gap:24px;margin-top:38px;padding-top:28px}.clinic-invite h2{font-size:23px}.clinic-invite-copy>p{font-size:13px}.clinic-invite-copy>p br{display:none}.clinic-invite-actions{width:100%}.clinic-invite-note{font-size:10px}}
 .kakao-button:not(:disabled):hover{background:#f2db00;border-color:#f2db00}
 .result-secondary-actions{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:12px 20px;margin-top:16px}
 .result-actions>button{min-width:0;overflow-wrap:anywhere}

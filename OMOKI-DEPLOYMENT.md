@@ -8,10 +8,11 @@
 - Regression checks: `node --test tests/omoki-static.test.mjs tests/site-export.test.mjs tests/analytics.test.mjs`.
 
 The standalone quiz has no answer persistence, contact form, analytics, or answer
-transfer to the clinic. Its result footer links to the existing Naver Talk,
-booking, and Place destinations. Character stories are entertainment, not
-clinical assessments. Gallery/result links use URL fragments and do not expose
-answers.
+transfer to the clinic. The quiz has no symptom-based care invitation or direct
+Talk, booking, or Place links. The clinic logo links to its homepage and the
+footer credits ORB. Character stories are entertainment, not clinical
+assessments. Gallery/result links use URL fragments and do not expose answers.
+This content change is not medical-advertising approval or a review exemption.
 
 `share-config.js` contains the production URL. Kakao's JavaScript key is not yet
 configured: copying a result link works, but direct Kakao sharing must not be
