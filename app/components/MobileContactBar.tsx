@@ -4,9 +4,13 @@ export default function MobileContactBar({ english = false }: { english?: boolea
   return (
     <div className="mobile-contact-space">
       <nav className="mobile-cta" aria-label={english ? 'Mobile reservation and contact' : '모바일 예약 및 문의'}>
-        <a href={bookingUrl} target="_blank" rel="noreferrer">{english ? 'Naver Booking' : '네이버 예약'}</a>
+        {english ? (
+          <a href="/en/first-visit#booking">How to book</a>
+        ) : (
+          <a href={bookingUrl} target="_blank" rel="noreferrer">네이버 예약</a>
+        )}
         <a href="https://pf.kakao.com/_nXGxaX/chat" target="_blank" rel="noreferrer">{english ? 'KakaoTalk Chat' : '카카오톡 상담'}</a>
-        <a href="tel:0269595982">{english ? 'Call' : '전화하기'}</a>
+        <a href={english ? 'tel:+82269595982' : 'tel:0269595982'}>{english ? 'Call' : '전화하기'}</a>
       </nav>
     </div>
   );

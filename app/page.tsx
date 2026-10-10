@@ -203,7 +203,7 @@ const clinicJsonLd = {
         '@type': 'ContactPoint',
         telephone: '+82-2-6959-5982',
         contactType: '예약 및 진료 문의',
-        availableLanguage: ['Korean', 'English'],
+        availableLanguage: ['Korean'],
       },
       openingHoursSpecification: [
         {

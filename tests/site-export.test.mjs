@@ -6,22 +6,30 @@ const output = new URL('../dist/client/', import.meta.url);
 const pages = ['/', '/about', '/first-visit', '/column', '/column/wet-qeeg-guide',
   '/column/qeeg-process', '/column/autonomic-top-down-bottom-up',
   '/treatments/pain-chuna', '/treatments/autonomic-qeeg',
-  '/treatments/stress-neurosis', '/treatments/weight-metabolism', '/en'];
+  '/treatments/stress-neurosis', '/treatments/weight-metabolism', '/en', '/en/first-visit'];
 const file = route => new URL(route === '/' ? 'index.html' : `${route.slice(1)}.html`, output);
 const htmlFor = route => readFile(file(route), 'utf8');
 const tags = (html, tag) => html.match(new RegExp(`<${tag}\\b[^>]*>`, 'g')) ?? [];
 const attr = (tag, key) => tag.match(new RegExp(`(?:\\s|^)${key}="([^"]*)"`))?.[1];
 
 for (const route of pages) {
-  test(`${route}: one contact bar with unchanged booking/phone/Kakao destinations`, async () => {
+  test(`${route}: one contact bar with the correct language-specific destinations`, async () => {
     const html = await htmlFor(route);
     const bars = html.match(/<nav class="mobile-cta"[^>]*>[\s\S]*?<\/nav>/g) ?? [];
     assert.equal(bars.length, 1);
-    const links = tags(bars[0], 'a').map(tag => attr(tag, 'href'));
+    const anchors = tags(bars[0], 'a');
+    const links = anchors.map(tag => attr(tag, 'href'));
     assert.equal(links.length, 3);
-    assert.ok(links[0].startsWith('https://m.booking.naver.com/booking/16/bizes/1731406?'));
+    const english = route === '/en' || route.startsWith('/en/');
+    if (english) {
+      assert.equal(links[0], '/en/first-visit#booking');
+      assert.ok(!attr(anchors[0], 'target') || attr(anchors[0], 'target') === '_self');
+      assert.match(bars[0], />How to book<\/a>/);
+    } else {
+      assert.ok(links[0].startsWith('https://m.booking.naver.com/booking/16/bizes/1731406?'));
+    }
     assert.equal(links[1], 'https://pf.kakao.com/_nXGxaX/chat');
-    assert.equal(links[2], 'tel:0269595982');
+    assert.equal(links[2], english ? 'tel:+82269595982' : 'tel:0269595982');
     assert.ok(html.includes('src="/orb-analytics.js"'));
   });
 
@@ -29,8 +37,8 @@ for (const route of pages) {
     const html = await htmlFor(route);
     for (const tag of tags(html, 'a')) {
       const href = attr(tag, 'href');
-      if (!href || !href.startsWith('/') || href.startsWith('//')) continue;
-      const url = new URL(href, 'https://orbclinic.pages.dev');
+      if (!href || (!href.startsWith('/') && !href.startsWith('#')) || href.startsWith('//')) continue;
+      const url = new URL(href, `https://orbclinic.pages.dev${route}`);
       const target = await htmlFor(url.pathname);
       if (url.hash) assert.ok(target.includes(`id="${url.hash.slice(1)}"`), `${route} → ${href}`);
     }
@@ -56,6 +64,71 @@ for (const route of pages) {
     }
   });
 }
+
+for (const [route, title] of [
+  ['/en', 'Korean Medicine Clinic in Magok, Seoul | ORB'],
+  ['/en/first-visit', 'Your First Visit in Magok, Seoul | ORB Clinic'],
+]) {
+  test(`${route}: English title, language, canonical and international phone links are exported`, async () => {
+    const html = await htmlFor(route);
+    assert.equal(html.match(/<title>([^<]*)<\/title>/)?.[1], title);
+    assert.ok(tags(html, 'main').some(tag => attr(tag, 'lang') === 'en'));
+    const canonicals = tags(html, 'link').filter(tag => attr(tag, 'rel') === 'canonical');
+    assert.equal(canonicals.length, 1);
+    assert.equal(attr(canonicals[0], 'href'), `https://orbclinic.pages.dev${route}`);
+    const phoneLinks = tags(html, 'a').map(tag => attr(tag, 'href')).filter(href => href?.startsWith('tel:'));
+    assert.ok(phoneLinks.length > 0);
+    assert.ok(phoneLinks.every(href => href === 'tel:+82269595982'));
+  });
+}
+
+for (const route of ['/first-visit', '/en/first-visit']) {
+  test(`${route}: first-visit translations declare reciprocal language alternatives`, async () => {
+    const html = await htmlFor(route);
+    const links = tags(html, 'link');
+    const canonical = links.find(tag => attr(tag, 'rel') === 'canonical');
+    assert.equal(attr(canonical ?? '', 'href'), `https://orbclinic.pages.dev${route}`);
+    for (const [language, target] of [['ko', '/first-visit'], ['en', '/en/first-visit']]) {
+      const alternatives = links.filter(tag => attr(tag, 'rel') === 'alternate' &&
+        (attr(tag, 'hrefLang') ?? attr(tag, 'hreflang')) === language);
+      assert.equal(alternatives.length, 1);
+      assert.equal(attr(alternatives[0], 'href'), `https://orbclinic.pages.dev${target}`);
+    }
+  });
+}
+
+test('the exported sitemap includes both first-visit translations and reciprocal alternatives', async () => {
+  const sitemap = await readFile(new URL('sitemap.xml', output), 'utf8');
+  const entries = sitemap.match(/<url>[\s\S]*?<\/url>/g) ?? [];
+  for (const route of ['/first-visit', '/en/first-visit']) {
+    const matching = entries.filter(entry => entry.includes(`<loc>https://orbclinic.pages.dev${route}</loc>`));
+    assert.equal(matching.length, 1, route);
+    for (const [language, target] of [['ko', '/first-visit'], ['en', '/en/first-visit']]) {
+      const alternatives = tags(matching[0], 'xhtml:link').filter(tag => attr(tag, 'rel') === 'alternate' &&
+        attr(tag, 'hreflang') === language);
+      assert.equal(alternatives.length, 1, `${route}: ${language}`);
+      assert.equal(attr(alternatives[0], 'href'), `https://orbclinic.pages.dev${target}`);
+    }
+  }
+});
+
+test('structured data does not promise unconfirmed English-language assistance', async () => {
+  function languageDeclarations(value) {
+    if (!value || typeof value !== 'object') return [];
+    return Object.entries(value).flatMap(([key, child]) => key === 'availableLanguage'
+      ? [child]
+      : languageDeclarations(child));
+  }
+  for (const route of pages) {
+    const html = await htmlFor(route);
+    const schemas = [...html.matchAll(/<script\b[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)];
+    for (const [, json] of schemas) {
+      for (const declaration of languageDeclarations(JSON.parse(json))) {
+        assert.doesNotMatch(JSON.stringify(declaration), /English|"en(?:-[^"]+)?"/i, route);
+      }
+    }
+  }
+});
 
 test('settings/privacy do not contain a fixed booking bar', async () => {
   for (const route of ['/internal-traffic', '/privacy']) {

@@ -2,73 +2,80 @@ import type { Metadata } from 'next';
 import AutoGallery from '../components/AutoGallery';
 import SiteMotion from '../components/SiteMotion';
 import ResponsiveImage from '../components/ResponsiveImage';
-import MobileContactBar from '../components/MobileContactBar';
+import EnglishHeader from '../components/EnglishHeader';
+import EnglishFooter from '../components/EnglishFooter';
 
 const treatmentAreas = [
   'Pain care',
   'Autonomic imbalance',
   'Stress',
-  'Neurotic symptoms',
   'Weight management',
-  'Heat metabolism',
   'Traffic accident aftercare',
 ];
 
 const treatmentPillars = [
   {
     number: '01',
+    id: 'pain-chuna',
     title: 'Pain · Chuna',
-    caption: 'Musculoskeletal pain and spinal-joint recovery',
+    caption: 'Muscle and joint pain · Hands-on treatment',
   },
   {
     number: '02',
-    title: 'Autonomic System',
-    caption: 'QEEG and nervous-system fatigue assessment',
+    id: 'autonomic-qeeg',
+    title: 'Autonomic · QEEG',
+    caption: 'Symptom consultation · Brainwave assessment',
   },
   {
     number: '03',
-    title: 'Stress · Neurotic Symptoms',
-    caption: 'Sensitivity, brain fog, and emotional fatigue',
+    id: 'stress-care',
+    title: 'Stress-related concerns',
+    caption: 'A consultation about symptoms and daily life',
   },
   {
     number: '04',
-    title: 'Weight · Metabolism',
-    caption: 'Metabolic balance and weight care',
+    id: 'weight-care',
+    title: 'Weight management',
+    caption: 'Discuss your goals and treatment options',
   },
 ];
 
 const programs = [
   {
     number: '01',
+    id: 'pain-chuna',
     title: 'Pain · Chuna',
     image: '/orb-chuna-room.png',
     alt: 'Chuna treatment at ORB Korean Medicine Clinic',
     body:
-      'From acute musculoskeletal pain to long-standing degenerative spine conditions, care is guided by the stage of the condition.',
+      'Discuss neck, back, muscle or joint pain with the clinician. Chuna is a hands-on manual treatment used in Korean medicine. The consultation helps determine which treatment options are appropriate for you.',
   },
   {
     number: '02',
+    id: 'autonomic-qeeg',
     title: 'Autonomic · QEEG',
     image: '/orb-qeeg-test.jpeg',
     alt: 'QEEG examination at ORB Korean Medicine Clinic',
     body:
-      'Autonomic testing and QEEG-32FX help assess nervous-system fatigue and recovery signals more objectively.',
+      'Talk through your symptoms and medical history. If appropriate, the clinician may recommend autonomic testing or quantitative electroencephalography (QEEG), which records and analyses brainwave activity. Ask about preparation and fees before your visit.',
   },
   {
     number: '03',
-    title: 'Stress · Neurotic Symptoms',
+    id: 'stress-care',
+    title: 'Stress-related concerns',
     image: '/orb-treatment-bed.jpeg',
     alt: 'Treatment room at ORB Korean Medicine Clinic',
     body:
-      'ORB looks at sensitivity, brain fog, low mood, and stress-related discomfort as part of one recovery pattern.',
+      'A consultation gives you space to explain stress-related discomfort, brain fog or changes in mood, and how these affect your daily life. The clinician reviews your concerns and discusses suitable next steps.',
   },
   {
     number: '04',
-    title: 'Weight · Metabolism',
+    id: 'weight-care',
+    title: 'Weight management',
     image: '/orb-space-consult.jpg',
     alt: 'Consultation and examination room at ORB Korean Medicine Clinic',
     body:
-      'Weight care is approached through energy regulation, homeostasis, and the balance of the gut environment.',
+      'Discuss your weight-management goals, eating patterns, current medicines and health history. The clinician can explain the available options, their suitability and costs before you decide on care.',
   },
 ];
 
@@ -149,13 +156,14 @@ const mapLinks = [
   { label: 'KAKAO', name: 'Kakao Map', href: kakaoMapUrl },
   { label: 'GOOGLE', name: 'Google Maps', href: googleMapUrl },
 ];
-const phoneDisplay = '02-6959-5982';
-const phoneHref = 'tel:0269595982';
+const phoneDisplay = '+82-2-6959-5982';
+const phoneHref = 'tel:+82269595982';
 const siteUrl = 'https://orbclinic.pages.dev/en';
 
 const clinicJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'MedicalClinic',
+  '@id': 'https://orbclinic.pages.dev/#clinic',
   name: 'ORB Korean Medicine Clinic Magok',
   alternateName: '오브한의원 마곡점',
   url: siteUrl,
@@ -187,13 +195,13 @@ const clinicJsonLd = {
     'Neuropsychiatry',
     'Rehabilitation',
   ],
-  availableService: treatmentAreas,
+  availableService: treatmentAreas.map((name) => ({ '@type': 'Service', name })),
 };
 
 export const metadata: Metadata = {
-  title: 'English Guide',
+  title: { absolute: 'Korean Medicine Clinic in Magok, Seoul | ORB' },
   description:
-    'English guide for ORB Korean Medicine Clinic Magok in Seoul. Care for pain, autonomic imbalance, stress, neurotic symptoms, weight management, heat metabolism, and traffic accident aftercare.',
+    'Visit ORB Korean Medicine Clinic in Magok, Gangseo-gu, Seoul. Explore pain and Chuna care, QEEG, first-visit information, booking options and directions from Magoknaru Station.',
   alternates: {
     canonical: '/en',
     languages: {
@@ -202,9 +210,9 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: 'ORB Korean Medicine Clinic Magok',
+    title: 'Korean Medicine Clinic in Magok, Seoul | ORB',
     description:
-      'English guide for ORB Korean Medicine Clinic near Magongnaru Station Exit 5 in Seoul.',
+      'Treatments, first-visit guidance and booking options for ORB Korean Medicine Clinic near Magoknaru Station Exit 5 in Seoul.',
     url: '/en',
     siteName: 'ORB Korean Medicine Clinic',
     locale: 'en_US',
@@ -214,24 +222,13 @@ export const metadata: Metadata = {
 
 export default function EnglishPage() {
   return (
-    <main className="site-shell" lang="en">
+    <main className="site-shell english-page" lang="en">
       <SiteMotion />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(clinicJsonLd) }}
       />
-      <header className="global-header" aria-label="ORB Korean Medicine Clinic">
-        <a className="wordmark" href="/en#top" aria-label="ORB home">
-          ORB
-        </a>
-        <div className="header-actions">
-          <a href="/" hrefLang="ko" aria-label="View in Korean">
-            KR
-          </a>
-          <a href="#directions">Directions</a>
-          <a href="#contact">Reservation</a>
-        </div>
-      </header>
+      <EnglishHeader />
 
       <nav className="side-index" aria-label="Section navigation">
         <span aria-hidden="true" />
@@ -262,9 +259,13 @@ export default function EnglishPage() {
           <ResponsiveImage src="/orb-space-lobby-wide.jpg" alt="ORB Korean Medicine Clinic lobby" sizes="100vw" priority />
         </figure>
         <div className="hero-identity">
-          <p>MAGOKNARU · ORB CLINIC</p>
+          <p>MAGOK · GANGSEO-GU · SEOUL</p>
           <h1>ORB Korean Medicine Clinic</h1>
-          <span>136m from Magongnaru Station Exit 5</span>
+          <span>Pain &amp; Chuna · Autonomic &amp; QEEG · Stress · Weight care<br />136m from Magoknaru Station Exit 5</span>
+          <div className="english-hero-actions">
+            <a href="/en/first-visit">Your first visit ↗</a>
+            <a href="/en/first-visit#booking">How to book ↗</a>
+          </div>
         </div>
         <div className="scroll-cue" aria-hidden="true">
           <span>SCROLL</span>
@@ -279,7 +280,7 @@ export default function EnglishPage() {
         </div>
         <div className="area-grid">
           {treatmentPillars.map((area) => (
-            <a href="#programs" className="area-item" key={area.title}>
+            <a href={`#${area.id}`} className="area-item" key={area.title}>
               <span>{area.number}</span>
               <strong>{area.title}</strong>
               <small>{area.caption}</small>
@@ -293,6 +294,7 @@ export default function EnglishPage() {
           <section
             className={`snap-section program-section ${index % 2 === 1 ? 'reverse' : ''}`}
             key={program.title}
+            id={program.id}
           >
             <figure className="program-photo">
               <ResponsiveImage src={program.image} alt={program.alt} sizes="(max-width: 980px) 100vw, 55vw" />
@@ -301,6 +303,7 @@ export default function EnglishPage() {
               <span>{program.number}</span>
               <h2>{program.title}</h2>
               <p>{program.body}</p>
+              <a className="contextual-link" href="/en/first-visit">Plan your first visit →</a>
             </div>
           </section>
         ))}
@@ -310,9 +313,9 @@ export default function EnglishPage() {
         <div className="principle-copy">
           <p className="eyebrow">ORIGIN · RESET · BALANCE</p>
           <h2>
-            We diagnose the origin,
+            Care starts with
             <br />
-            then reset the direction of recovery.
+            your concerns.
           </h2>
         </div>
         <figure className="principle-photo">
@@ -343,7 +346,7 @@ export default function EnglishPage() {
           <dl className="route-details">
             <div>
               <dt>Subway</dt>
-              <dd>136m on foot from Magongnaru Station Exit 5.</dd>
+              <dd>136m on foot from Magoknaru Station Exit 5.</dd>
             </div>
             <div>
               <dt>Building</dt>
@@ -359,7 +362,7 @@ export default function EnglishPage() {
             </div>
             <div>
               <dt>Closed</dt>
-              <dd>Closed Sundays. Please check Naver Place for holiday schedules.</dd>
+              <dd>Closed Sundays. For public holidays, contact the clinic or check Naver Place (Korean) before visiting.</dd>
             </div>
             <div>
               <dt>Parking</dt>
@@ -391,15 +394,19 @@ export default function EnglishPage() {
           <p className="eyebrow">RESERVATION</p>
           <h2>Visit ORB Magok</h2>
           <p>
-            Book through Naver or contact ORB Magok through KakaoTalk or by
-            phone.
+            New to the clinic? Read our <a className="contextual-link" href="/en/first-visit#booking">booking guide</a> before choosing a time.
+            Please confirm language assistance with the clinic before booking.
+          </p>
+          <p className="english-booking-note">
+            Naver Booking opens in Korean. KakaoTalk may require an account or the app.
+            From outside Korea, call +82-2-6959-5982.
           </p>
           <address className="clinic-address">
             111 Magokjungang-ro, Building 104, 2F, Units 238-239
             <br />
             Gangseo-gu, Seoul
             <br />
-            136m from Magongnaru Station Exit 5
+            136m from Magoknaru Station Exit 5
           </address>
           <div className="reservation-info">
             <span>Phone</span>
@@ -407,7 +414,7 @@ export default function EnglishPage() {
           </div>
           <div className="outline-actions" aria-label="Reservation links">
             <a href={naverBookingUrl} target="_blank" rel="noreferrer">
-              Naver Booking
+              Naver Booking (Korean)
             </a>
             <a href={kakaoChatUrl} target="_blank" rel="noreferrer">
               KakaoTalk Chat
@@ -424,7 +431,7 @@ export default function EnglishPage() {
           </ul>
         </div>
       </section>
-      <MobileContactBar english />
+      <EnglishFooter />
     </main>
   );
 }

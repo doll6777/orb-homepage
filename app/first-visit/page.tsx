@@ -8,6 +8,7 @@ export const metadata: Metadata = {
     '오브한의원 마곡점 첫 방문 안내. 예약, 접수, 상담과 검사, 진료 및 주차 정보를 확인하세요.',
   alternates: {
     canonical: '/first-visit',
+    languages: { ko: '/first-visit', en: '/en/first-visit' },
   },
 };
 
@@ -44,6 +45,8 @@ export default function FirstVisitPage() {
           <p>
             편안하게 진료받으실 수 있도록 예약부터 진료 후 안내까지의 흐름을
             미리 알려드립니다.
+            <br />
+            <a className="contextual-link" href="/en/first-visit" hrefLang="en" lang="en">First visit guide in English →</a>
           </p>
         </div>
       </section>

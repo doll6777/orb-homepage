@@ -175,6 +175,52 @@ test('one delegated handler tracks current and future links without motion depen
   assert.equal(JSON.stringify(app.events()).includes('0269595982'), false);
 });
 
+test('English booking guidance is not counted as an external booking conversion', () => {
+  const app = fixture({ url: 'https://orbclinic.pages.dev/en' });
+  for (const href of [
+    '/en/first-visit#booking',
+    'https://orbclinic.pages.dev/en/first-visit#booking',
+  ]) {
+    assert.equal(app.click(href).defaultPrevented, false);
+  }
+  app.setLocation('/en/first-visit');
+  assert.equal(app.click('#booking', { detail: 0 }).defaultPrevented, false);
+  assert.equal(app.events().length, 0);
+  assert.equal(app.window.orbAnalytics.status().enabled, true);
+
+  app.click('https://m.booking.naver.com/booking/16/bizes/1731406?theme=place&lang=ko&area=ple');
+  assert.deepEqual(app.events().map((entry) => entry[1]), ['booking_click']);
+});
+
+test('international phone links on English pages record one phone event without the number', () => {
+  for (const route of ['/en', '/en/first-visit']) {
+    const app = fixture({ url: `https://orbclinic.pages.dev${route}` });
+    const event = app.click('tel:+82269595982', { detail: 0 });
+    assert.equal(event.defaultPrevented, false);
+    assert.equal(app.events().length, 1);
+    const [, name, payload] = app.events()[0];
+    assert.equal(name, 'phone_click');
+    assert.equal(payload.cta_type, 'phone');
+    assert.equal(payload.destination_host, 'telephone');
+    assert.deepEqual(Object.keys(payload).sort(), ['cta_type', 'destination_host', 'send_to']);
+    assert.equal(JSON.stringify(app.events()).includes('82269595982'), false);
+  }
+});
+
+test('English booking and international phone links still respect analytics exclusions', () => {
+  for (const options of [
+    { url: 'https://orbclinic.pages.dev/en/first-visit', internal: true },
+    { url: 'https://preview.orbclinic.pages.dev/en/first-visit' },
+  ]) {
+    const app = fixture(options);
+    app.click('/en/first-visit#booking');
+    app.click('tel:+82269595982');
+    app.click('https://m.booking.naver.com/booking/16/bizes/1731406');
+    assert.equal(app.events().length, 0);
+    assert.equal(app.scripts.length, 0);
+  }
+});
+
 test('classification requires exact known hosts and permitted protocols', () => {
   const app = fixture();
   for (const href of [

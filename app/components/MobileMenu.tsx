@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, type ReactNode } from 'react';
 
-export default function MobileMenu({ children }: { children: ReactNode }) {
+export default function MobileMenu({ children, label = '모바일 메뉴' }: { children: ReactNode; label?: string }) {
   const menuRef = useRef<HTMLDetailsElement>(null);
   const summaryRef = useRef<HTMLElement>(null);
 
@@ -97,7 +97,7 @@ export default function MobileMenu({ children }: { children: ReactNode }) {
   return (
     <details className="mobile-menu" ref={menuRef}>
       <summary ref={summaryRef}>MENU</summary>
-      <nav aria-label="모바일 메뉴">{children}</nav>
+      <nav aria-label={label}>{children}</nav>
     </details>
   );
 }

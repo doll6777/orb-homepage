@@ -1656,6 +1656,86 @@ img {
   }
 }
 
+/* English pages keep the clinic palette with spacing suited to English copy. */
+.english-page :is(h1, h2, h3) {
+  letter-spacing: -0.02em;
+  word-break: normal;
+  overflow-wrap: break-word;
+}
+
+.english-page :is(p, dd, dt, address) {
+  word-break: normal;
+  overflow-wrap: break-word;
+}
+
+.english-page .hero-identity {
+  max-width: 700px;
+}
+
+.english-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.english-hero-actions a {
+  background: var(--cream);
+  border: 1px solid var(--cream);
+  color: var(--brown);
+  font-size: 14px;
+  font-weight: 550;
+  line-height: 1.5;
+  padding: 12px 16px;
+}
+
+.english-hero-actions a:last-child {
+  background: rgba(45, 33, 27, 0.75);
+  color: var(--cream);
+}
+
+.english-hero-actions a:focus-visible {
+  outline: 2px solid var(--cream);
+  outline-offset: 4px;
+}
+
+.english-page .program-copy > .contextual-link {
+  display: inline-block;
+  font-size: 15px;
+  margin-top: 24px;
+}
+
+.english-page .program-copy h2 {
+  font-size: clamp(28px, 3.4vw, 44px);
+}
+
+.english-page .reservation-info a {
+  font-size: clamp(24px, 2.6vw, 34px);
+  white-space: nowrap;
+}
+
+.english-page .letter .english-booking-note {
+  color: var(--cream-soft);
+  font-size: 14px;
+  line-height: 1.8;
+  margin-top: 16px;
+}
+
+.english-page .first-visit-cta h2 {
+  font-size: clamp(28px, 3.4vw, 44px);
+}
+
+@media (max-width: 700px) {
+  .english-page .treat-hero,
+  .english-page .hero-photo {
+    min-height: max(620px, 70svh);
+  }
+
+  .english-page .hero-identity h1 {
+    font-size: 34px;
+  }
+}
+
 /* Shared clinic navigation and footer */
 .clinic-header {
   backdrop-filter: blur(16px);

@@ -41,8 +41,17 @@
   </url>
   <url>
     <loc>https://orbclinic.pages.dev/first-visit</loc>
-    <changefreq>yearly</changefreq>
+    <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://orbclinic.pages.dev/first-visit" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://orbclinic.pages.dev/en/first-visit" />
+  </url>
+  <url>
+    <loc>https://orbclinic.pages.dev/en/first-visit</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://orbclinic.pages.dev/first-visit" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://orbclinic.pages.dev/en/first-visit" />
   </url>
   <url>
     <loc>https://orbclinic.pages.dev/column</loc>

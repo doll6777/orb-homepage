@@ -9,7 +9,6 @@ const treatmentPaths = [
 ];
 const informationPaths = [
   '/about',
-  '/first-visit',
   '/column',
   '/column/wet-qeeg-guide',
   '/column/qeeg-process',
@@ -51,6 +50,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
+  const firstVisitPages: MetadataRoute.Sitemap = ['/first-visit', '/en/first-visit'].map((path) => ({
+    url: `${baseUrl}${path}`,
+    lastModified: new Date(),
+    changeFrequency: 'monthly',
+    priority: 0.7,
+    alternates: {
+      languages: {
+        ko: `${baseUrl}/first-visit`,
+        en: `${baseUrl}/en/first-visit`,
+      },
+    },
+  }));
+
   const informationPages: MetadataRoute.Sitemap = informationPaths.map((path) => ({
     url: `${baseUrl}${path}`,
     lastModified: new Date(),
@@ -58,5 +70,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: path === '/column' ? 0.8 : 0.7,
   }));
 
-  return [...corePages, ...treatmentPages, ...informationPages];
+  return [...corePages, ...treatmentPages, ...informationPages, ...firstVisitPages];
 }
